@@ -32,7 +32,7 @@ struct DiscoverView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .foregroundStyle(.white)
-                    .frame(width: 20, height: 20)
+                    .frame(width: 30, height: 30)
                     .padding(7)
                     .background(.orange.gradient, in: .circle)
             }
@@ -41,7 +41,7 @@ struct DiscoverView: View {
             
             if let route {
                 MapPolyline(route)
-                    .stroke(.orange, style: StrokeStyle(lineWidth: 3, dash: [5, 2]))
+                    .stroke(.orange, style: StrokeStyle(lineWidth: 3, dash: [6, 3]))
             }
             ForEach(routePolylines, id: \.self) { polyline in
                 MapPolyline(polyline)
@@ -85,47 +85,23 @@ struct DiscoverView: View {
                             Spacer()
                             
                             Button("Search", systemImage: "rectangle.2.swap") {
-                                
                             }
-                            
                             .frame(height: 35, alignment: .center)
-                            //                    .background(.white)
                             .labelStyle(.iconOnly)
-                            //                        .buttonStyle(.borderedProminent)
-                            
-                            //                        .tint(.white)
                             .foregroundColor(.black)
-                            //                        .shadow(color: Color.black.opacity(0.1), radius: 15, x: 0, y: 10)
                             
                         }
                         .frame(height: 75)
-                        //                    Toggle(isOn: "$userAgreed") {
-                        //                        Text("I agree to the above terms")
-                        //                    }
                     }
-                    
-                    //                .groupBoxStyle(DefaultGroupBoxStyle())
-                    
-                    //            .frame(width: .)
-                    //            .foregroundColor(.white)
-                    //            .background(.white)
-                    //                .tint(.white)
-                    
                     .shadow(color: Color.black.opacity(0.1), radius: 15, x: 0, y: 10)
-                    //            TextField("From", text: $startingPoint)
-                    //                .safeAreaPadding()
-                    //                .background(.white)
                     
                     VStack {
                         Button("Search", systemImage: "magnifyingglass") {
                             getWalkingDirections(to: .bbb)
                             getDirections()
-                            
-                            //                        showResultRoute = true
                         }
                         
                         .frame(height: 35, alignment: .center)
-                        //                    .background(.white)
                         .labelStyle(.iconOnly)
                         .buttonStyle(.borderedProminent)
                         
@@ -158,17 +134,13 @@ struct DiscoverView: View {
                             .buttonStyle(.borderedProminent)
                             .tint(.white)
                             .foregroundColor(.black)
-                            .shadow(color: Color.black.opacity(0.1), radius: 15, x: 0, y: 10)
+                            .shadow(color: Color.black.opacity(0.1), radius: 4, x: 7, y: 8)
                         }
                     }
                 }
-//                .padding()
-//                .fram÷
-
             }
             .frame(height: 150)
             .safeAreaPadding()
-//            .scaledToFit()
         }
         .sheet(isPresented: $showResultRoute, content: {
             Text("This is detail")
