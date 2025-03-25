@@ -66,7 +66,7 @@ struct DiscoverView: View {
                     GroupBox {
                         HStack{
                             VStack {
-                                Label("From", systemImage: "mappin.and.ellipse")
+                                Label("Fro", systemImage: "mappin.and.ellipse")
                                     .opacity(0.5)
                                 Spacer()
                                 Label("To", systemImage: "flag.filled.and.flag.crossed")
