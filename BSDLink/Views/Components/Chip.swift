@@ -17,9 +17,10 @@ struct Chip: View {
                 .bold()
                 .foregroundColor(Color.white.opacity(0.8))
         }
-        .padding(12)
+        .padding([.leading, .trailing], 12)
+        .padding([.top, .bottom], 4)
         .background(color)
-        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+        .clipShape(RoundedRectangle(cornerRadius: 4, style: .continuous))
     }
 }
 
