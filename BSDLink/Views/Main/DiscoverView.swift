@@ -22,15 +22,15 @@ struct DiscoverView: View {
     @State private var showResultRoute = false
     @State private var route: MKRoute?
     
-    @State guard let userLocation: CLLocationCoordinate2D? = CLLocationCoordinate2D()
-    
-    Task {
-        userLocation = await getUserLocation() else { return }
-    }
+//    @State guard let userLocation: CLLocationCoordinate2D? = CLLocationCoordinate2D()
+//    
+//    Task {
+//        userLocation = await getUserLocation() else { return }
+//    }
     
     var body: some View {
 
-        Map(initialPosition: userLocation ? userLocation : cameraPosition) {
+        Map(initialPosition: /*userLocation ? userLocation : */cameraPosition) {
             Marker("Halte A", systemImage: "bus", coordinate: .bbb)
                 .tint(.orange.gradient)
             
