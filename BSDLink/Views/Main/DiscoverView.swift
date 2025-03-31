@@ -9,7 +9,11 @@ import SwiftUI
 import MapKit
 
 struct DiscoverView: View {
-    let cameraPosition: MapCameraPosition = .region(.init(center: .init(latitude: -6.305968, longitude: 106.672272), latitudinalMeters: 13000, longitudinalMeters: 13000))
+    var cameraPosition: MapCameraPosition = .region(.init(center: .init(latitude: -6.305968, longitude: 106.672272), latitudinalMeters: 13000, longitudinalMeters: 13000))
+    
+//    var cameraPosition: MapCameraPosition = .camera(MapCamera(centerCoordinate: CLLocationCoordinate2D(latitude: -6.305968, longitude: 106.672272), distance: 400000.0, heading: 0, pitch: 0))
+    
+
     
     let locationManager = CLLocationManager()
     @State private var routePolylines: [MKPolyline] = []
@@ -17,20 +21,31 @@ struct DiscoverView: View {
     @State private var destinationPoint: String = ""
     
     @State private var startingCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2D()
+    @State private var userLocation: CLLocationCoordinate2D = CLLocationCoordinate2D()
     @State private var destinationCoordiante: CLLocationCoordinate2D = CLLocationCoordinate2D()
     
     @State private var showResultRoute = false
     @State private var route: MKRoute?
     
-//    @State guard let userLocation: CLLocationCoordinate2D? = CLLocationCoordinate2D()
-//    
+    @State private var isSearch: Bool = false
+    @State private var showTimePicker: Bool = false
+    @State private var timePicked = Date() /*Calendar.current.dateComponents([.hour, .minute, .second], from: Date.now)*/
+    
+//    init() {
+//        Task {
+//            await getUserLocation()
+//        }
+//    }
+    
+    
+    
 //    Task {
 //        userLocation = await getUserLocation() else { return }
 //    }
     
     var body: some View {
 
-        Map(initialPosition: /*userLocation ? userLocation : */cameraPosition) {
+        Map(initialPosition: cameraPosition) {
             Marker("Halte A", systemImage: "bus", coordinate: .bbb)
                 .tint(.orange.gradient)
             
@@ -57,6 +72,19 @@ struct DiscoverView: View {
                 MapPolyline(polyline)
                     .stroke(.orange, lineWidth: 3)
             }
+        }
+        .task {
+//            guard let userCoordinate = await getUserLocation() else { return }
+////            if let userLocation = locationManager.currentLocation {
+//                cameraPosition = .camera(MapCamera(centerCoordinate: userCoordinate, distance: 400000.0, heading: 0, pitch: 0))
+////                }
+//            getUserLocation()
+//            guard let userLocation2 = await getUserLocation() else { return }
+//            do {
+//                userLocation = userLocation2
+//            } catch {
+//                print("Error fetch user")
+//            }
         }
         .tint(.orange)
         .onAppear {
@@ -106,6 +134,7 @@ struct DiscoverView: View {
                             Button("Search", systemImage: "magnifyingglass") {
                                 getWalkingDirections(to: .bbb)
                                 getDirections()
+                                isSearch = true
                             }
                             .frame(height: 35, alignment: .center)
                             .labelStyle(.iconOnly)
@@ -134,7 +163,7 @@ struct DiscoverView: View {
                         Spacer()
                         
                         Button("Filter", systemImage: "clock") {
-                            
+                            showTimePicker = true
                         }
                         .labelStyle(.iconOnly)
                         .buttonStyle(.borderedProminent)
@@ -144,25 +173,10 @@ struct DiscoverView: View {
                     }
                 }
                 
-                HStack {
-                    Text("Quick Search :")
-                    //                        .padding()
-                    //                        .background(.white)
-                    ScrollView(.horizontal) {
-                        HStack {
-                            ForEach(1..<8) { index in
-                                Button ("Route \(index) - \(index + 1)") {
-                                    startingPoint = "Route \(index)"
-                                    destinationPoint = "Route \(index + 1)"
-                                }
-                                .buttonStyle(.borderedProminent)
-                                .tint(.white)
-                                .foregroundColor(.black)
-                                .shadow(color: Color.black.opacity(0.1), radius: 4, x: 7, y: 8)
-                            }
-                        }
-                    }
+                if(!isSearch){
+                    QuickSearch(startingPoint: $startingPoint, destinationPoint: $destinationPoint)
                 }
+                Spacer()
             }
             .safeAreaPadding()
             .frame(height: 150)
@@ -172,6 +186,10 @@ struct DiscoverView: View {
         .sheet(isPresented: $showResultRoute, content: {
             Text("This is detail")
         })
+        .sheet(isPresented: $showTimePicker) {
+            DatePicker("Time", selection: $timePicked, displayedComponents: .hourAndMinute)
+                
+        }
         
         
     }
@@ -191,6 +209,7 @@ struct DiscoverView: View {
         
         do {
             let update = try await updates.first { $0.location?.coordinate != nil }
+//            userLocation = update?.location?.coordinate
             return update?.location?.coordinate
         } catch {
             print("Cannot get user location")
