@@ -10,36 +10,61 @@ struct Route: Identifiable{
 }
 
 var sampleRoutes: [Route] = [
-    Route(name: "Route 1", busStops: [
+    Route(name: "Route 1 (Intermoda - Halte Sektor 1.3)", busStops: [
         BusStop(name: "Intermoda",
                 coordinates: .intermoda,
-                bigHalte: true,
                 schedule: [
                     
                 ],
                 images: ["Intermoda_1", "Intermoda_2"],
-                isBigHalte: true,
-                routes: <#T##[Route]#>),
+                isBigHalte: true
+                ),
         
         BusStop(name: "Cosmo",
                 coordinates: .cosmo,
-                bigHalte: true,
                 schedule: [
                     
                 ],
                 images: ["Cosmo_1"],
-                isBigHalte: true,
-                routes: <#T##[Route]#>)
+                isBigHalte: true
+                ),
         
         BusStop(name: "Verdant View",
                 coordinates: .verdantView,
-                bigHalte: true,
                 schedule: [
                     
                 ],
                 images: ["Verdant View_1"],
-                isBigHalte: true,
-                routes: <#T##[Route]#>)
-    ])
+                isBigHalte: true
+                )
+    ]),
+    
+    Route(name: "Route 2 (Halte Sektor 1.3 - Intermoda)", busStops: [
+        BusStop(name: "Halte Sektor 1.3",
+                coordinates: .sektor13,
+                schedule: [
+                    
+                ],
+                images: ["Placeholder"],
+                isBigHalte: true),
+        
+        BusStop(name: "Griya Loka 2",
+                coordinates: .griyaLoka2,
+                schedule: [
+                    
+                ],
+                images: ["Griya Loka 2_1"],
+                isBigHalte: false),
+        
+        
+        BusStop(name: "Santa Ursula 1",
+                coordinates: .santaUrsula1,
+                schedule: [
+                    
+                ],
+                images: ["Santa Ursula 1_1"],
+                isBigHalte: true)
+    ]),
+    
     
 ]

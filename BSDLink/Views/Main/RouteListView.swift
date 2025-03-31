@@ -9,25 +9,81 @@ import SwiftUI
 
 struct RouteListView: View {
     @State private var searchTerm: String = ""
+    @State private var showSearchInfo: Bool = false
+    @State private var showOneTimeSearchInfo: Bool = true
+    
+    public var filteredRoutes: [Route] {
+        if searchTerm.isEmpty {
+            return sampleRoutes
+        } else {
+//            return sampleRoutes.filter { $0.name.localizedCaseInsensitiveContains(searchTerm) }
+            // Di atas sisa2 pas awal search rute pake nama rute
+            return sampleRoutes.filter { route in
+                route.busStops.contains { busStop in busStop.name.localizedCaseInsensitiveContains(searchTerm)
+                }
+            }
+        }
+    }
     
     var body: some View {
         NavigationStack {
-            VStack{
-                HStack{
-                    VStack{
-                        Text("Route_Name")
-                        Text("X_Stops")
+            
+            VStack(spacing: 0) {
+                //Logic buat nampilin berapa route yang keliatan
+                RouteCount(count: filteredRoutes.count)
+                
+                //Buat nampilin list rute yang disearch
+                VStack {
+                    List {
+                        ForEach(filteredRoutes, id: \.id) { route in
+                            RouteTile(routeName: route.name, stops: route.busStops.count)
+                        }
                     }
+                }
+                .frame(maxWidth: 355, alignment: .init(horizontal: .leading, vertical: .center))
+                .navigationTitle(Text("All Routes"))
+                
+                //Buat nampilin search info
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(action: {
+                            showSearchInfo = true
+                        }) {
+                            Image(systemName: "info.circle")
+                        }
+                    }
+                }
+                .sheet(isPresented: $showSearchInfo) {
+                    HStack {
+                        Spacer()
+                        Text("Search Info")
+                            .font(.headline)
+                        
+                        Spacer()
+                        Button(action: {
+                            showSearchInfo = false
+                        }) {
+                            Text("Done")
+                        }
+                        
+                    }
+                    .padding(.horizontal)
                     
+                    Text("Try searching the name of a bus stop to know which routes pass by it.")
+                        .presentationDetents([.height(150)])
+                        .padding()
                 }
                 
             }
-            .navigationTitle(Text("All Routes"))
+            .searchable(text: $searchTerm)
         }
-        .searchable(text: $searchTerm)
     }
 }
+
+
 
 #Preview {
     RouteListView()
 }
+
+
