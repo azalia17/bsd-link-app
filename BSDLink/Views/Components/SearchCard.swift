@@ -19,45 +19,50 @@ struct SearchCard: View {
     
     var body: some View {
         HStack (alignment: .center) {
-            GroupBox {
-                HStack(alignment: .center){
-                    VStack {
-                        Label("From", systemImage: "mappin.and.ellipse")
-                            .opacity(0.7)
-                        Spacer()
-                        Spacer()
-                        Label("To", systemImage: "flag.filled.and.flag.crossed")
-                            .opacity(0.7)
-                        Spacer()
-                    }
-                    VStack {
-                        Spacer()
-                        TextField("Search Location", text: $startingPoint)
-                            .modifier(TextFieldGrayBackgroundColor())
-                            .padding(.top)
-                        Spacer()
-                        
-                        TextField("Search Location", text: $destinationPoint)
-                            .modifier(TextFieldGrayBackgroundColor())
-                            .padding(.bottom)
-                        Spacer()
-                    }
-                    
+            HStack(alignment: .center){
+                VStack {
+                    Label("From", systemImage: "mappin.and.ellipse")
+                        .opacity(0.7)
                     Spacer()
-                    Divider()
                     Spacer()
-                    
-                    Button("Search", systemImage: "magnifyingglass") {
-                        searchHandler()
-                    }
-                    .frame(height: 35, alignment: .center)
-                    .labelStyle(.iconOnly)
-                    .foregroundColor(.black)
-                    
+                    Label("To", systemImage: "flag.filled.and.flag.crossed")
+                        .opacity(0.7)
+                    Spacer()
                 }
-                .frame(height: 90)
+                VStack {
+                    Spacer()
+                    TextField("Search Location", text: $startingPoint)
+                        .modifier(TextFieldGrayBackgroundColor())
+                        .padding(.top)
+                    Spacer()
+                    
+                    TextField("Search Location", text: $destinationPoint)
+                        .modifier(TextFieldGrayBackgroundColor())
+                        .padding(.bottom)
+                    Spacer()
+                }
+                
+                Spacer()
+                Divider()
+                Spacer()
+                
+                Button("Search", systemImage: "magnifyingglass") {
+                    searchHandler()
+                }
+                .frame(height: 35, alignment: .center)
+                .labelStyle(.iconOnly)
+                .foregroundColor(.black)
+                .disabled(startingPoint.isEmpty && destinationPoint.isEmpty)
             }
-            .shadow(color: Color.black.opacity(0.1), radius: 15, x: 0, y: 10)
+            .frame(height: 90)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(12)
+            .background(
+                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                    .fill(.white)
+                    .frame(maxWidth: .infinity)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            )
             
             VStack {
                 Button("Swap", systemImage: "rectangle.2.swap") {
@@ -67,12 +72,9 @@ struct SearchCard: View {
                 .frame(height: 35, alignment: .center)
                 .labelStyle(.iconOnly)
                 .buttonStyle(.borderedProminent)
-                
                 .tint(.white)
                 .foregroundColor(.black)
                 .shadow(color: Color.black.opacity(0.1), radius: 15, x: 0, y: 10)
-                
-                
                 
                 Spacer()
                 
@@ -99,14 +101,3 @@ struct SearchCard: View {
         }
     }
 }
-
-//#Preview {
-//    @State var startingPoint : String
-//    @State var destinationPoint : String
-//    
-//    SearchCard(searchHandler: {
-//        
-//    }, filterHandler: {
-//        
-//    }, startingPoint: $startingPoint, destinationPoint: $destinationPoint)
-//}

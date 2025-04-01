@@ -142,7 +142,9 @@ struct DiscoverView: View {
                                 }
                                 Button("Reverse", systemImage: "rectangle.2.swap") {
                                     swapDirections(start: startingPoint, destination: destinationPoint)
-                                    
+                                    getWalkingDirections(to: .bbb)
+                                    getDirections()
+                                    isSearch = true
                                 }
                             }
                     }
