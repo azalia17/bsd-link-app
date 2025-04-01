@@ -28,9 +28,32 @@ struct RouteListView: View {
     var body: some View {
         NavigationStack {
             
-            VStack(spacing: 0) {
+            VStack(spacing: 10) {
                 //Logic buat nampilin berapa route yang keliatan
                 RouteCount(count: filteredRoutes.count)
+                
+                if showOneTimeSearchInfo {
+                    ZStack (alignment: .topTrailing){
+                        Text("Try searching the name of a bus stop to know which routes pass by it.")
+                            .multilineTextAlignment(.center)
+                            .padding(.top, 20)
+                        
+                        Button(action: {
+                            showOneTimeSearchInfo = false
+                        }) {
+                            Image(systemName: "xmark")
+                                .font(.system(size: 14))
+                                .padding(1)
+                        }
+                        .foregroundStyle(.gray)
+                        
+                        
+                    }
+                    .padding()
+                    .frame(width: 355, height: 100, alignment: .center)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(15)
+                }
                 
                 //Buat nampilin list rute yang disearch
                 VStack {
@@ -41,6 +64,7 @@ struct RouteListView: View {
                     }
                 }
                 .frame(maxWidth: 355, alignment: .init(horizontal: .leading, vertical: .center))
+                .cornerRadius(15)
                 .navigationTitle(Text("All Routes"))
                 
                 //Buat nampilin search info
