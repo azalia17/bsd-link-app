@@ -100,78 +100,13 @@ struct DiscoverView: View {
         .mapStyle(.standard(elevation: .realistic))
         .overlay(alignment: .topLeading) {
             VStack(alignment: .leading) {
-                HStack (alignment: .center) {
-                    GroupBox {
-                        HStack(alignment: .center){
-                            VStack {
-                                //                                Spacer()
-                                Label("From", systemImage: "mappin.and.ellipse")
-                                    .opacity(0.7)
-                                Spacer()
-                                Spacer()
-                                Label("To", systemImage: "flag.filled.and.flag.crossed")
-                                    .opacity(0.7)
-                                Spacer()
-                            }
-                            VStack {
-                                Spacer()
-                                TextField("Search Location", text: $startingPoint)
-                                    .modifier(TextFieldGrayBackgroundColor())
-                                    .padding(.top)
-                                Spacer()
-                                //                                Divider()
-                                
-                                TextField("Search Location", text: $destinationPoint)
-                                    .modifier(TextFieldGrayBackgroundColor())
-                                    .padding(.bottom)
-                                Spacer()
-                            }
-                            
-                            Spacer()
-                            Divider()
-                            Spacer()
-                            
-                            Button("Search", systemImage: "magnifyingglass") {
-                                getWalkingDirections(to: .bbb)
-                                getDirections()
-                                isSearch = true
-                            }
-                            .frame(height: 35, alignment: .center)
-                            .labelStyle(.iconOnly)
-                            .foregroundColor(.black)
-                            
-                        }
-                        .frame(height: 90)
-                    }
-                    .shadow(color: Color.black.opacity(0.1), radius: 15, x: 0, y: 10)
-                    
-                    VStack {
-                        Button("Swap", systemImage: "rectangle.2.swap") {
-                            
-                        }
-                        
-                        .frame(height: 35, alignment: .center)
-                        .labelStyle(.iconOnly)
-                        .buttonStyle(.borderedProminent)
-                        
-                        .tint(.white)
-                        .foregroundColor(.black)
-                        .shadow(color: Color.black.opacity(0.1), radius: 15, x: 0, y: 10)
-                        
-                        
-                        
-                        Spacer()
-                        
-                        Button("Filter", systemImage: "clock") {
-                            showTimePicker = true
-                        }
-                        .labelStyle(.iconOnly)
-                        .buttonStyle(.borderedProminent)
-                        .tint(.white)
-                        .foregroundColor(.black)
-                        .shadow(color: Color.black.opacity(0.1), radius: 15, x: 0, y: 10)
-                    }
-                }
+                SearchCard(searchHandler: {
+                                            getWalkingDirections(to: .bbb)
+                                            getDirections()
+                                            isSearch = true
+                }, filterHandler: {
+                    showTimePicker = true
+                }, startingPoint: $startingPoint, destinationPoint: $destinationPoint)
                 
                 if(!isSearch){
                     QuickSearch(startingPoint: $startingPoint, destinationPoint: $destinationPoint)
@@ -194,15 +129,7 @@ struct DiscoverView: View {
         
     }
     
-    struct TextFieldGrayBackgroundColor: ViewModifier {
-        func body(content: Content) -> some View {
-            content
-                .padding(12)
-                .background(.gray.opacity(0.1))
-                .cornerRadius(8)
-                .foregroundColor(.primary)
-        }
-    }
+
     
     func getUserLocation() async -> CLLocationCoordinate2D? {
         let updates = CLLocationUpdate.liveUpdates()
