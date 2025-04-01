@@ -8,8 +8,23 @@
 import SwiftUI
 
 struct RouteListView: View {
+    @State private var searchTerm: String = ""
+    
     var body: some View {
-        Text("Route List")
+        NavigationStack {
+            VStack{
+                HStack{
+                    VStack{
+                        Text("Route_Name")
+                        Text("X_Stops")
+                    }
+                    
+                }
+                
+            }
+            .navigationTitle(Text("All Routes"))
+        }
+        .searchable(text: $searchTerm)
     }
 }
 
