@@ -8,6 +8,17 @@ import Foundation
 
 struct Schedule: Identifiable, Hashable {
     let id = UUID()
-    let time: [Date]
-    
+    let time: Date
+    let isRegular: Bool
+}
+
+extension Schedule {
+    static let all: [Schedule] = [
+        Schedule(time: Date.now, isRegular: true),
+        Schedule(time: Date.now, isRegular: false),
+        Schedule(time: Date.now, isRegular: true),
+        Schedule(time: Date.now, isRegular: true),
+        Schedule(time: Date.now, isRegular: true),
+        Schedule(time: Date.now, isRegular: false),
+    ]
 }

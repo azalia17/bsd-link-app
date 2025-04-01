@@ -10,12 +10,13 @@ import SwiftUI
 struct Chip: View {
     var text: String
     var color: Color = Color.blue
+    var textColor: Color = Color.white.opacity(0.8)
     
     var body: some View {
         VStack {
             Text(text)
                 .bold()
-                .foregroundColor(Color.white.opacity(0.8))
+                .foregroundColor(textColor)
         }
         .padding([.leading, .trailing], 12)
         .padding([.top, .bottom], 4)
