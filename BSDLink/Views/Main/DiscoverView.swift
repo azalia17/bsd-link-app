@@ -100,16 +100,60 @@ struct DiscoverView: View {
         .mapStyle(.standard(elevation: .realistic))
         .overlay(alignment: .topLeading) {
             VStack(alignment: .leading) {
-                SearchCard(searchHandler: {
-                                            getWalkingDirections(to: .bbb)
-                                            getDirections()
-                                            isSearch = true
-                }, filterHandler: {
-                    showTimePicker = true
-                }, startingPoint: $startingPoint, destinationPoint: $destinationPoint)
-                
                 if(!isSearch){
-                    QuickSearch(startingPoint: $startingPoint, destinationPoint: $destinationPoint)
+                    SearchCard(
+                        searchHandler: {
+                            getWalkingDirections(to: .bbb)
+                            getDirections()
+                            isSearch = true
+                        },
+                        filterHandler: {
+                            showTimePicker = true
+                        },
+                        swapHandler: {
+                            swapDirections(
+                                start: startingPoint,
+                                destination: destinationPoint
+                            )
+                        },
+                        startingPoint: $startingPoint,
+                        destinationPoint: $destinationPoint
+                    )
+                    
+                    QuickSearch(
+                        startingPoint: $startingPoint,
+                        destinationPoint: $destinationPoint
+                    )
+                } else {
+                    HStack{
+                        Text(startingPoint)
+                        Image(systemName: "arrow.forward")
+                        Text(destinationPoint)
+                        
+                        Spacer()
+                        
+                        Image(systemName: "ellipsis.circle")
+                            .contextMenu{
+                                Button("Edit", systemImage: "magnifyingglass") {
+                                    isSearch = false
+                                }
+                                Button("Filter", systemImage: "clock") {
+                                    showTimePicker = true
+                                }
+                                Button("Reverse", systemImage: "rectangle.2.swap") {
+                                    swapDirections(start: startingPoint, destination: destinationPoint)
+                                    
+                                }
+                            }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(12)
+                    .background(
+                        RoundedRectangle(cornerRadius: 10, style: .continuous)
+                            .fill(.white)
+                            .frame(maxWidth: .infinity)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    )
                 }
                 Spacer()
             }
@@ -123,10 +167,7 @@ struct DiscoverView: View {
         })
         .sheet(isPresented: $showTimePicker) {
             DatePicker("Time", selection: $timePicked, displayedComponents: .hourAndMinute)
-                
         }
-        
-        
     }
     
 
@@ -142,6 +183,11 @@ struct DiscoverView: View {
             print("Cannot get user location")
             return nil
         }
+    }
+    
+    func swapDirections(start: String, destination: String) {
+        startingPoint = destination
+        destinationPoint = start
     }
     
     func getDirections() {

@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct SearchCard: View {
+    
     var searchHandler: () -> Void
     var filterHandler: () -> Void
+    var swapHandler: () -> Void
     
     @Binding var startingPoint : String
     @Binding var destinationPoint : String
@@ -20,7 +22,6 @@ struct SearchCard: View {
             GroupBox {
                 HStack(alignment: .center){
                     VStack {
-                        //                                Spacer()
                         Label("From", systemImage: "mappin.and.ellipse")
                             .opacity(0.7)
                         Spacer()
@@ -35,7 +36,6 @@ struct SearchCard: View {
                             .modifier(TextFieldGrayBackgroundColor())
                             .padding(.top)
                         Spacer()
-                        //                                Divider()
                         
                         TextField("Search Location", text: $destinationPoint)
                             .modifier(TextFieldGrayBackgroundColor())
@@ -48,9 +48,6 @@ struct SearchCard: View {
                     Spacer()
                     
                     Button("Search", systemImage: "magnifyingglass") {
-//                        getWalkingDirections(to: .bbb)
-//                        getDirections()
-//                        isSearch = true
                         searchHandler()
                     }
                     .frame(height: 35, alignment: .center)
@@ -64,7 +61,7 @@ struct SearchCard: View {
             
             VStack {
                 Button("Swap", systemImage: "rectangle.2.swap") {
-                    
+                    swapHandler()
                 }
                 
                 .frame(height: 35, alignment: .center)
@@ -80,7 +77,6 @@ struct SearchCard: View {
                 Spacer()
                 
                 Button("Filter", systemImage: "clock") {
-//                    showTimePicker = true
                     filterHandler()
                 }
                 .labelStyle(.iconOnly)
@@ -105,5 +101,12 @@ struct SearchCard: View {
 }
 
 //#Preview {
-//    SearchCard()
+//    @State var startingPoint : String
+//    @State var destinationPoint : String
+//    
+//    SearchCard(searchHandler: {
+//        
+//    }, filterHandler: {
+//        
+//    }, startingPoint: $startingPoint, destinationPoint: $destinationPoint)
 //}

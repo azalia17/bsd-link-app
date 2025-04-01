@@ -19,7 +19,7 @@ var sampleRoutes: [Route] = [
                 ],
                 images: ["Intermoda_1", "Intermoda_2"],
                 isBigHalte: true,
-                routes: <#T##[Route]#>),
+                routes: []),
         
         BusStop(name: "Cosmo",
                 coordinates: .cosmo,
@@ -29,7 +29,7 @@ var sampleRoutes: [Route] = [
                 ],
                 images: ["Cosmo_1"],
                 isBigHalte: true,
-                routes: <#T##[Route]#>)
+                routes: []),
         
         BusStop(name: "Verdant View",
                 coordinates: .verdantView,
@@ -39,7 +39,7 @@ var sampleRoutes: [Route] = [
                 ],
                 images: ["Verdant View_1"],
                 isBigHalte: true,
-                routes: <#T##[Route]#>)
+                routes: [])
     ])
     
 ]
