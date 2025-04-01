@@ -25,7 +25,7 @@ struct ImageStack: View {
                     .padding(12)
                     .frame(width: 72, height: 72, alignment: .center)
                     .foregroundColor(.white.opacity(0.7))
-                    .background(LinearGradient(gradient: Gradient(colors: [Color.gray.opacity(0.3), Color.gray.opacity(0.6)]), startPoint: .top, endPoint: .bottom))
+                    .background(LinearGradient(gradient: Gradient(colors: [Color.gray.opacity(0.1), Color.gray.opacity(0.3)]), startPoint: .top, endPoint: .bottom))
                     .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
                     .offset(x: 8, y: 8)
             }
@@ -41,7 +41,8 @@ struct ImageStack: View {
 
 #Preview {
     ImageStack(
-        firstImage: "Intermoda_1",
-        secondImage: "Intermoda_2"
+        firstImage: "Intermoda_1"
+//        ,
+//        secondImage: "Intermoda_2"
     )
 }

@@ -126,3 +126,9 @@ extension CLLocationCoordinate2D {
     
     
 }
+
+func formatTime(from date: Date) -> String {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "HH:mm" // 24-hour format (use "hh:mm a" for 12-hour format with AM/PM)
+    return formatter.string(from: date)
+}
