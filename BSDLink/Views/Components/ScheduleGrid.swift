@@ -8,12 +8,18 @@
 import SwiftUI
 
 struct ScheduleGrid: View {
-    var schedules: [Schedule]
+    var schedules: [ScheduleTime]
+    var isMore: Bool = false
+    var spacing: CGFloat = 2
     
     var body: some View {
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 70), spacing: 4)], spacing: 8, content: {
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: 63), spacing: spacing)], alignment: .leading, spacing: 8, content: {
             ForEach(schedules) { schedule in
                 ScheduleChip(text: formatTime(from: schedule.time), isRegular: schedule.isRegular)
+            }
+            if isMore {
+                ScheduleChip(text: "...")
+
             }
         })
         .padding(.top)
@@ -34,5 +40,5 @@ struct ScheduleChip: View {
 }
 
 #Preview {
-    ScheduleGrid(schedules: Schedule.all)
+    ScheduleGrid(schedules: ScheduleTime.all)
 }

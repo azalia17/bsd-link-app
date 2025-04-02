@@ -2,18 +2,17 @@
 import Foundation
 import MapKit
 
-struct Route: Identifiable{
+struct Route: Identifiable {
     let id = UUID()
     let name: String
     let busStops: [BusStop]
-    
+    let bus: [Bus]
 }
 
 var sampleRoutes: [Route] = [
     Route(name: "Route 1", busStops: [
         BusStop(name: "Intermoda",
                 coordinates: .intermoda,
-                bigHalte: true,
                 schedule: [
                     
                 ],
@@ -23,7 +22,6 @@ var sampleRoutes: [Route] = [
         
         BusStop(name: "Cosmo",
                 coordinates: .cosmo,
-                bigHalte: true,
                 schedule: [
                     
                 ],
@@ -33,13 +31,11 @@ var sampleRoutes: [Route] = [
         
         BusStop(name: "Verdant View",
                 coordinates: .verdantView,
-                bigHalte: true,
                 schedule: [
                     
                 ],
                 images: ["Verdant View_1"],
                 isBigHalte: true,
                 routes: [])
-    ])
-    
+    ], bus: [])
 ]

@@ -18,7 +18,7 @@ struct Chip: View {
                 .bold()
                 .foregroundColor(textColor)
         }
-        .padding([.leading, .trailing], 12)
+        .padding([.leading, .trailing], 10)
         .padding([.top, .bottom], 4)
         .background(color)
         .clipShape(RoundedRectangle(cornerRadius: 4, style: .continuous))

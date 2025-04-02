@@ -29,6 +29,7 @@ struct DiscoverView: View {
     
     @State private var isSearch: Bool = false
     @State private var showTimePicker: Bool = false
+    @State private var showPopover: Bool = false
     @State private var timePicked = Date() /*Calendar.current.dateComponents([.hour, .minute, .second], from: Date.now)*/
     
 //    init() {
