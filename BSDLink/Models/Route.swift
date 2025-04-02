@@ -2,11 +2,11 @@
 import Foundation
 import MapKit
 
-struct Route: Identifiable{
+struct Route: Identifiable {
     let id = UUID()
     let name: String
     let busStops: [BusStop]
-    
+    let bus: [Bus]
 }
 
 var sampleRoutes: [Route] = [
