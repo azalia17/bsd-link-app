@@ -7,7 +7,8 @@ struct BusStop: Identifiable {
     let coordinates: CLLocationCoordinate2D
     let schedule: [Schedule]
     let images: [String]
-    let isBigHalte: Bool
+    var isBigHalte: Bool = false
+    let routes: [Route]
 }
 
 extension BusStop {

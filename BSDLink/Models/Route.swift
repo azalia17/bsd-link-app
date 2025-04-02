@@ -17,7 +17,7 @@ var sampleRoutes: [Route] = [
                     
                 ],
                 images: ["Intermoda_1", "Intermoda_2"],
-                isBigHalte: true
+                isBigHalte: true, routes: []
                 ),
         
         BusStop(name: "Cosmo",
@@ -26,7 +26,7 @@ var sampleRoutes: [Route] = [
                     
                 ],
                 images: ["Cosmo_1"],
-                isBigHalte: true
+                isBigHalte: true, routes: []
                 ),
         
         BusStop(name: "Verdant View",
@@ -35,9 +35,10 @@ var sampleRoutes: [Route] = [
                     
                 ],
                 images: ["Verdant View_1"],
-                isBigHalte: true
+                isBigHalte: true, routes: []
                 )
-    ]),
+    ],
+          bus: []),
     
     Route(name: "Route 2 (Halte Sektor 1.3 - Intermoda)", busStops: [
         BusStop(name: "Halte Sektor 1.3",
@@ -46,7 +47,7 @@ var sampleRoutes: [Route] = [
                     
                 ],
                 images: ["Placeholder"],
-                isBigHalte: true),
+                isBigHalte: true, routes: []),
         
         BusStop(name: "Griya Loka 2",
                 coordinates: .griyaLoka2,
@@ -54,7 +55,7 @@ var sampleRoutes: [Route] = [
                     
                 ],
                 images: ["Griya Loka 2_1"],
-                isBigHalte: false),
+                isBigHalte: false, routes: []),
         
         
         BusStop(name: "Santa Ursula 1",
@@ -63,8 +64,9 @@ var sampleRoutes: [Route] = [
                     
                 ],
                 images: ["Santa Ursula 1_1"],
-                isBigHalte: true)
-    ]),
+                isBigHalte: true, routes: [])
+    ],
+          bus: []),
     
     
 ]
