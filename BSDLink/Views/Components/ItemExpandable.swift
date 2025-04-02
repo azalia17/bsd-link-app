@@ -39,12 +39,12 @@ struct ItemExpandable<ExpandedContent: View>: View {
                     .overlay(
                         Circle()
                             .fill(Color.orange)
-                            .frame(width: 24, height: 24)
+                            .frame(width: 20, height: 20)
                             .overlay(content: {
                                 Image(systemName:"circle.fill")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 16, height: 16)
+                                    .frame(width: 12, height: 12)
                                     
                                     .foregroundColor(.white)
                             })
@@ -67,13 +67,6 @@ struct ItemExpandable<ExpandedContent: View>: View {
             
         }
         .padding(.leading, 12)
-//        .overlay(alignment: .topTrailing, content: {
-//            Image(systemName: "chevron.up.circle.fill")
-//                .rotationEffect(.degrees(isExpanded ? 180 : 0))
-//                .foregroundColor(.orange)
-//                .offset(y: 20)
-//                .padding(.trailing)
-//        })
     }
 }
 
@@ -95,7 +88,8 @@ struct ExpandableContentType<ExpandedContent: View>: View {
                 VStack {
                     HStack {
                         Text(busStopName)
-                            .font(.headline)
+                            .font(.subheadline)
+                            .bold()
                             .frame(maxWidth: .infinity, alignment: .leading) // Align text to the left
                             .offset(y: 18)
                         Spacer()
@@ -104,11 +98,12 @@ struct ExpandableContentType<ExpandedContent: View>: View {
                             .foregroundColor(.orange)
                             .offset(y: 18)
                     }
-                    .padding(.trailing)
+//                    .padding(.trailing)
                     if isShowPreviewSchedule && !isExpanded{
                         ScheduleGrid(
                             schedules: [ScheduleTime.all[0], ScheduleTime.all[1], ScheduleTime.all[2]],
-                            isMore: true
+                            isMore: true,
+                            spacing: 1
                         )
                     }
                 }
@@ -120,7 +115,7 @@ struct ExpandableContentType<ExpandedContent: View>: View {
                 }
                 .padding(.leading, 8)
             }
-            .padding(.leading)
+            .padding(.leading, 8)
             if isExpanded {
                 GeometryReader { geometry in
                     VStack {

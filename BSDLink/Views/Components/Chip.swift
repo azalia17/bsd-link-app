@@ -15,6 +15,7 @@ struct Chip: View {
     var body: some View {
         VStack {
             Text(text)
+                .font(.subheadline)
                 .bold()
                 .foregroundColor(textColor)
         }

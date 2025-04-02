@@ -13,7 +13,7 @@ struct ScheduleGrid: View {
     var spacing: CGFloat = 2
     
     var body: some View {
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 63), spacing: spacing)], alignment: .leading, spacing: 8, content: {
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: 60), spacing: spacing)], alignment: .leading, spacing: 8, content: {
             ForEach(schedules) { schedule in
                 ScheduleChip(text: formatTime(from: schedule.time), isRegular: schedule.isRegular)
             }
