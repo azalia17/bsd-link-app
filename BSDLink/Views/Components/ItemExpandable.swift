@@ -8,15 +8,16 @@
 
 import SwiftUI
 
-struct ItemExpandable<Content: View, ExpandedContent: View>: View {
-    
+struct ItemExpandable<ExpandedContent: View>: View {
+    let busStopName: String
     let index: Int
     let isLastItem: Bool  // Pass info if this is the last item
-    let content: () -> Content
     let contentExpanded: () -> ExpandedContent
     
     @State private var isExpanded: Bool = false
     @State private var expandedHeight: CGFloat = 0  // Store the expanded height
+    
+    var isShowPreviewSchedule: Bool = true
     
     var body: some View {
         HStack(alignment: .top) {
@@ -56,29 +57,35 @@ struct ItemExpandable<Content: View, ExpandedContent: View>: View {
             
             
             
-            ExpandableContentType(content: content, contentExpanded: contentExpanded, isExpanded: $isExpanded, expandedHeight: $expandedHeight)
+            ExpandableContentType(
+                busStopName: busStopName,
+                contentExpanded: contentExpanded,
+                isExpanded: $isExpanded,
+                expandedHeight: $expandedHeight,
+                isShowPreviewSchedule: isShowPreviewSchedule
+            )
             
         }
         .padding(.leading, 12)
-        .overlay(alignment: .topTrailing, content: {
-            Image(systemName: "chevron.up.circle.fill")
-                .rotationEffect(.degrees(isExpanded ? 180 : 0))
-                .foregroundColor(.orange)
-                .offset(y: 20)
-                .padding(.trailing)
-        })
+//        .overlay(alignment: .topTrailing, content: {
+//            Image(systemName: "chevron.up.circle.fill")
+//                .rotationEffect(.degrees(isExpanded ? 180 : 0))
+//                .foregroundColor(.orange)
+//                .offset(y: 20)
+//                .padding(.trailing)
+//        })
     }
 }
 
-struct ExpandableContentType<Content: View, ExpandedContent: View>: View {
+struct ExpandableContentType<ExpandedContent: View>: View {
     
-    let content: () -> Content
+    var busStopName: String
     let contentExpanded: () -> ExpandedContent
     
     @Binding var isExpanded: Bool
     @Binding var expandedHeight: CGFloat
     
-    let isShowPreviewSchedule: Bool = true
+    var isShowPreviewSchedule: Bool = true
     
     var body: some View {
         VStack{
@@ -86,9 +93,18 @@ struct ExpandableContentType<Content: View, ExpandedContent: View>: View {
                 ImageStack(firstImage: "Intermoda_1")
                     .offset(y: 18)
                 VStack {
-                    content()
-                        .frame(maxWidth: .infinity, alignment: .leading) // Align text to the left
-                        .offset(y: 18)
+                    HStack {
+                        Text(busStopName)
+                            .font(.headline)
+                            .frame(maxWidth: .infinity, alignment: .leading) // Align text to the left
+                            .offset(y: 18)
+                        Spacer()
+                        Image(systemName: "chevron.up.circle.fill")
+                            .rotationEffect(.degrees(isExpanded ? 180 : 0))
+                            .foregroundColor(.orange)
+                            .offset(y: 18)
+                    }
+                    .padding(.trailing)
                     if isShowPreviewSchedule && !isExpanded{
                         ScheduleGrid(
                             schedules: [ScheduleTime.all[0], ScheduleTime.all[1], ScheduleTime.all[2]],
@@ -132,11 +148,10 @@ struct ExpandableContentType<Content: View, ExpandedContent: View>: View {
 
 #Preview {
     ItemExpandable(
+        busStopName: "aaaaaa",
         index: 1,
         isLastItem: false,
-        content: {
-            Text("Main Content")
-        }, contentExpanded: {
+        contentExpanded: {
             Text("Expanded Content\nMore lines\nAnother line")
                 .padding(.top)
         })

@@ -12,15 +12,15 @@ struct BusStopCard: View {
         VStack(spacing: 0) {
             ForEach(0..<3) { index in
                 ItemExpandable(
+                    busStopName: "Courts Mega Store \(index)",
                     index: index,
                     isLastItem: index == 2,
-                    content: {
-                        Text("Main Content")
-                            .font(.headline)
-                }, contentExpanded: {
+                    contentExpanded: {
                         ScheduleGrid(schedules: ScheduleTime.all, spacing: 4)
-                        .padding([.top, .trailing])
-                })
+                            .padding([.top, .trailing])
+                    },
+                    isShowPreviewSchedule: true
+                )
             }
         }
     }
