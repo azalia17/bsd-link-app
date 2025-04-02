@@ -101,3 +101,7 @@ struct SearchCard: View {
         }
     }
 }
+
+//#Preview {
+//    SearchCard()
+//}
