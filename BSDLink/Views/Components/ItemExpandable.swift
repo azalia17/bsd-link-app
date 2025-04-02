@@ -61,9 +61,9 @@ struct ItemExpandable<Content: View, ExpandedContent: View>: View {
         }
         .padding(.leading, 12)
         .overlay(alignment: .topTrailing, content: {
-            Image(systemName: "arrowtriangle.up.circle.fill")
+            Image(systemName: "chevron.up.circle.fill")
                 .rotationEffect(.degrees(isExpanded ? 180 : 0))
-                .foregroundColor(.blue)
+                .foregroundColor(.orange)
                 .offset(y: 20)
                 .padding(.trailing)
         })

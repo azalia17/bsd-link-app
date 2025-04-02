@@ -18,8 +18,8 @@ struct BusStopCard: View {
                         Text("Main Content")
                             .font(.headline)
                 }, contentExpanded: {
-                        ScheduleGrid(schedules: ScheduleTime.all, spacing: 8)
-                    .padding(.top)
+                        ScheduleGrid(schedules: ScheduleTime.all, spacing: 4)
+                        .padding([.top, .trailing])
                 })
             }
         }
