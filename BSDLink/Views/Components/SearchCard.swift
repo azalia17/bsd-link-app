@@ -15,6 +15,7 @@ struct SearchCard: View {
     
     @Binding var startingPoint : String
     @Binding var destinationPoint : String
+    @Binding var isTimePicked : Bool
     
     
     var body: some View {
@@ -78,13 +79,13 @@ struct SearchCard: View {
                 
                 Spacer()
                 
-                Button("Filter", systemImage: "clock") {
+                Button("Filter", systemImage: isTimePicked ? "clock.badge.checkmark" : "clock") {
                     filterHandler()
                 }
                 .labelStyle(.iconOnly)
                 .buttonStyle(.borderedProminent)
                 .tint(.white)
-                .foregroundColor(.black)
+                .foregroundColor(isTimePicked ? .blue : .black)
                 .shadow(color: Color.black.opacity(0.1), radius: 15, x: 0, y: 10)
             }
         }

@@ -9,16 +9,19 @@ import SwiftUI
 
 struct BusStopCard: View {
     var body: some View {
-        ForEach(1..<3) { index in
-            ItemExpandable(
-                index: index,
-                isLastItem: false,
-                content: {
-                    Text("Main Content")
-            }, contentExpanded: {
-                Text("Expanded Content\nMore lines\nAnother line")
-                    .padding(.top)
-            })
+        VStack(spacing: 0) {
+            ForEach(0..<3) { index in
+                ItemExpandable(
+                    busStopName: "Courts Mega Store \(index)",
+                    index: index,
+                    isLastItem: index == 2,
+                    contentExpanded: {
+                        ScheduleGrid(schedules: ScheduleTime.all, spacing: 4)
+                            .padding([.top, .trailing])
+                    },
+                    isShowPreviewSchedule: true
+                )
+            }
         }
     }
 }
