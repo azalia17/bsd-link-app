@@ -11,9 +11,9 @@ import MapKit
 struct DiscoverView: View {
     var cameraPosition: MapCameraPosition = .region(.init(center: .init(latitude: -6.305968, longitude: 106.672272), latitudinalMeters: 13000, longitudinalMeters: 13000))
     
-//    var cameraPosition: MapCameraPosition = .camera(MapCamera(centerCoordinate: CLLocationCoordinate2D(latitude: -6.305968, longitude: 106.672272), distance: 400000.0, heading: 0, pitch: 0))
+    //    var cameraPosition: MapCameraPosition = .camera(MapCamera(centerCoordinate: CLLocationCoordinate2D(latitude: -6.305968, longitude: 106.672272), distance: 400000.0, heading: 0, pitch: 0))
     
-
+    
     
     let locationManager = CLLocationManager()
     @State private var routePolylines: [MKPolyline] = []
@@ -31,21 +31,22 @@ struct DiscoverView: View {
     @State private var showTimePicker: Bool = false
     @State private var showPopover: Bool = false
     @State private var timePicked = Date() /*Calendar.current.dateComponents([.hour, .minute, .second], from: Date.now)*/
+    @State private var isTimePicked: Bool = false
     
-//    init() {
-//        Task {
-//            await getUserLocation()
-//        }
-//    }
+    //    init() {
+    //        Task {
+    //            await getUserLocation()
+    //        }
+    //    }
     
     
     
-//    Task {
-//        userLocation = await getUserLocation() else { return }
-//    }
+    //    Task {
+    //        userLocation = await getUserLocation() else { return }
+    //    }
     
     var body: some View {
-
+        
         Map(initialPosition: cameraPosition) {
             Marker("Halte A", systemImage: "bus", coordinate: .bbb)
                 .tint(.orange.gradient)
@@ -75,17 +76,17 @@ struct DiscoverView: View {
             }
         }
         .task {
-//            guard let userCoordinate = await getUserLocation() else { return }
-////            if let userLocation = locationManager.currentLocation {
-//                cameraPosition = .camera(MapCamera(centerCoordinate: userCoordinate, distance: 400000.0, heading: 0, pitch: 0))
-////                }
-//            getUserLocation()
-//            guard let userLocation2 = await getUserLocation() else { return }
-//            do {
-//                userLocation = userLocation2
-//            } catch {
-//                print("Error fetch user")
-//            }
+            //            guard let userCoordinate = await getUserLocation() else { return }
+            ////            if let userLocation = locationManager.currentLocation {
+            //                cameraPosition = .camera(MapCamera(centerCoordinate: userCoordinate, distance: 400000.0, heading: 0, pitch: 0))
+            ////                }
+            //            getUserLocation()
+            //            guard let userLocation2 = await getUserLocation() else { return }
+            //            do {
+            //                userLocation = userLocation2
+            //            } catch {
+            //                print("Error fetch user")
+            //            }
         }
         .tint(.orange)
         .onAppear {
@@ -118,7 +119,8 @@ struct DiscoverView: View {
                             )
                         },
                         startingPoint: $startingPoint,
-                        destinationPoint: $destinationPoint
+                        destinationPoint: $destinationPoint,
+                        isTimePicked: $isTimePicked
                     )
                     
                     QuickSearch(
@@ -138,9 +140,10 @@ struct DiscoverView: View {
                                 Button("Edit", systemImage: "magnifyingglass") {
                                     isSearch = false
                                 }
-                                Button("Filter", systemImage: "clock") {
+                                Button("Filter", systemImage: isTimePicked ? "clock.badge.checkmark" : "clock") {
                                     showTimePicker = true
                                 }
+                                .foregroundColor(isTimePicked ? .blue : .black)
                                 Button("Reverse", systemImage: "rectangle.2.swap") {
                                     swapDirections(start: startingPoint, destination: destinationPoint)
                                     getWalkingDirections(to: .bbb)
@@ -169,18 +172,19 @@ struct DiscoverView: View {
             Text("This is detail")
         })
         .sheet(isPresented: $showTimePicker) {
-            DatePicker("Time", selection: $timePicked, displayedComponents: .hourAndMinute)
+            TimePicker(showTimePicker: $showTimePicker, timePicked: $timePicked, isTimePicked: $isTimePicked)
+                .presentationDetents([.fraction(0.45)])
         }
     }
     
-
+    
     
     func getUserLocation() async -> CLLocationCoordinate2D? {
         let updates = CLLocationUpdate.liveUpdates()
         
         do {
             let update = try await updates.first { $0.location?.coordinate != nil }
-//            userLocation = update?.location?.coordinate
+            //            userLocation = update?.location?.coordinate
             return update?.location?.coordinate
         } catch {
             print("Cannot get user location")
