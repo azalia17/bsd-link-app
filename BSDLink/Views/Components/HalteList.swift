@@ -16,17 +16,6 @@ struct HalteList: View {
             HStack {
                 Image(systemName: "mappin") // Ikon lokasi
                 Text(halte) // Nama halte
-                
-                Spacer()
-                
-                Image(systemName: "arrowshape.forward.fill") // Panah arah
-                    .padding()
-                
-                VStack {
-                    Image(systemName: "photo") // Ikon foto
-                    Text("Bus Stop Name") // Deskripsi
-                        .font(.caption)
-                }
             }
             .padding(.vertical, 8)
         }
