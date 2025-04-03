@@ -5,12 +5,13 @@ import MapKit
 struct Route: Identifiable {
     let id = UUID()
     let name: String
+    let routeNumber: String
     let busStops: [BusStop]
     let bus: [Bus]
 }
 
 var sampleRoutes: [Route] = [
-    Route(name: "Route 1 (Intermoda - Halte Sektor 1.3)", busStops: [
+    Route(name: "Route 1 (Intermoda - Halte Sektor 1.3)", routeNumber: "Route 1", busStops: [
         BusStop(name: "Intermoda",
                 coordinates: .intermoda,
                 schedule: [
@@ -40,7 +41,7 @@ var sampleRoutes: [Route] = [
     ],
           bus: []),
     
-    Route(name: "Route 2 (Halte Sektor 1.3 - Intermoda)", busStops: [
+    Route(name: "Route 2 (Halte Sektor 1.3 - Intermoda)", routeNumber: "Route 2", busStops: [
         BusStop(name: "Halte Sektor 1.3",
                 coordinates: .sektor13,
                 schedule: [

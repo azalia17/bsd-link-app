@@ -30,150 +30,143 @@ struct DiscoverView: View {
     @State private var isSearch: Bool = false
     @State private var showTimePicker: Bool = false
     @State private var showPopover: Bool = false
-    @State private var timePicked = Date() /*Calendar.current.dateComponents([.hour, .minute, .second], from: Date.now)*/
+    @State private var timePicked = Date()
     @State private var isTimePicked: Bool = false
-    
-    //    init() {
-    //        Task {
-    //            await getUserLocation()
-    //        }
-    //    }
-    
-    
-    
-    //    Task {
-    //        userLocation = await getUserLocation() else { return }
-    //    }
-    
+
     var body: some View {
         
-        Map(initialPosition: cameraPosition) {
-            Marker("Halte A", systemImage: "bus", coordinate: .bbb)
-                .tint(.orange.gradient)
-            
-            Marker("Halte B", systemImage: "bus", coordinate: .ccc)
-                .tint(.orange.gradient)
-            
-            Annotation("Istiqlal", coordinate: .istiqlal, anchor: .bottom) {
-                Image(systemName: "moon.fill")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundStyle(.white)
-                    .frame(width: 30, height: 30)
-                    .padding(7)
-                    .background(.orange.gradient, in: .circle)
-            }
-            
-            UserAnnotation()
-            
-            if let route {
-                MapPolyline(route)
-                    .stroke(.orange, style: StrokeStyle(lineWidth: 3, dash: [6, 3]))
-            }
-            ForEach(routePolylines, id: \.self) { polyline in
-                MapPolyline(polyline)
-                    .stroke(.orange, lineWidth: 3)
-            }
-        }
-        .task {
-            //            guard let userCoordinate = await getUserLocation() else { return }
-            ////            if let userLocation = locationManager.currentLocation {
-            //                cameraPosition = .camera(MapCamera(centerCoordinate: userCoordinate, distance: 400000.0, heading: 0, pitch: 0))
-            ////                }
-            //            getUserLocation()
-            //            guard let userLocation2 = await getUserLocation() else { return }
-            //            do {
-            //                userLocation = userLocation2
-            //            } catch {
-            //                print("Error fetch user")
-            //            }
-        }
-        .tint(.orange)
-        .onAppear {
-            locationManager.requestWhenInUseAuthorization()
-        }
-        .mapControls {
-            
-            //            MapUserLocationButton()
-            //            MapCompass()
-            //            MapPitchToggle()
-            //            MapScaleView()
-        }
-        .mapStyle(.standard(elevation: .realistic))
-        .overlay(alignment: .topLeading) {
-            VStack(alignment: .leading) {
-                if(!isSearch){
-                    SearchCard(
-                        searchHandler: {
-                            getWalkingDirections(to: .bbb)
-                            getDirections()
-                            isSearch = true
-                        },
-                        filterHandler: {
-                            showTimePicker = true
-                        },
-                        swapHandler: {
-                            swapDirections(
-                                start: startingPoint,
-                                destination: destinationPoint
-                            )
-                        },
-                        startingPoint: $startingPoint,
-                        destinationPoint: $destinationPoint,
-                        isTimePicked: $isTimePicked
-                    )
-                    
-                    QuickSearch(
-                        startingPoint: $startingPoint,
-                        destinationPoint: $destinationPoint
-                    )
-                } else {
-                    HStack{
-                        Text(startingPoint)
-                        Image(systemName: "arrow.forward")
-                        Text(destinationPoint)
-                        
-                        Spacer()
-                        
-                        Image(systemName: "ellipsis.circle")
-                            .contextMenu{
-                                Button("Edit", systemImage: "magnifyingglass") {
-                                    isSearch = false
-                                }
-                                Button("Filter", systemImage: isTimePicked ? "clock.badge.checkmark" : "clock") {
-                                    showTimePicker = true
-                                }
-                                .foregroundColor(isTimePicked ? .blue : .black)
-                                Button("Reverse", systemImage: "rectangle.2.swap") {
-                                    swapDirections(start: startingPoint, destination: destinationPoint)
-                                    getWalkingDirections(to: .bbb)
-                                    getDirections()
-                                    isSearch = true
-                                }
-                            }
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(12)
-                    .background(
-                        RoundedRectangle(cornerRadius: 10, style: .continuous)
-                            .fill(.white)
-                            .frame(maxWidth: .infinity)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    )
+        ZStack(alignment: .bottom) {
+            Map(initialPosition: cameraPosition) {
+                Marker("Halte A", systemImage: "bus", coordinate: .bbb)
+                    .tint(.orange.gradient)
+                
+                Marker("Halte B", systemImage: "bus", coordinate: .ccc)
+                    .tint(.orange.gradient)
+                
+                Annotation("Istiqlal", coordinate: .istiqlal, anchor: .bottom) {
+                    Image(systemName: "moon.fill")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .foregroundStyle(.white)
+                        .frame(width: 30, height: 30)
+                        .padding(7)
+                        .background(.orange.gradient, in: .circle)
                 }
-                Spacer()
+                
+                UserAnnotation()
+                
+                if let route {
+                    MapPolyline(route)
+                        .stroke(.orange, style: StrokeStyle(lineWidth: 3, dash: [6, 3]))
+                }
+                ForEach(routePolylines, id: \.self) { polyline in
+                    MapPolyline(polyline)
+                        .stroke(.orange, lineWidth: 3)
+                }
             }
-            .safeAreaPadding()
-            .frame(height: 150)
+            .task {
+                //            guard let userCoordinate = await getUserLocation() else { return }
+                ////            if let userLocation = locationManager.currentLocation {
+                //                cameraPosition = .camera(MapCamera(centerCoordinate: userCoordinate, distance: 400000.0, heading: 0, pitch: 0))
+                ////                }
+                //            getUserLocation()
+                //            guard let userLocation2 = await getUserLocation() else { return }
+                //            do {
+                //                userLocation = userLocation2
+                //            } catch {
+                //                print("Error fetch user")
+                //            }
+            }
+            .tint(.orange)
+            .onAppear {
+                locationManager.requestWhenInUseAuthorization()
+            }
+            .mapControls {
+                
+                //            MapUserLocationButton()
+                //            MapCompass()
+                //            MapPitchToggle()
+                //            MapScaleView()
+            }
+            .mapStyle(.standard(elevation: .realistic))
+            .overlay(alignment: .topLeading) {
+                VStack(alignment: .leading) {
+                    if(!isSearch){
+                        SearchCard(
+                            searchHandler: {
+                                getWalkingDirections(to: .bbb)
+                                getDirections()
+                                isSearch = true
+                            },
+                            filterHandler: {
+                                showTimePicker = true
+                            },
+                            swapHandler: {
+                                swapDirections(
+                                    start: startingPoint,
+                                    destination: destinationPoint
+                                )
+                            },
+                            startingPoint: $startingPoint,
+                            destinationPoint: $destinationPoint,
+                            isTimePicked: $isTimePicked
+                        )
+                        
+                        QuickSearch(
+                            startingPoint: $startingPoint,
+                            destinationPoint: $destinationPoint
+                        )
+                    } else {
+                        HStack{
+                            Text(startingPoint)
+                            Image(systemName: "arrow.forward")
+                            Text(destinationPoint)
+                            
+                            Spacer()
+                            
+                            Image(systemName: "ellipsis.circle")
+                                .contextMenu{
+                                    Button("Edit", systemImage: "magnifyingglass") {
+                                        isSearch = false
+                                    }
+                                    Button("Filter", systemImage: isTimePicked ? "clock.badge.checkmark" : "clock") {
+                                        showTimePicker = true
+                                    }
+                                    .foregroundColor(isTimePicked ? .blue : .black)
+                                    Button("Reverse", systemImage: "rectangle.2.swap") {
+                                        swapDirections(start: startingPoint, destination: destinationPoint)
+                                        getWalkingDirections(to: .bbb)
+                                        getDirections()
+                                        isSearch = true
+                                    }
+                                }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(12)
+                        .background(
+                            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                .fill(.white)
+                                .frame(maxWidth: .infinity)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        )
+                    }
+                    Spacer()
+                }
+                .safeAreaPadding()
+                .frame(height: 150)
+                
+                
+            }
+            .sheet(isPresented: $showTimePicker) {
+                TimePicker(showTimePicker: $showTimePicker, timePicked: $timePicked, isTimePicked: $isTimePicked)
+                    .presentationDetents([.fraction(0.45)])
+            }
             
-            
-        }
-        .sheet(isPresented: $showResultRoute, content: {
-            Text("This is detail")
-        })
-        .sheet(isPresented: $showTimePicker) {
-            TimePicker(showTimePicker: $showTimePicker, timePicked: $timePicked, isTimePicked: $isTimePicked)
-                .presentationDetents([.fraction(0.45)])
+            if isSearch {
+                DraggableSheet()
+                    .edgesIgnoringSafeArea(.bottom)
+                    .transition(.move(edge: .bottom))
+            }
         }
     }
     
@@ -243,6 +236,55 @@ struct DiscoverView: View {
             } catch {
                 print("Show error")
             }
+        }
+    }
+}
+
+
+struct DraggableSheet: View {
+    @State private var offsetY: CGFloat = 400 // Default height (collapsed)
+    @State private var screenHeight: CGFloat = 0 // Store screen height
+
+    var body: some View {
+        GeometryReader { geometry in
+            let fullHeight = geometry.size.height
+            let minHeight: CGFloat = fullHeight * 0.2 // Minimum collapsed height (10pt)
+            let midHeight = fullHeight * 0.6 // 80% of the screen
+            let maxHeight = fullHeight // Fully expanded
+            
+            DiscoverDetailRoute(routes: [Route(name: "aaa", routeNumber: "Route 1", busStops: [], bus: []), Route(name: "bbb", routeNumber: "Route 2", busStops: [], bus: [])])
+                .frame(height: max(minHeight, min(maxHeight, fullHeight - offsetY)))
+                .background(Color.white)
+                .clipShape(RoundedRectangle(cornerRadius: 20))
+                .offset(y: offsetY)
+                .gesture(
+                    DragGesture()
+                        .onChanged { gesture in
+                            let newOffset = offsetY + gesture.translation.height
+                            if newOffset >= 0 && newOffset <= fullHeight - minHeight {
+                                offsetY = newOffset
+                            }
+                        }
+                        .onEnded { _ in
+                            withAnimation {
+                                let threshold = (fullHeight - midHeight) / 2
+                                
+                                if offsetY > fullHeight - midHeight + threshold {
+                                    offsetY = fullHeight - minHeight // Snap to 10pt height
+                                } else if offsetY > threshold {
+                                    offsetY = fullHeight - midHeight // Snap to 80% height
+                                } else {
+                                    offsetY = 0 // Fully expanded
+                                }
+                            }
+                        }
+                )
+                .onAppear {
+                    screenHeight = fullHeight
+                    offsetY = fullHeight - midHeight // Start at 80% height
+                }
+                .edgesIgnoringSafeArea(.bottom)
+                .transition(.move(edge: .bottom))
         }
     }
 }

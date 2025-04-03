@@ -32,10 +32,7 @@ struct QuickSearch: View {
                     }
                 }
             }
+            .scrollIndicators(.hidden)
         }
     }
 }
-//
-//#Preview {
-//    QuickSearch()
-//}
