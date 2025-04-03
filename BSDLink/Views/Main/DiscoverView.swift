@@ -252,7 +252,7 @@ struct DraggableSheet: View {
             let midHeight = fullHeight * 0.6 // 80% of the screen
             let maxHeight = fullHeight // Fully expanded
             
-            DiscoverDetailRoute(routes: [Route(name: "aaa", routeNumber: "Route 1", busStops: [], bus: []), Route(name: "bbb", routeNumber: "Route 2", busStops: [], bus: [])])
+            DiscoverDetailRoute(routes: [Route(name: "aaa", routeNumber: "Route 1", busStops: [], bus: [])/*, Route(name: "bbb", routeNumber: "Route 2", busStops: [], bus: [])*/])
                 .frame(height: max(minHeight, min(maxHeight, fullHeight - offsetY)))
                 .background(Color.white)
                 .clipShape(RoundedRectangle(cornerRadius: 20))

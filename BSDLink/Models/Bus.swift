@@ -12,5 +12,13 @@ struct Bus: Identifiable {
     let code: String
     let platNumber: String
     let operationalHour: String
-    let isElectric: Bool = false
+    var isElectric: Bool = false
+}
+
+extension Bus {
+    static let all: [Bus] = [
+        Bus(code: "A001", platNumber: "B1234ABC", operationalHour: "07.00 - 17.00", isElectric: true),
+        Bus(code: "A001", platNumber: "B1234ABC", operationalHour: "07.00 - 17.00"),
+        Bus(code: "A001", platNumber: "B1234ABC", operationalHour: "07.00 - 17.00")
+    ]
 }

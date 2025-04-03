@@ -98,13 +98,14 @@ struct ExpandableContentType<ExpandedContent: View>: View {
                             .foregroundColor(.orange)
                             .offset(y: 18)
                     }
-//                    .padding(.trailing)
+
                     if isShowPreviewSchedule && !isExpanded{
                         ScheduleGrid(
                             schedules: [ScheduleTime.all[0], ScheduleTime.all[1], ScheduleTime.all[2]],
                             isMore: true,
                             spacing: 0
                         )
+                        .padding(.top)
                     }
                 }
                 .contentShape(Rectangle())
