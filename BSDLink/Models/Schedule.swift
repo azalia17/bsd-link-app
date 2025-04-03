@@ -15,7 +15,7 @@ struct Schedule: Identifiable {
 
 struct ScheduleDetail: Identifiable{
     let id = UUID()
-    let BustStop: BusStop
+    let BusStop: BusStop
     let time: [ScheduleTime]
 }
 

@@ -22,7 +22,6 @@ struct ScheduleGrid: View {
 
             }
         })
-        .padding(.top)
     }
 }
 

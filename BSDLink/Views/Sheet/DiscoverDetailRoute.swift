@@ -105,6 +105,7 @@ struct DiscoverDetailTransitRouteContent: View {
                             contentExpanded: {
                                 ScheduleGrid(schedules: ScheduleTime.all, spacing: 1)
                                     .padding([.top, .trailing])
+                                    .padding(.top)
                             },
                             isShowPreviewSchedule: true
                         )
@@ -151,7 +152,10 @@ struct DiscoverDetailSingleRoute: View {
                     .frame(height: 50)
                     .background(.gray.opacity(0.5))
                     .cornerRadius(8)
-                    .padding(.bottom)
+                    
+                    
+                    Divider()
+                        .padding(.vertical)
                     
                     Text("Bus Stops")
                         .font(.title2)
@@ -168,6 +172,7 @@ struct DiscoverDetailSingleRoute: View {
                                 contentExpanded: {
                                     ScheduleGrid(schedules: ScheduleTime.all, spacing: 1)
                                         .padding([.top, .trailing])
+                                        .padding(.top)
                                 },
                                 isShowPreviewSchedule: true
                             )
@@ -184,6 +189,6 @@ struct DiscoverDetailSingleRoute: View {
 }
 
 #Preview {
-        DiscoverDetailRoute(routes: [Route(name: "aaa", routeNumber: "Route 1", busStops: [], bus: []), Route(name: "bbb", routeNumber: "Route 2", busStops: [], bus: []), Route(name: "bbb", routeNumber: "Route 3", busStops: [], bus: [])])
-//    DiscoverDetailRoute(routes: [Route(name: "aaa", routeNumber: "Route 1", busStops: [], bus: [])])
+//        DiscoverDetailRoute(routes: [Route(name: "aaa", routeNumber: "Route 1", busStops: [], bus: []), Route(name: "bbb", routeNumber: "Route 2", busStops: [], bus: []), Route(name: "bbb", routeNumber: "Route 3", busStops: [], bus: [])])
+    DiscoverDetailRoute(routes: [Route(name: "aaa", routeNumber: "Route 1", busStops: [], bus: [])])
 }
