@@ -78,24 +78,8 @@ struct RouteListView: View {
                     }
                 }
                 .sheet(isPresented: $showSearchInfo) {
-                    HStack {
-                        Spacer()
-                        Text("Search Info")
-                            .font(.headline)
-                        
-                        Spacer()
-                        Button(action: {
-                            showSearchInfo = false
-                        }) {
-                            Text("Done")
-                        }
-                        
-                    }
-                    .padding(.horizontal)
-                    
-                    Text("Try searching the name of a bus stop to know which routes pass by it.")
-                        .presentationDetents([.height(150)])
-                        .padding()
+                    SearchRoutesInfo(isShow: $showSearchInfo)
+                        .presentationDetents([.fraction(0.2)])
                 }
                 
             }

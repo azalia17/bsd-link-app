@@ -13,6 +13,7 @@ struct BusStop: Identifiable {
 
 extension BusStop {
     static let all: [BusStop] = [
-        BusStop(name: "The Breeze", coordinates: .theBreeze, schedule: [Schedule(index: 1, bus: Bus(code: "D23", platNumber: "B 2343 XXX", operationalHour: "09.00 - 17.00"), scheduleDetail: [])], images: [], isBigHalte: false, routes: [])
+        BusStop(name: "The Breeze", coordinates: .theBreeze, schedule: [Schedule(index: 1, bus: Bus(code: "D23", platNumber: "B 2343 XXX", operationalHour: "09.00 - 17.00"), scheduleDetail: [])], images: [], isBigHalte: false, routes: []),
+        BusStop(name: "Aeon Mall 1", coordinates: .aeonMall1, schedule: [Schedule(index: 1, bus: Bus(code: "D23", platNumber: "B 2343 XXX", operationalHour: "09.00 - 17.00"), scheduleDetail: [])], images: [], isBigHalte: false, routes: []),
     ]
 }

@@ -9,13 +9,13 @@
 import SwiftUI
 
 struct HalteList: View {
-    let halteNames = ["Halte A", "Halte B", "Halte C", "Halte D"] // Daftar halte
+    var halteNames : [BusStop]
 
     var body: some View {
-        List(halteNames, id: \.self) { halte in
+        List(halteNames) { halte in
             HStack {
                 Image(systemName: "mappin") // Ikon lokasi
-                Text(halte) // Nama halte
+                Text(halte.name) // Nama halte
             }
             .padding(.vertical, 8)
         }
@@ -23,5 +23,5 @@ struct HalteList: View {
 }
 
 #Preview {
-    HalteList()
+    HalteList(halteNames: BusStop.all)
 }
