@@ -14,7 +14,8 @@ struct DiscoverDetailRoute: View {
             Capsule()
                 .foregroundColor(.gray.opacity(0.4))
                 .frame(width: 48, height: 6)
-                .padding(.vertical, 12)
+                .padding(.bottom, 12)
+                .padding(.top, 12)
             HStack {
                 Text("Nama Rute")
                     .font(.title)
@@ -64,8 +65,14 @@ struct DiscoverDetailRoute: View {
                     }
                 }
             }
+            .padding(.bottom, 100)
+            .menuIndicator(.hidden)
+            .scrollIndicators(.hidden)
         }
-        .padding()
+        .padding([.horizontal])
+        .background(.white)
+        .cornerRadius(12)
+        .edgesIgnoringSafeArea(.bottom)
     }
 }
 
