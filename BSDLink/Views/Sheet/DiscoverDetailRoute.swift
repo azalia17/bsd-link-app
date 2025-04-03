@@ -36,7 +36,7 @@ struct DiscoverDetailRoute: View {
                         Text("Space for bus")
                         Spacer()
                     }
-                    .frame(width: .infinity, height: 50)
+                    .frame(/*width: .infinity, */height: 50)
                     .background(.gray.opacity(0.5))
                     .cornerRadius(8)
                     

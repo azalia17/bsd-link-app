@@ -83,7 +83,7 @@ struct ExpandableContentType<ExpandedContent: View>: View {
     var body: some View {
         VStack{
             HStack {
-                ImageStack(firstImage: "Intermoda_1")
+                ImageStack(images: ["Intermoda_1", "Intermoda_2"])
                     .offset(y: 18)
                 VStack {
                     HStack {
@@ -103,7 +103,7 @@ struct ExpandableContentType<ExpandedContent: View>: View {
                         ScheduleGrid(
                             schedules: [ScheduleTime.all[0], ScheduleTime.all[1], ScheduleTime.all[2]],
                             isMore: true,
-                            spacing: 1
+                            spacing: 0
                         )
                     }
                 }

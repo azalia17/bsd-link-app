@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct ImageStack: View {
-    var firstImage: String
-    var secondImage: String? = nil
+    
+    @State private var isFullScreen: Bool = false
+    
+    var images: [String] = []
     
     var body: some View {
-        ZStack{
-            if(secondImage != nil) {
-                Image(secondImage ?? "")
+        ZStack {
+            if(images.count > 1) {
+                Image(images[1])
                     .resizable()
                     .frame(width: 72, height: 72)
                     .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
@@ -29,20 +31,28 @@ struct ImageStack: View {
                     .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
                     .offset(x: 8, y: 8)
             }
-            Image(firstImage)
+            Image(images[0])
                 .resizable()
                 .frame(width: 72, height: 72)
                 .border(.white)
                 .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
                 .shadow(color: Color.black.opacity(0.2), radius: 4, x: 7, y: 8)
         }
+        .onTapGesture {
+            isFullScreen = true
+        }
+        .fullScreenCover(isPresented: $isFullScreen) {
+            ImageCarousel(images: images) {
+                isFullScreen = false
+            }
+        }
     }
 }
 
 #Preview {
     ImageStack(
-        firstImage: "Intermoda_1"
-//        ,
-//        secondImage: "Intermoda_2"
+        images: ["Intermoda_1"]
+        //        ,
+        //        secondImage: "Intermoda_2"
     )
 }
