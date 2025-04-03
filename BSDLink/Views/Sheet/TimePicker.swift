@@ -27,8 +27,8 @@ struct TimePicker: View {
                     Button {
                         showTimePicker = false
                     } label: {
-                        Label("Cancel", systemImage: "xmark")
-                            .labelStyle(.iconOnly)
+                        Text("Cancel")
+                            .foregroundColor(.red)
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -36,8 +36,8 @@ struct TimePicker: View {
                         showTimePicker = false
                         isTimePicked = true
                     } label: {
-                        Label("Done", systemImage: "checkmark")
-                            .labelStyle(.iconOnly)
+                        Text("Done")
+                            .foregroundColor(.blue)
                     }
     //                .disabled(timePicked.isEmpty)
                 }
