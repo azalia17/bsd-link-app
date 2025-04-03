@@ -76,7 +76,9 @@ struct ImageCarousel: View {
             
             Button("Close") {
                 onClose()
-            }.padding(.trailing)
+            }
+            .padding(.trailing)
+            .foregroundColor(.white)
         }
     }
 }

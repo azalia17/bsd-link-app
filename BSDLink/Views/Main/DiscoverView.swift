@@ -30,21 +30,9 @@ struct DiscoverView: View {
     @State private var isSearch: Bool = false
     @State private var showTimePicker: Bool = false
     @State private var showPopover: Bool = false
-    @State private var timePicked = Date() /*Calendar.current.dateComponents([.hour, .minute, .second], from: Date.now)*/
+    @State private var timePicked = Date()
     @State private var isTimePicked: Bool = false
-    
-    //    init() {
-    //        Task {
-    //            await getUserLocation()
-    //        }
-    //    }
-    
-    
-    
-    //    Task {
-    //        userLocation = await getUserLocation() else { return }
-    //    }
-    
+
     var body: some View {
         
         ZStack(alignment: .bottom) {
@@ -176,7 +164,6 @@ struct DiscoverView: View {
             
             if isSearch {
                 DraggableSheet()
-//                    .frame(maxHeight: 400)
                     .edgesIgnoringSafeArea(.bottom)
                     .transition(.move(edge: .bottom))
             }
@@ -265,7 +252,7 @@ struct DraggableSheet: View {
             let midHeight = fullHeight * 0.6 // 80% of the screen
             let maxHeight = fullHeight // Fully expanded
             
-            DiscoverDetailRoute()
+            DiscoverDetailRoute(routes: [Route(name: "aaa", routeNumber: "Route 1", busStops: [], bus: []), Route(name: "bbb", routeNumber: "Route 2", busStops: [], bus: [])])
                 .frame(height: max(minHeight, min(maxHeight, fullHeight - offsetY)))
                 .background(Color.white)
                 .clipShape(RoundedRectangle(cornerRadius: 20))
