@@ -28,14 +28,7 @@ struct RouteDetail: View {
             }
             ScrollView {
                 VStack(alignment: .leading) {
-                    HStack(){
-                        Spacer()
-                        Text("Space for bus")
-                        Spacer()
-                    }
-                    .frame(height: 50)
-                    .background(.gray.opacity(0.5))
-                    .cornerRadius(8)
+                    BusTypeCard(busList: Bus.all)
                     
                     Divider()
                         .padding(.vertical)

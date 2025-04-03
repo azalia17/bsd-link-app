@@ -78,21 +78,15 @@ struct DiscoverDetailTransitRouteContent: View {
     var body: some View {
         DisclosureGroup(isExpanded: $topExpanded) {
             VStack(alignment: .leading) {
-                HStack(){
-                    Spacer()
-                    Text("Space for bus")
-                    Spacer()
-                }
-                .frame(height: 50)
-                .background(.gray.opacity(0.5))
-                .cornerRadius(8)
-                .padding(.bottom)
-                .padding(.top, 8)
+                
+                
+                BusTypeCard(busList: Bus.all)
+                    .padding(.vertical, 12)
                 
                 Text("Bus Stops")
                     .font(.title2)
                     .bold()
-                    
+                
                 Text("Schedule show: 13.00 - 14.00")
                     .font(.caption)
                     .foregroundColor(.gray)
@@ -116,7 +110,7 @@ struct DiscoverDetailTransitRouteContent: View {
             Text(route.name)
                 .font(.title)
                 .fontWeight(.bold)
-                
+            
         }
         .foregroundColor(.black)
         
@@ -144,15 +138,7 @@ struct DiscoverDetailSingleRoute: View {
             }
             ScrollView {
                 VStack(alignment: .leading) {
-                    HStack(){
-                        Spacer()
-                        Text("Space for bus")
-                        Spacer()
-                    }
-                    .frame(height: 50)
-                    .background(.gray.opacity(0.5))
-                    .cornerRadius(8)
-                    
+                    BusTypeCard(busList: Bus.all)
                     
                     Divider()
                         .padding(.vertical)
@@ -189,6 +175,11 @@ struct DiscoverDetailSingleRoute: View {
 }
 
 #Preview {
-//        DiscoverDetailRoute(routes: [Route(name: "aaa", routeNumber: "Route 1", busStops: [], bus: []), Route(name: "bbb", routeNumber: "Route 2", busStops: [], bus: []), Route(name: "bbb", routeNumber: "Route 3", busStops: [], bus: [])])
+//            DiscoverDetailRoute(routes: [Route(name: "aaa", routeNumber: "Route 1", busStops: [], bus: []), Route(name: "bbb", routeNumber: "Route 2", busStops: [], bus: []), Route(name: "bbb", routeNumber: "Route 3", busStops: [], bus: [])])
     DiscoverDetailRoute(routes: [Route(name: "aaa", routeNumber: "Route 1", busStops: [], bus: [])])
+}
+
+#Preview {
+            DiscoverDetailRoute(routes: [Route(name: "aaa", routeNumber: "Route 1", busStops: [], bus: []), Route(name: "bbb", routeNumber: "Route 2", busStops: [], bus: []), Route(name: "bbb", routeNumber: "Route 3", busStops: [], bus: [])])
+//    DiscoverDetailRoute(routes: [Route(name: "aaa", routeNumber: "Route 1", busStops: [], bus: [])])
 }

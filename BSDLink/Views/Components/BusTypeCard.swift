@@ -8,78 +8,68 @@
 
 import SwiftUI
 
-struct BusTypeList: View {
-    // Data bus yang akan ditampilkan
-    let busList: [Bus] = [
-        Bus(name: "Bus A", code: "A001", plat: "B1234ABC", operationalTime: "07.00 - 17.00"),
-        Bus(name: "Bus B", code: "B002", plat: "B5678XYZ", operationalTime: "08.00 - 18.00"),
-        Bus(name: "Bus C", code: "C003", plat: "C9876JKL", operationalTime: "06.00 - 16.00")
-    ]
-    
-    var body: some View {
-        NavigationView {
-            List(busList) { bus in
-                BusTypeCard(bus: bus)
-            }
-            .navigationTitle("BSD Link Bus")
-        }
-    }
-}
-
 struct BusTypeCard: View {
-    @State private var isExpanded = false // State untuk mengontrol tampilan disclosure
-    let bus: Bus
+    
+    var busList: [Bus]
+    @State private var isExpanded = false
     
     var body: some View {
         DisclosureGroup(
-            isExpanded ? "Hide Bus Details" : "Show Bus Details",
             isExpanded: $isExpanded
         ) {
-            VStack(alignment: .leading, spacing: 10) {
-                HStack {
-                    Image(systemName: "bus.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 60, height: 60)
-                        .foregroundColor(.blue)
+            VStack(alignment: .leading) {
+                Spacer().frame(height: 10)
+                ForEach(busList) { bus in
+                    HStack {
+                        Image(systemName: "bus.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 44, height: 44)
+                            .foregroundColor(.orange)
                         
-                    
-                    VStack(alignment: .leading) {
-                        HStack {
-                            Text("Code: \(bus.code)")
-                                .bold()
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 4)
-                                .background(RoundedRectangle(cornerRadius: 6).fill(Color.gray.opacity(0.2)))
-                            Text("Plat: \(bus.plat)")
-                                .bold()
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 4)
-                                .background(RoundedRectangle(cornerRadius: 6).fill(Color.gray.opacity(0.2)))
+                        
+                        VStack(alignment: .leading) {
+                            HStack {
+                                Chip(text: bus.code, color: .gray)
+                                Chip(text: bus.platNumber)
+                                if bus.isElectric {
+                                    Image(systemName: "bolt.fill")
+                                        .foregroundColor(.yellow)
+                                        .scaledToFit()
+                                        .frame(width: 16, height: 16)
+                                }
+                            }
+                            Text("Operational Hour: \(bus.operationalHour)")
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                            
                         }
-                        Text("Jam Operasional: \(bus.operationalTime)")
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
+                        .padding(.bottom, 10)
                     }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(12)
+                    .background(
+                        RoundedRectangle(cornerRadius: 10, style: .continuous)
+                            .fill(.white)
+                            .frame(maxWidth: .infinity)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    )
+                    
                 }
-                .padding()
             }
-            .background(Color.gray.opacity(0.1))
-            .cornerRadius(8)
-            .padding(.horizontal)
         }
-        .padding()
+        label: {
+            Text("Bus")
+                .font(.headline)
+                .fontWeight(.bold)
+                .foregroundColor(.black)
+            
+        }
+        .modifier(TextFieldGrayBackgroundColor())
     }
 }
 
-struct Bus: Identifiable {
-    let id = UUID() // Unique identifier for each bus
-    let name: String
-    let code: String
-    let plat: String
-    let operationalTime: String
-}
 
 #Preview {
-    BusTypeList()
+    BusTypeCard(busList: Bus.all)
 }
