@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct DetailRouteView: View {
+    let route: Route
+    
     var body: some View {
         NavigationStack {
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            Text(route.name)
             
         }
         
@@ -18,5 +20,5 @@ struct DetailRouteView: View {
 }
 
 #Preview {
-    DetailRouteView()
+    DetailRouteView(route: Route.init(name: "Test", routeNumber: "", busStops: [], bus: []))
 }

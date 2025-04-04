@@ -42,7 +42,12 @@ struct RouteListView: View {
                 VStack {
                     List {
                         ForEach(filteredRoutes, id: \.id) { route in
-                            RouteTile(routeName: route.name, stops: route.busStops.count)
+                            NavigationLink {
+                                DetailRouteView(route: route)
+                            } label: {
+                                RouteTile(routeName: route.name, stops: route.busStops.count)
+                            }
+                            
                         }
                     }
                 }
