@@ -32,6 +32,7 @@ struct RouteListView: View {
                 //Logic buat nampilin berapa route yang keliatan
                 RouteCount(count: filteredRoutes.count)
                 
+                //Logic buat one time search info
                 if showOneTimeSearchInfo {
                     OneTimeSearchInfo(showOneTimeSearchInfo: $showOneTimeSearchInfo)
                     
@@ -60,24 +61,8 @@ struct RouteListView: View {
                     }
                 }
                 .sheet(isPresented: $showSearchInfo) {
-                    HStack {
-                        Spacer()
-                        Text("Search Info")
-                            .font(.headline)
-                        
-                        Spacer()
-                        Button(action: {
-                            showSearchInfo = false
-                        }) {
-                            Text("Done")
-                        }
-                        
-                    }
-                    .padding(.horizontal)
+                    SearchInfo(showSearchInfo: $showSearchInfo)
                     
-                    Text("Try searching the name of a bus stop to know which routes pass by it.")
-                        .presentationDetents([.height(150)])
-                        .padding()
                 }
                 
             }
@@ -91,7 +76,4 @@ struct RouteListView: View {
 #Preview {
     RouteListView()
 }
-
-
-
 
