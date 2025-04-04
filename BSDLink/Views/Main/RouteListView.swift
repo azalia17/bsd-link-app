@@ -16,7 +16,7 @@ struct RouteListView: View {
         if searchTerm.isEmpty {
             return sampleRoutes
         } else {
-//            return sampleRoutes.filter { $0.name.localizedCaseInsensitiveContains(searchTerm) }
+            //            return sampleRoutes.filter { $0.name.localizedCaseInsensitiveContains(searchTerm) }
             // Di atas sisa2 pas awal search rute pake nama rute
             return sampleRoutes.filter { route in
                 route.busStops.contains { busStop in busStop.name.localizedCaseInsensitiveContains(searchTerm)
@@ -33,26 +33,8 @@ struct RouteListView: View {
                 RouteCount(count: filteredRoutes.count)
                 
                 if showOneTimeSearchInfo {
-                    ZStack (alignment: .topTrailing){
-                        Text("Try searching the name of a bus stop to know which routes pass by it.")
-                            .multilineTextAlignment(.center)
-                            .padding(.top, 20)
-                        
-                        Button(action: {
-                            showOneTimeSearchInfo = false
-                        }) {
-                            Image(systemName: "xmark")
-                                .font(.system(size: 14))
-                                .padding(1)
-                        }
-                        .foregroundStyle(.gray)
-                        
-                        
-                    }
-                    .padding()
-                    .frame(width: 355, height: 100, alignment: .center)
-                    .background(Color(.systemGray6))
-                    .cornerRadius(15)
+                    OneTimeSearchInfo(showOneTimeSearchInfo: $showOneTimeSearchInfo)
+                    
                 }
                 
                 //Buat nampilin list rute yang disearch
@@ -109,5 +91,7 @@ struct RouteListView: View {
 #Preview {
     RouteListView()
 }
+
+
 
 
