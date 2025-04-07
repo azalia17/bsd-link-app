@@ -8,14 +8,14 @@ import Foundation
 
 struct Schedule: Identifiable, Codable {
     let id: String
-    let idx: Int
+    let idx: Int // if there is only one schedule bakalan 1 terus. based on pdf
     let bus: String
     let scheduleDetail: [String]
 }
 
 struct ScheduleDetail: Identifiable, Codable {
     let id: String
-    let index: Int
+    let index: Int // bus stops index, urutan keberapa
     let BusStop: String
     let time: [ScheduleTime]
 }
@@ -37,14 +37,14 @@ extension Schedule {
         return schedules
     }
     
-    static func getScheduleBusStopBased(busStopId: String, idx: Int, fromHour: Int, fromMinute: Int) -> [ScheduleTime] {
+    static func getScheduleBusStopBasedWithTime(busStopId: String, idx: Int, fromHour: Int, fromMinute: Int) -> [ScheduleTime] {
         
         let filteredDetails = ScheduleDetail.all.filter {
             $0.BusStop == busStopId && $0.index == idx
         }
         
         let startTime = timeFrom(fromHour, fromMinute)
-        let endTime = timeFrom(fromHour + 1, fromMinute)
+        let endTime = timeFrom(fromHour + 12, fromMinute)
         
         let filteredTimes = filteredDetails.flatMap { detail in
             detail.time.filter { $0.time >= startTime && $0.time < endTime }
@@ -60,7 +60,8 @@ extension Schedule {
             idx: 1,
             bus: "bus_a001",
             scheduleDetail: [
-                "sd_r1_b1_intermoda"
+                "sd_r1_b1_intermoda",
+                "sd_r1_b2_intermoda"
             ]
         )
     ]

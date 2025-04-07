@@ -31,8 +31,8 @@ struct BusTypeCard: View {
                         
                         VStack(alignment: .leading) {
                             HStack {
-                                Chip(text: bus.code, color: .gray)
-                                Chip(text: bus.platNumber)
+//                                Chip(text: bus.code, color: .gray)
+                                Chip(text: bus.platNumber, color: .gray)
                                 if bus.isElectric {
                                     Image(systemName: "bolt.fill")
                                         .foregroundColor(.yellow)

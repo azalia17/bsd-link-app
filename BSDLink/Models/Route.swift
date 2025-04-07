@@ -20,8 +20,9 @@ extension Route {
             name: "Intermoda - Sektor 1.3 - Intermoda",
             routeNumber: 1,
             busStops: [
-                "intermoda",
-                "bs_aeon_mall_1"
+                "intermoda"
+                ,
+                "intermoda"
             ],
             bus: ["bus_a001", "bus_a002"],
             schedule: ["r1_1"],

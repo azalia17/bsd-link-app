@@ -14,7 +14,8 @@ struct ItemExpandable<ExpandedContent: View>: View {
     let busStop: BusStop
     let fromHour: Int
     let fromMinute: Int
-    let index: Int
+    let scheduleIndex: Int
+    let isFirstItem: Bool
     let isLastItem: Bool  // Pass info if this is the last item
     let contentExpanded: () -> ExpandedContent
     
@@ -27,11 +28,11 @@ struct ItemExpandable<ExpandedContent: View>: View {
         HStack(alignment: .top) {
             VStack {
                 Rectangle()
-                    .fill(index != 0 ? Color.orange : .white)
+                    .fill(!isFirstItem ? Color.orange : .white)
                     .frame(width: 3, height: 32) // Connect to previous item
                     .overlay(content: {
                         Rectangle()
-                            .fill(index != 0 ? Color.orange : .white)
+                            .fill(!isFirstItem ? Color.orange : .white)
                             .frame(width: 3, height: 32)
                             .offset(y: 20)
                     })
@@ -60,7 +61,7 @@ struct ItemExpandable<ExpandedContent: View>: View {
             
             ExpandableContentType(
                 busStop: busStop,
-                index: index,
+                scheduleIndex: scheduleIndex,
                 fromHour: fromHour,
                 fromMinute: fromMinute,
                 contentExpanded: contentExpanded,
@@ -75,7 +76,7 @@ struct ItemExpandable<ExpandedContent: View>: View {
 
 struct ExpandableContentType<ExpandedContent: View>: View {
     var busStop: BusStop
-    let index: Int
+    let scheduleIndex: Int
     let fromHour: Int
     let fromMinute: Int
     let contentExpanded: () -> ExpandedContent
@@ -105,8 +106,9 @@ struct ExpandableContentType<ExpandedContent: View>: View {
                     }
 
                     if isShowPreviewSchedule && !isExpanded{
+                        let sched = Schedule.getScheduleBusStopBasedWithTime(busStopId: busStop.id, idx: scheduleIndex, fromHour: fromHour, fromMinute: fromMinute)
                         ScheduleGrid(
-                            schedules: Schedule.getScheduleBusStopBased(busStopId: busStop.id, idx: index, fromHour: fromHour, fromMinute: fromMinute),
+                            schedules: [sched[0], sched[1]],
                             isMore: true,
                             spacing: 0
                         )
@@ -148,16 +150,21 @@ struct ExpandableContentType<ExpandedContent: View>: View {
 }
 
 #Preview {
-    ItemExpandable(busStop: BusStop.getSingleStop(by: "intermoda"), fromHour: 6, fromMinute: 0, index: 1, isLastItem: true) {
+    ItemExpandable(busStop: BusStop.getSingleStop(by: "intermoda"), fromHour: 6, fromMinute: 0, scheduleIndex: 14, isFirstItem: false, isLastItem: true) {
+        Text("Expanded Content\nMore lines\nAnother line")
+                        .padding(.top)
+    }
+    
+    ItemExpandable(busStop: BusStop.getSingleStop(by: "intermoda"), fromHour: 10, fromMinute: 0, scheduleIndex: 1, isFirstItem: true, isLastItem: false) {
         Text("Expanded Content\nMore lines\nAnother line")
                         .padding(.top)
     }
 }
 
 
-#Preview {
-    ItemExpandable(busStop: BusStop.getSingleStop(by: "intermoda"), fromHour: 6, fromMinute: 0, index: 1, isLastItem: true) {
-        Text("Expanded Content\nMore lines\nAnother line")
-                        .padding(.top)
-    }
-}
+//#Preview {
+//    ItemExpandable(busStop: BusStop.getSingleStop(by: "intermoda"), fromHour: 10, fromMinute: 0, index: 14, isLastItem: true) {
+//        Text("Expanded Content\nMore lines\nAnother line")
+//                        .padding(.top)
+//    }
+//}
