@@ -37,10 +37,7 @@ extension BusStop {
     }
     
     
-    static let all: [BusStop] = [
-        BusStop(id: "intermoda", name: "Intermoda", latitude: CLLocationCoordinate2D.intermoda.latitude, longitude: CLLocationCoordinate2D.intermoda.longitude, images: ["Intermoda_1", "Intermoda_2"], routes: ["route_1"]),
-        BusStop(id: "bs_aeon_mall_1", name: "Intermoda", latitude: CLLocationCoordinate2D.intermoda.latitude, longitude: CLLocationCoordinate2D.intermoda.longitude, images: ["Intermoda_1", "Intermoda_2"], routes: ["route_1"]),
-    ]
+
     
     
     //            static let all: [BusStop] = [
