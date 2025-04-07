@@ -6,10 +6,14 @@
 //
 //
 
+/** Complete **/
+
 import SwiftUI
 
 struct ItemExpandable<ExpandedContent: View>: View {
-    let busStopName: String
+    let busStop: BusStop
+    let fromHour: Int
+    let fromMinute: Int
     let index: Int
     let isLastItem: Bool  // Pass info if this is the last item
     let contentExpanded: () -> ExpandedContent
@@ -56,16 +60,16 @@ struct ItemExpandable<ExpandedContent: View>: View {
                     .frame(width: 3, height: isExpanded ? expandedHeight : 32)
             }
             
-            
-            
             ExpandableContentType(
-                busStopName: busStopName,
+                busStop: busStop,
+                index: index,
+                fromHour: fromHour,
+                fromMinute: fromMinute,
                 contentExpanded: contentExpanded,
                 isExpanded: $isExpanded,
                 expandedHeight: $expandedHeight,
                 isShowPreviewSchedule: isShowPreviewSchedule
             )
-            
         }
         .padding(.leading, 12)
         .frame(alignment: .leading)
@@ -78,8 +82,10 @@ struct ItemExpandable<ExpandedContent: View>: View {
 }
 
 struct ExpandableContentType<ExpandedContent: View>: View {
-    
-    var busStopName: String
+    var busStop: BusStop
+    let index: Int
+    let fromHour: Int
+    let fromMinute: Int
     let contentExpanded: () -> ExpandedContent
     
     @Binding var isExpanded: Bool
@@ -90,11 +96,11 @@ struct ExpandableContentType<ExpandedContent: View>: View {
     var body: some View {
     VStack{
             HStack {
-                ImageStack(images: ["Intermoda_1", "Intermoda_2"])
+                ImageStack(images: busStop.images)
                     .offset(y: 18)
-                VStack {
+                VStack(alignment: .leading) {
                     HStack {
-                        Text(busStopName)
+                        Text(busStop.name)
                             .font(.subheadline)
                             .bold()
                             .frame(maxWidth: .infinity, alignment: .leading) // Align text to the left
@@ -109,7 +115,7 @@ struct ExpandableContentType<ExpandedContent: View>: View {
 
                     if isShowPreviewSchedule && !isExpanded{
                         ScheduleGrid(
-                            schedules: [ScheduleTime.all[0], ScheduleTime.all[1]],
+                            schedules: Schedule.getScheduleBusStopBased(busStopId: busStop.id, idx: index, fromHour: fromHour, fromMinute: fromMinute),
                             isMore: true,
                             spacing: 1
                         )
@@ -151,12 +157,16 @@ struct ExpandableContentType<ExpandedContent: View>: View {
 }
 
 #Preview {
-    ItemExpandable(
-        busStopName: "aaaaaa",
-        index: 1,
-        isLastItem: false,
-        contentExpanded: {
-            Text("Expanded Content\nMore lines\nAnother line")
-                .padding(.top)
-        })
+    ItemExpandable(busStop: BusStop.getSingleStop(by: "intermoda"), fromHour: 6, fromMinute: 0, index: 1, isLastItem: true) {
+        Text("Expanded Content\nMore lines\nAnother line")
+                        .padding(.top)
+    }
+}
+
+
+#Preview {
+    ItemExpandable(busStop: BusStop.getSingleStop(by: "intermoda"), fromHour: 6, fromMinute: 0, index: 1, isLastItem: true) {
+        Text("Expanded Content\nMore lines\nAnother line")
+                        .padding(.top)
+    }
 }

@@ -5,6 +5,8 @@
 //  Created by Brayen Fredgin Cahyadi on 30/03/25.
 //
 
+/** Complete but more styling **/
+
 import SwiftUI
 
 struct RouteTile: View {
@@ -20,7 +22,6 @@ struct RouteTile: View {
                 Text(String(stops) + " Stops")
             }
             Spacer()
-            
-        }.padding(.vertical, 5)
+        }
     }
 }

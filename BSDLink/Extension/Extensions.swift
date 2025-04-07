@@ -116,6 +116,12 @@ extension CLLocationCoordinate2D {
     static let simplicity1 = CLLocationCoordinate2D(latitude: -6.313511371612549, longitude: 106.64318084716797)
     static let simplicity2 = CLLocationCoordinate2D(latitude: -6.313050746917725, longitude: 106.64257049560547)
     static let smlPlaza = CLLocationCoordinate2D(latitude: -6.302289962768555, longitude: 106.65125274658203)
+    
+    static let studento1 = CLLocationCoordinate2D(latitude: -6.295620441436768, longitude: 106.64208221435547)
+    static let studento2 = CLLocationCoordinate2D(latitude: -6.295470714569092, longitude: 106.64214324951172)
+    static let swa1 = CLLocationCoordinate2D(latitude: -6.299900054931641, longitude: 106.66239166259766)
+    static let swa2 = CLLocationCoordinate2D(latitude: -6.29962158203125, longitude: 106.66243743896484)
+    static let tabebuya = CLLocationCoordinate2D(latitude: -6.29189395904541, longitude: 106.62271881103516)
     static let theBreeze = CLLocationCoordinate2D(latitude: -6.301454544067383, longitude: 106.65314483642578)
     static let theMozia1 = CLLocationCoordinate2D(latitude: -6.291750907897949, longitude: 106.62850189208984)
     static let theMozia2 = CLLocationCoordinate2D(latitude: -6.291631698608398, longitude: 106.6286392211914)
@@ -131,4 +137,40 @@ func formatTime(from date: Date) -> String {
     let formatter = DateFormatter()
     formatter.dateFormat = "HH:mm" // 24-hour format (use "hh:mm a" for 12-hour format with AM/PM)
     return formatter.string(from: date)
+}
+
+
+func getBusStops(_ ids: [String]) -> [BusStop] {
+    var stops : [BusStop] = []
+    
+    for id in ids {
+        stops += BusStop.all.filter { $0.id == id}
+    }
+        
+    return stops
+}
+
+func getBus(_ ids: [String]) -> [Bus] {
+    var buses : [Bus] = []
+    
+    for id in ids {
+        buses += Bus.all.filter { $0.id == id}
+    }
+        
+    return buses
+}
+
+func getRoute(_ ids: [String]) -> [Route] {
+    var routes : [Route] = []
+    
+    for id in ids {
+        routes += Route.all.filter { $0.id == id}
+    }
+        
+    return routes
+}
+
+func getScheduleForSpecificBus(_ id: String) -> Schedule {
+    
+    return Schedule.all.filter{$0.bus == id}.first!
 }

@@ -19,7 +19,16 @@ struct DiscoverDetailRoute: View {
                 .frame(width: 48, height: 6)
                 .padding(.bottom, 12)
                 .padding(.top, 12)
-            if (routes.count > 1) {
+            if (routes.count < 1) {
+                Spacer()
+                Text("No routes found. Try other places")
+                    .frame(maxWidth: .infinity)
+                    .multilineTextAlignment(.center)
+                    .contentShape(Rectangle())
+                    .font(.caption)
+                    .foregroundColor(.gray)
+                Spacer()
+            } else if (routes.count > 1) {
                 DiscoverDetailTransitRoute(routes: routes, showSearchInfo: $showSearchInfo)
             } else {
                 DiscoverDetailSingleRoute(route: routes[0], showSearchInfo: $showSearchInfo)
@@ -43,7 +52,7 @@ struct DiscoverDetailTransitRoute: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Text("\(routes[0].routeNumber) - \(routes[routes.count - 1].routeNumber)")
+                Text("Route \(routes[0].routeNumber) - Route \(routes[routes.count - 1].routeNumber)")
                     .font(.title)
                     .fontWeight(.bold)
                 Spacer()
@@ -91,15 +100,18 @@ struct DiscoverDetailTransitRouteContent: View {
                     .font(.caption)
                     .foregroundColor(.gray)
                 VStack(spacing: 0) {
-                    ForEach(0..<3) { index in
+                    ForEach(route.busStops.indices, id: \.self) { index in
+//                        let busStopName : String = route.busStops[index]
+//                        let isLast : Bool = index == route.busStops.count - 1
+                        
                         ItemExpandable(
-                            busStopName: "Courts Mega Store \(index)",
+                            busStop: BusStop.getSingleStop(by: route.busStops[index]),
+                            fromHour: 7,
+                            fromMinute: 0,
                             index: index,
-                            isLastItem: index == 2,
+                            isLastItem: index == route.busStops.count - 1,
                             contentExpanded: {
-                                ScheduleGrid(schedules: ScheduleTime.all, spacing: 0)
-                                    .padding([.top, .trailing])
-                                    .padding(.top)
+                                ScheduleGrid(schedules: [])
                             },
                             isShowPreviewSchedule: true
                         )
@@ -138,7 +150,7 @@ struct DiscoverDetailSingleRoute: View {
             }
             ScrollView {
                 VStack(alignment: .leading) {
-                    BusTypeCard(busList: Bus.all)
+                    BusTypeCard(busList: Bus.getBusses(by: route.bus))
                     
                     Divider()
                         .padding(.vertical)
@@ -150,19 +162,51 @@ struct DiscoverDetailSingleRoute: View {
                         .font(.caption)
                         .foregroundColor(.gray)
                     VStack(spacing: 0) {
-                        ForEach(0..<3) { index in
+//                        let mappedBusStops = route.busStops.compactMap { BusStop.getSingleStop(by: $0) }
+
+//                        ForEach(Array(route.busStops.enumerated()), id: \.element.id) { index, busStop in
+//                            ItemExpandable(
+//                                busStop: busStop,
+//                                fromHour: 6,
+//                                fromMinute: 0,
+//                                index: index,
+//                                isLastItem: index == route.busStops.count - 1,
+//                                contentExpanded: {
+//                                    ScheduleGrid(schedules: [])
+//                                },
+//                                isShowPreviewSchedule: true
+//                            )
+//                        }
+                        ForEach(route.busStops.indices, id: \.self) { index in
+//                            let busStopName : String = route.busStops[index]
+//                            let isLast : Bool = index == route.busStops.count - 1
+                            
                             ItemExpandable(
-                                busStopName: "Courts Mega Store \(index)",
+                                busStop: BusStop.getSingleStop(by: route.busStops[0]),
+                                fromHour: 6,
+                                fromMinute: 0,
                                 index: index,
-                                isLastItem: index == 2,
+                                isLastItem: false,
                                 contentExpanded: {
-                                    ScheduleGrid(schedules: ScheduleTime.all, spacing: 1)
-                                        .padding([.top, .trailing])
-                                        .padding(.top)
+                                    ScheduleGrid(schedules: [])
                                 },
                                 isShowPreviewSchedule: true
                             )
                         }
+                        
+//                        ForEach(0..<3) { index in
+//                            ItemExpandable(
+//                                busStopName: "Courts Mega Store \(index)",
+//                                index: index,
+//                                isLastItem: index == 2,
+//                                contentExpanded: {
+//                                    ScheduleGrid(schedules: [] /*ScheduleTime.all*/, spacing: 1)
+//                                        .padding([.top, .trailing])
+//                                        .padding(.top)
+//                                },
+//                                isShowPreviewSchedule: true
+//                            )
+//                        }
                     }
                 }
             }
@@ -175,11 +219,12 @@ struct DiscoverDetailSingleRoute: View {
 }
 
 #Preview {
-//            DiscoverDetailRoute(routes: [Route(name: "aaa", routeNumber: "Route 1", busStops: [], bus: []), Route(name: "bbb", routeNumber: "Route 2", busStops: [], bus: []), Route(name: "bbb", routeNumber: "Route 3", busStops: [], bus: [])])
-    DiscoverDetailRoute(routes: [Route(name: "aaa", routeNumber: "Route 1", busStops: [], bus: [])])
+    DiscoverDetailRoute(routes: [Route.all[0], Route.all[0]])
+    //            DiscoverDetailRoute(routes: [Route(name: "aaa", routeNumber: "Route 1", busStops: [], bus: []), Route(name: "bbb", routeNumber: "Route 2", busStops: [], bus: []), Route(name: "bbb", routeNumber: "Route 3", busStops: [], bus: [])])
+    //    DiscoverDetailRoute(routes: [Route(name: "aaa", routeNumber: "Route 1", busStops: [], bus: [])])
 }
 
-#Preview {
-            DiscoverDetailRoute(routes: [Route(name: "aaa", routeNumber: "Route 1", busStops: [], bus: []), Route(name: "bbb", routeNumber: "Route 2", busStops: [], bus: []), Route(name: "bbb", routeNumber: "Route 3", busStops: [], bus: [])])
-//    DiscoverDetailRoute(routes: [Route(name: "aaa", routeNumber: "Route 1", busStops: [], bus: [])])
-}
+//#Preview {
+//    //            DiscoverDetailRoute(routes: [Route(name: "aaa", routeNumber: "Route 1", busStops: [], bus: []), Route(name: "bbb", routeNumber: "Route 2", busStops: [], bus: []), Route(name: "bbb", routeNumber: "Route 3", busStops: [], bus: [])])
+//    //    DiscoverDetailRoute(routes: [Route(name: "aaa", routeNumber: "Route 1", busStops: [], bus: [])])
+//}

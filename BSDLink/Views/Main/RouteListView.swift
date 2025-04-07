@@ -14,45 +14,64 @@ struct RouteListView: View {
     
     public var filteredRoutes: [Route] {
         if searchTerm.isEmpty {
-            return sampleRoutes
+            return []
         } else {
+            return []
             //            return sampleRoutes.filter { $0.name.localizedCaseInsensitiveContains(searchTerm) }
             // Di atas sisa2 pas awal search rute pake nama rute
-            return sampleRoutes.filter { route in
-                route.busStops.contains { busStop in busStop.name.localizedCaseInsensitiveContains(searchTerm)
-                }
+//            return sampleRoutes.filter { route in
+//                route.busStops.contains { busStop in busStop.name.localizedCaseInsensitiveContains(searchTerm)
+//                }
             }
         }
-    }
+//    }
     
     var body: some View {
         NavigationStack {
             
-            VStack(spacing: 10) {
+            VStack() {
                 //Logic buat nampilin berapa route yang keliatan
                 RouteCount(count: filteredRoutes.count)
+                    .safeAreaPadding(.horizontal)
                 
                 //Logic buat one time search info
                 if showOneTimeSearchInfo {
-                    OneTimeSearchInfo(showOneTimeSearchInfo: $showOneTimeSearchInfo)
+                    ZStack (alignment: .topTrailing){
+                        Text("Try searching the name of a bus stop to know which routes pass by it.")
+                            .padding(.trailing, 20)
+                            .padding()
+                            .multilineTextAlignment(.leading)
+                            .foregroundStyle(.black.opacity(0.7))
+                        
+                        
+                        Button(action: {
+                            showOneTimeSearchInfo = false
+                        }) {
+                            Image(systemName: "xmark")
+                                .font(.system(size: 14))
+                                .padding([.top, .trailing])
+                        }
+                        .foregroundStyle(.black.opacity(0.5))
+                        
+                    }
+                    .background(Color(.systemGray6))
+                    .cornerRadius(12)
+                    .safeAreaPadding(.horizontal)
                     
                 }
                 
                 //Buat nampilin list rute yang disearch
-                VStack {
-                    List {
-                        ForEach(filteredRoutes, id: \.id) { route in
-                            NavigationLink {
-                                DetailRouteView(route: route)
-                            } label: {
-                                RouteTile(routeName: route.name, stops: route.busStops.count)
-                            }
-                            
-                        }
+                List(filteredRoutes) { route in
+                    NavigationLink {
+                        
+                    } label : {
+                        RouteTile(routeName: route.name, stops: route.busStops.count)
                     }
+                    //                        .cornerRadius(15)
                 }
-                .frame(maxWidth: 355, alignment: .init(horizontal: .leading, vertical: .center))
-                .cornerRadius(15)
+                .listStyle(PlainListStyle())
+                .padding(.horizontal)
+                
                 .navigationTitle(Text("All Routes"))
                 
                 //Buat nampilin search info
@@ -66,16 +85,19 @@ struct RouteListView: View {
                     }
                 }
                 .sheet(isPresented: $showSearchInfo) {
-                    SearchInfo(showSearchInfo: $showSearchInfo)
-                    
+                    SearchRoutesInfo(isShow: $showSearchInfo)
+                        .presentationDetents([.fraction(0.2)])
                 }
+                
                 
             }
             .searchable(text: $searchTerm)
+            
         }
-    }
-}
 
+    }
+
+}
 
 
 #Preview {

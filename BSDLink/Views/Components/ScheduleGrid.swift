@@ -5,6 +5,8 @@
 //  Created by Azalia Amanda on 01/04/25.
 //
 
+/** Complete **/
+
 import SwiftUI
 
 struct ScheduleGrid: View {
@@ -13,15 +15,22 @@ struct ScheduleGrid: View {
     var spacing: CGFloat = 2
     
     var body: some View {
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 61), spacing: spacing)], alignment: .leading, spacing: 8, content: {
-            ForEach(schedules) { schedule in
-                ScheduleChip(text: formatTime(from: schedule.time), isRegular: schedule.isRegular)
-            }
-            if isMore {
-                ScheduleChip(text: "...")
+        if (schedules.count > 1) {
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 61), spacing: spacing)], alignment: .leading, spacing: 8, content: {
+                ForEach(schedules) { schedule in
+                    ScheduleChip(text: formatTime(from: schedule.time), isRegular: schedule.isRegular)
+                }
+                if isMore {
+                    ScheduleChip(text: "...")
 
+                }
+            })
+        } else {
+            HStack() {
+                ScheduleChip(text: "No Schedule Available")
+                Spacer()
             }
-        })
+        }
     }
 }
 
@@ -39,5 +48,5 @@ struct ScheduleChip: View {
 }
 
 #Preview {
-    ScheduleGrid(schedules: ScheduleTime.all)
+    ScheduleGrid(schedules: [])
 }

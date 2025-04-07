@@ -5,6 +5,8 @@
 //  Created by Azalia Amanda on 31/03/25.
 //
 
+/** Complete ps. not sure. should i add the lat long **/
+
 import SwiftUI
 
 struct QuickSearch: View {

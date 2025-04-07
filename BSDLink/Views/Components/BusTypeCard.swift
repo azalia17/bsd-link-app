@@ -5,6 +5,7 @@
 //  Created by Farida Noorseptiyanti on 02/04/25.
 //
 
+/** Complete **/
 
 import SwiftUI
 
@@ -54,7 +55,6 @@ struct BusTypeCard: View {
                             .frame(maxWidth: .infinity)
                             .frame(maxWidth: .infinity, alignment: .leading)
                     )
-                    
                 }
             }
         }
