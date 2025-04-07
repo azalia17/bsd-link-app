@@ -23,7 +23,7 @@ struct BusScheduleGrid: View {
                     Text(Bus.getBus(by: schedule.bus).platNumber)
                         .font(.subheadline)
                 }
-                .padding(.top)
+//                .padding(.top)
                 
                 ScheduleGrid(
                     schedules: ScheduleDetail.getScheduleTime(
@@ -32,8 +32,9 @@ struct BusScheduleGrid: View {
                         busStopId: busStopId
                     )
                 )
-                Divider()
-                    .padding(.top)
+                .padding(.bottom, 8)
+//                Divider()
+//                    .padding(.top)
             }
         }
         .padding(.top)

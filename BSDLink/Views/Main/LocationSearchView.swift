@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct LocationSearchView: View {
-    @Binding var startingPoint : String
-    @Binding var destinationPoint : String
+
     @Binding var isTimePicked : Bool
     @Binding var showSearchLocationView : Bool
+    @Binding var isSearch: Bool
     
     @State var activeTextField: String = ""
+    @State private var showTimePicker: Bool = false
+    @State private var timePicked = Date()
     
-    @StateObject var viewModel = LocationSearchViewModel()
+    @EnvironmentObject var viewModel : LocationSearchViewModel
+    
+    var searchAction: () -> Void
     
     var body: some View {
         VStack(spacing: 0) {
@@ -33,13 +37,24 @@ struct LocationSearchView: View {
                 }
                 SearchCard(
                     searchHandler: {
-                        
+                        viewModel.searchDirection()
+//                        searchAction()
+//                        isSearch = true
+//                        showSearchLocationView = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                searchAction()
+                                isSearch = true
+                                showSearchLocationView = false
+                            }
                     },
                     filterHandler: {
-                        
+                        showTimePicker = true
                     },
                     swapHandler: {
-                        
+                        viewModel.swapDestination(
+                            start: viewModel.startLocationSearch,
+                            end: viewModel.endLocationSearch
+                        )
                     },
                     startingPoint: $viewModel.startLocationQueryFragment,
                     destinationPoint: $viewModel.endLocationQueryFragment,
@@ -59,7 +74,7 @@ struct LocationSearchView: View {
                             title: result.title,
                             subtitle: result.subtitle
                         ).onTapGesture {
-                            viewModel.selectLocation(result.title, textField: activeTextField)
+                            viewModel.selectLocation(result, textField: activeTextField)
                         }
                     }
                 }
@@ -67,16 +82,20 @@ struct LocationSearchView: View {
             }
         }
         .background(.white)
+        .sheet(isPresented: $showTimePicker) {
+            TimePicker(showTimePicker: $showTimePicker, timePicked: $timePicked, isTimePicked: $isTimePicked)
+                .presentationDetents([.fraction(0.45)])
+        }
     }
 }
 
-#Preview {
-    @Previewable @State var startingPoint : String = ""
-    @Previewable @State var destinationPoint : String = ""
-    @Previewable @State var isTimePicked : Bool = false
-    @Previewable @State var show : Bool = false
-    
-    LocationSearchView(
-        startingPoint: $startingPoint, destinationPoint: $destinationPoint, isTimePicked: $isTimePicked,showSearchLocationView: $show
-    )
-}
+//#Preview {
+//    @Previewable @State var startingPoint : String = ""
+//    @Previewable @State var destinationPoint : String = ""
+//    @Previewable @State var isTimePicked : Bool = false
+//    @Previewable @State var show : Bool = false
+//    
+//    LocationSearchView(
+//        startingPoint: $startingPoint, destinationPoint: $destinationPoint, isTimePicked: $isTimePicked,showSearchLocationView: $show
+//    )
+//}

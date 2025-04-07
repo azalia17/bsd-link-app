@@ -54,7 +54,7 @@ struct ItemExpandable<ExpandedContent: View>: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 12, height: 12)
-                                    .foregroundColor(.gray.opacity(0.0))
+                                    .foregroundColor(.white.opacity(0.8))
                             })
                     )
                 
@@ -62,6 +62,7 @@ struct ItemExpandable<ExpandedContent: View>: View {
                     .fill(isLastItem ? .gray.opacity(0.0) : Color.blue)
                     .frame(width: 3, height: isExpanded ? expandedHeight : 32)
             }
+            .padding(.leading, 4)
             
             ExpandableContentType(
                 route: route,
