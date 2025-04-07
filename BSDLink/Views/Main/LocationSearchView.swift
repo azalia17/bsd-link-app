@@ -13,6 +13,10 @@ struct LocationSearchView: View {
     @Binding var isTimePicked : Bool
     @Binding var showSearchLocationView : Bool
     
+    @State var activeTextField: String = ""
+    
+    @StateObject var viewModel = LocationSearchViewModel()
+    
     var body: some View {
         VStack(spacing: 0) {
             VStack(alignment: .leading) {
@@ -37,11 +41,12 @@ struct LocationSearchView: View {
                     swapHandler: {
                         
                     },
-                    startingPoint: $startingPoint,
-                    destinationPoint: $destinationPoint,
-                    isTimePicked: $isTimePicked
-                )
-                
+                    startingPoint: $viewModel.startLocationQueryFragment,
+                    destinationPoint: $viewModel.endLocationQueryFragment,
+                    activeTextField: $activeTextField,
+                    isTimePicked: $isTimePicked,
+                    showSearchLocationView: $showSearchLocationView
+                ) {}
             }
             .frame(height: 140)
             .padding()
@@ -49,8 +54,13 @@ struct LocationSearchView: View {
             
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
-                    ForEach(0..<20, id: \.self) { index in
-                        LocationSearchResultCell()
+                    ForEach(viewModel.results, id: \.self) { result in
+                        LocationSearchResultCell(
+                            title: result.title,
+                            subtitle: result.subtitle
+                        ).onTapGesture {
+                            viewModel.selectLocation(result.title, textField: activeTextField)
+                        }
                     }
                 }
                 .padding(.bottom, 70)

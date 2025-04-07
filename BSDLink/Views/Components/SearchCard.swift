@@ -17,8 +17,10 @@ struct SearchCard: View {
     
     @Binding var startingPoint : String
     @Binding var destinationPoint : String
+    @Binding var activeTextField : String
     @Binding var isTimePicked : Bool
-    
+    @Binding var showSearchLocationView : Bool
+    var action: () -> Void
     
     var body: some View {
         HStack (alignment: .center) {
@@ -32,18 +34,47 @@ struct SearchCard: View {
                         .opacity(0.7)
                     Spacer()
                 }
-                VStack {
-                    Spacer()
-                    TextField("Search Location", text: $startingPoint)
-                        .modifier(TextFieldGrayBackgroundColor())
-                        .padding(.top)
-                    Spacer()
+                if (showSearchLocationView) {
+                    VStack {
+                        Spacer()
+                        TextField("Search Location", text: $startingPoint)
+                            .modifier(TextFieldGrayBackgroundColor())
+                            .padding(.top)
+                            .onChange(of: startingPoint) { oldValue, newValue in
+                                activeTextField = "from"
+                            }
+                        Spacer()
+                        
+                        TextField("Search Location", text: $destinationPoint)
+                            .modifier(TextFieldGrayBackgroundColor())
+                            .padding(.bottom)
+                            .onChange(of: destinationPoint) { oldValue, newValue in
+                                activeTextField = "to"
+                            }
+                        Spacer()
+                    }
                     
-                    TextField("Search Location", text: $destinationPoint)
-                        .modifier(TextFieldGrayBackgroundColor())
-                        .padding(.bottom)
-                    Spacer()
+                } else {
+                    VStack {
+                        Spacer()
+                        TextField("Search Location", text: $startingPoint)
+                            .modifier(TextFieldGrayBackgroundColor())
+                            .padding(.top)
+                            .disabled(true)
+                        Spacer()
+                        
+                        TextField("Search Location", text: $destinationPoint)
+                            .modifier(TextFieldGrayBackgroundColor())
+                            .padding(.bottom)
+                            .disabled(true)
+                        Spacer()
+                    }
+                    .onTapGesture {
+                        action()
+                    }
+                    
                 }
+                
                 
                 Spacer()
                 Divider()
@@ -93,7 +124,7 @@ struct SearchCard: View {
         }
         
     }
-
+    
 }
 
 struct TextFieldGrayBackgroundColor: ViewModifier {

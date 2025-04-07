@@ -19,6 +19,7 @@ struct DiscoverView: View {
     @State private var routePolylines: [MKPolyline] = []
     @State private var startingPoint: String = ""
     @State private var destinationPoint: String = ""
+    @State private var activeTextField: String = ""
     
     @State private var startingCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2D()
     @State private var userLocation: CLLocationCoordinate2D = CLLocationCoordinate2D()
@@ -111,11 +112,12 @@ struct DiscoverView: View {
                             },
                             startingPoint: $startingPoint,
                             destinationPoint: $destinationPoint,
-                            isTimePicked: $isTimePicked
-                        )
-                        .onTapGesture {
-                            showLocationSearchView.toggle()
-                        }
+                            activeTextField: $activeTextField,
+                            isTimePicked: $isTimePicked,
+                            showSearchLocationView: $showLocationSearchView) {
+                                showLocationSearchView.toggle()
+                            }
+                        
                         
                         QuickSearch(
                             startingPoint: $startingPoint,
