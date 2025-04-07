@@ -5,6 +5,8 @@
 //  Created by Azalia Amanda on 19/03/25.
 //
 
+/** Complete **/
+
 import SwiftUI
 
 struct Chip: View {

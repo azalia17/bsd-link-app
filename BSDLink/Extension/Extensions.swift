@@ -132,3 +132,39 @@ func formatTime(from date: Date) -> String {
     formatter.dateFormat = "HH:mm" // 24-hour format (use "hh:mm a" for 12-hour format with AM/PM)
     return formatter.string(from: date)
 }
+
+
+func getBusStops(_ ids: [String]) -> [BusStop] {
+    var stops : [BusStop] = []
+    
+    for id in ids {
+        stops += BusStop.all.filter { $0.id == id}
+    }
+        
+    return stops
+}
+
+func getBus(_ ids: [String]) -> [Bus] {
+    var buses : [Bus] = []
+    
+    for id in ids {
+        buses += Bus.all.filter { $0.id == id}
+    }
+        
+    return buses
+}
+
+func getRoute(_ ids: [String]) -> [Route] {
+    var routes : [Route] = []
+    
+    for id in ids {
+        routes += Route.all.filter { $0.id == id}
+    }
+        
+    return routes
+}
+
+func getScheduleForSpecificBus(_ id: String) -> Schedule {
+    
+    return Schedule.all.filter{$0.bus == id}.first!
+}

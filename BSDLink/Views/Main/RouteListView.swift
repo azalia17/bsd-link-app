@@ -14,57 +14,63 @@ struct RouteListView: View {
     
     public var filteredRoutes: [Route] {
         if searchTerm.isEmpty {
-            return sampleRoutes
+            return []
         } else {
-//            return sampleRoutes.filter { $0.name.localizedCaseInsensitiveContains(searchTerm) }
+            return []
+            //            return sampleRoutes.filter { $0.name.localizedCaseInsensitiveContains(searchTerm) }
             // Di atas sisa2 pas awal search rute pake nama rute
-            return sampleRoutes.filter { route in
-                route.busStops.contains { busStop in busStop.name.localizedCaseInsensitiveContains(searchTerm)
-                }
+//            return sampleRoutes.filter { route in
+//                route.busStops.contains { busStop in busStop.name.localizedCaseInsensitiveContains(searchTerm)
+//                }
             }
         }
-    }
+//    }
     
     var body: some View {
         NavigationStack {
             
-            VStack(spacing: 10) {
+            VStack() {
                 //Logic buat nampilin berapa route yang keliatan
                 RouteCount(count: filteredRoutes.count)
+                    .safeAreaPadding(.horizontal)
                 
                 if showOneTimeSearchInfo {
                     ZStack (alignment: .topTrailing){
                         Text("Try searching the name of a bus stop to know which routes pass by it.")
-                            .multilineTextAlignment(.center)
-                            .padding(.top, 20)
+                            .padding(.trailing, 20)
+                            .padding()
+                            .multilineTextAlignment(.leading)
+                            .foregroundStyle(.black.opacity(0.7))
+                        
                         
                         Button(action: {
                             showOneTimeSearchInfo = false
                         }) {
                             Image(systemName: "xmark")
                                 .font(.system(size: 14))
-                                .padding(1)
+                                .padding([.top, .trailing])
                         }
-                        .foregroundStyle(.gray)
-                        
+                        .foregroundStyle(.black.opacity(0.5))
                         
                     }
-                    .padding()
-                    .frame(width: 355, height: 100, alignment: .center)
                     .background(Color(.systemGray6))
-                    .cornerRadius(15)
+                    .cornerRadius(12)
+                    .safeAreaPadding(.horizontal)
+                    
                 }
                 
                 //Buat nampilin list rute yang disearch
-                VStack {
-                    List {
-                        ForEach(filteredRoutes, id: \.id) { route in
-                            RouteTile(routeName: route.name, stops: route.busStops.count)
-                        }
+                List(filteredRoutes) { route in
+                    NavigationLink {
+                        
+                    } label : {
+                        RouteTile(routeName: route.name, stops: route.busStops.count)
                     }
+                    //                        .cornerRadius(15)
                 }
-                .frame(maxWidth: 355, alignment: .init(horizontal: .leading, vertical: .center))
-                .cornerRadius(15)
+                .listStyle(PlainListStyle())
+                .padding(.horizontal)
+                
                 .navigationTitle(Text("All Routes"))
                 
                 //Buat nampilin search info
@@ -78,32 +84,19 @@ struct RouteListView: View {
                     }
                 }
                 .sheet(isPresented: $showSearchInfo) {
-                    HStack {
-                        Spacer()
-                        Text("Search Info")
-                            .font(.headline)
-                        
-                        Spacer()
-                        Button(action: {
-                            showSearchInfo = false
-                        }) {
-                            Text("Done")
-                        }
-                        
-                    }
-                    .padding(.horizontal)
-                    
-                    Text("Try searching the name of a bus stop to know which routes pass by it.")
-                        .presentationDetents([.height(150)])
-                        .padding()
+                    SearchRoutesInfo(isShow: $showSearchInfo)
+                        .presentationDetents([.fraction(0.2)])
                 }
+                
                 
             }
             .searchable(text: $searchTerm)
+            
         }
-    }
-}
 
+    }
+
+}
 
 
 #Preview {

@@ -5,6 +5,8 @@
 //  Created by Azalia Amanda on 31/03/25.
 //
 
+/** Add function and user input **/
+
 import SwiftUI
 
 struct SearchCard: View {
