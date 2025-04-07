@@ -97,7 +97,7 @@ struct DiscoverDetailTransitRouteContent: View {
                             index: index,
                             isLastItem: index == 2,
                             contentExpanded: {
-                                ScheduleGrid(schedules: ScheduleTime.all, spacing: 1)
+                                ScheduleGrid(schedules: ScheduleTime.all, spacing: 0)
                                     .padding([.top, .trailing])
                                     .padding(.top)
                             },

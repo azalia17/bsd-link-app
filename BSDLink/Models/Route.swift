@@ -11,7 +11,7 @@ struct Route: Identifiable {
 }
 
 var sampleRoutes: [Route] = [
-    Route(name: "Route 1 (Intermoda - Halte Sektor 1.3)", routeNumber: "Route 1", busStops: [
+    Route(name: "Intermoda - Halte Sektor 1.3", routeNumber: "Route 1", busStops: [
         BusStop(name: "Intermoda",
                 coordinates: .intermoda,
                 schedule: [
@@ -41,7 +41,7 @@ var sampleRoutes: [Route] = [
     ],
           bus: []),
     
-    Route(name: "Route 2 (Halte Sektor 1.3 - Intermoda)", routeNumber: "Route 2", busStops: [
+    Route(name: "Halte Sektor 1.3 - Intermoda", routeNumber: "Route 2", busStops: [
         BusStop(name: "Halte Sektor 1.3",
                 coordinates: .sektor13,
                 schedule: [

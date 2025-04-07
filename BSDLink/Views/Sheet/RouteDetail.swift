@@ -13,8 +13,14 @@ struct RouteDetail: View {
     
     var body: some View {
         VStack {
+            Capsule()
+                .foregroundColor(.gray.opacity(0.4))
+                .frame(width: 48, height: 6)
+                .padding(.bottom, 12)
+                .padding(.top, 12)
+            
             HStack {
-                Text("Route Detail")
+                Text(route.name)
                     .font(.title)
                     .fontWeight(.bold)
                 Spacer()
@@ -26,6 +32,8 @@ struct RouteDetail: View {
                         .frame(width: 20, height: 20)
                 }
             }
+//            .padding(.top, 50)
+            
             ScrollView {
                 VStack(alignment: .leading) {
                     BusTypeCard(busList: Bus.all)

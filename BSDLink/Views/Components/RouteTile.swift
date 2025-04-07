@@ -20,7 +20,7 @@ struct RouteTile: View {
                 Text(String(stops) + " Stops")
             }
             Spacer()
-            Image(systemName: "chevron.right")
+            
         }.padding(.vertical, 5)
     }
 }
