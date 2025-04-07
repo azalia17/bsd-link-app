@@ -41,7 +41,7 @@ struct ScheduleChip: View {
         if isRegular {
             Chip(text: text, color: .gray.opacity(0.1), textColor: .gray)
         } else {
-            Chip(text: text, color: .yellow.opacity(0.17), textColor: .orange.opacity(0.8))
+            Chip(text: text, color: .blue.opacity(0.17), textColor: .blue.opacity(0.8))
         }
     }
 }
