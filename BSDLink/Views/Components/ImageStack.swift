@@ -5,6 +5,8 @@
 //  Created by Azalia Amanda on 01/04/25.
 //
 
+/** Complete **/
+
 import SwiftUI
 
 struct ImageStack: View {
