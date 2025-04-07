@@ -88,7 +88,7 @@ struct DetailSheet: View {
             let midHeight = fullHeight * 0.6 // 80% of the screen
             let maxHeight = fullHeight // Fully expanded
             
-            RouteDetail(route: Route(name: route.name, routeNumber: route.routeNumber, busStops: route.busStops, bus: route.bus))
+            RouteDetail(route: Route(id: route.id, name: route.name, routeNumber: route.routeNumber, busStops: route.busStops, bus: route.bus, schedule: route.schedule, note: route.note))
                 .frame(height: max(minHeight, min(maxHeight, fullHeight - offsetY)))
                 .background(Color.white)
                 .clipShape(RoundedRectangle(cornerRadius: 20))
@@ -129,5 +129,5 @@ struct DetailSheet: View {
 
 
 #Preview {
-    DetailRouteView(route: sampleRoutes.first!)
+    DetailRouteView(route)
 }
