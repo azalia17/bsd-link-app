@@ -34,6 +34,7 @@ struct RouteListView: View {
                 RouteCount(count: filteredRoutes.count)
                     .safeAreaPadding(.horizontal)
                 
+                //Logic buat one time search info
                 if showOneTimeSearchInfo {
                     ZStack (alignment: .topTrailing){
                         Text("Try searching the name of a bus stop to know which routes pass by it.")
@@ -102,5 +103,4 @@ struct RouteListView: View {
 #Preview {
     RouteListView()
 }
-
 

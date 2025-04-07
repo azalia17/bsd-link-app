@@ -27,34 +27,36 @@ struct ItemExpandable<ExpandedContent: View>: View {
         HStack(alignment: .top) {
             VStack {
                 Rectangle()
-                    .fill(index != 0 ? Color.orange : .white)
+                    .fill(index != 0 ? Color.blue : .gray.opacity(0.1))
                     .frame(width: 3, height: 32) // Connect to previous item
                     .overlay(content: {
                         Rectangle()
-                            .fill(index != 0 ? Color.orange : .white)
+                            .fill(index != 0 ? Color.blue : .gray.opacity(0.1))
                             .frame(width: 3, height: 32)
                             .offset(y: 20)
                     })
                 
+                
                 Rectangle()
-                    .fill(isLastItem ? .white : Color.orange)
+                    .fill(isLastItem ? .gray.opacity(0.1) : Color.blue)
                     .frame(width: 3, height: 40)
                     .offset(y: 24)
                     .overlay(
                         Circle()
-                            .fill(Color.orange)
+                            .fill(Color.blue)
                             .frame(width: 20, height: 20)
                             .overlay(content: {
                                 Image(systemName:"circle.fill")
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 12, height: 12)
-                                    .foregroundColor(.white)
+                                    
+                                    .foregroundColor(.gray.opacity(0.1))
                             })
                     )
                 
                 Rectangle()
-                    .fill(isLastItem ? .white : Color.orange)
+                    .fill(isLastItem ? .gray.opacity(0.1) : Color.blue)
                     .frame(width: 3, height: isExpanded ? expandedHeight : 32)
             }
             
@@ -70,6 +72,12 @@ struct ItemExpandable<ExpandedContent: View>: View {
             )
         }
         .padding(.leading, 12)
+        .frame(alignment: .leading)
+        .background(Color.gray.opacity(0.1))
+        .padding(.bottom, 1)
+        .background(.white)
+        .cornerRadius(10)
+        //        .modifier(TextFieldGrayBackgroundColor())
     }
 }
 
@@ -86,7 +94,7 @@ struct ExpandableContentType<ExpandedContent: View>: View {
     var isShowPreviewSchedule: Bool = true
     
     var body: some View {
-        VStack{
+    VStack{
             HStack {
                 ImageStack(images: busStop.images)
                     .offset(y: 18)
@@ -98,17 +106,18 @@ struct ExpandableContentType<ExpandedContent: View>: View {
                             .frame(maxWidth: .infinity, alignment: .leading) // Align text to the left
                             .offset(y: 18)
                         Spacer()
-                        Image(systemName: "chevron.up.circle.fill")
-                            .rotationEffect(.degrees(isExpanded ? 180 : 0))
-                            .foregroundColor(.orange)
-                            .offset(y: 18)
+                        Image(systemName: "chevron.up")
+                            .rotationEffect(.degrees(isExpanded ? 0 : 180))
+                            .foregroundColor(.blue)
+                            .offset(x: -8,y: 18)
+                        
                     }
 
                     if isShowPreviewSchedule && !isExpanded{
                         ScheduleGrid(
                             schedules: Schedule.getScheduleBusStopBased(busStopId: busStop.id, idx: index, fromHour: fromHour, fromMinute: fromMinute),
                             isMore: true,
-                            spacing: 0
+                            spacing: 1
                         )
                         .padding(.top)
                     }

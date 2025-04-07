@@ -16,7 +16,7 @@ struct ScheduleGrid: View {
     
     var body: some View {
         if (schedules.count > 1) {
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 60), spacing: spacing)], alignment: .leading, spacing: 8, content: {
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 61), spacing: spacing)], alignment: .leading, spacing: 8, content: {
                 ForEach(schedules) { schedule in
                     ScheduleChip(text: formatTime(from: schedule.time), isRegular: schedule.isRegular)
                 }
@@ -42,7 +42,7 @@ struct ScheduleChip: View {
         if isRegular {
             Chip(text: text, color: .gray.opacity(0.1), textColor: .gray)
         } else {
-            Chip(text: text, color: .yellow.opacity(0.17), textColor: .orange.opacity(0.8))
+            Chip(text: text, color: .blue.opacity(0.17), textColor: .blue.opacity(0.8))
         }
     }
 }
