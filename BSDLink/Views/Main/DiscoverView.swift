@@ -163,7 +163,11 @@ struct DiscoverView: View {
             }
             
             if isSearch {
-                DraggableSheet()
+                DraggableSheet(
+                    routes: Route.all,
+                    fromHour: 6,
+                    fromMinute: 0
+                )
                     .edgesIgnoringSafeArea(.bottom)
                     .transition(.move(edge: .bottom))
             }
@@ -242,6 +246,10 @@ struct DiscoverView: View {
 
 
 struct DraggableSheet: View {
+    let routes: [Route]
+    let fromHour: Int
+    let fromMinute: Int
+    
     @State private var offsetY: CGFloat = 400 // Default height (collapsed)
     @State private var screenHeight: CGFloat = 0 // Store screen height
 
@@ -252,7 +260,10 @@ struct DraggableSheet: View {
             let midHeight = fullHeight * 0.6 // 80% of the screen
             let maxHeight = fullHeight // Fully expanded
             
-            DiscoverDetailRoute(routes: Route.all
+            DiscoverDetailRoute(
+                routes: routes,
+                fromHour: fromHour,
+                fromMinute: fromMinute
             )
                 .frame(height: max(minHeight, min(maxHeight, fullHeight - offsetY)))
                 .background(Color.white)

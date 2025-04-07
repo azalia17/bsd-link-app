@@ -16,13 +16,12 @@ struct ScheduleGrid: View {
     
     var body: some View {
         if (schedules.count > 1) {
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 62), spacing: spacing)], alignment: .leading, spacing: 8, content: {
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 61), spacing: spacing)], alignment: .leading, spacing: 8, content: {
                 ForEach(schedules) { schedule in
                     ScheduleChip(text: formatTime(from: schedule.time), isRegular: schedule.isRegular)
                 }
                 if isMore {
                     ScheduleChip(text: "...")
-
                 }
             })
         } else {

@@ -11,7 +11,9 @@ import SwiftUI
 
 struct DiscoverDetailRoute: View {
     var routes: [Route]
-    @State var showSearchInfo : Bool = false
+    let fromHour: Int
+    let fromMinute: Int
+    @State var showRouteInfo : Bool = false
     
     var body: some View {
         
@@ -31,23 +33,35 @@ struct DiscoverDetailRoute: View {
                     .foregroundColor(.gray)
                 Spacer()
             } else if (routes.count > 1) {
-                DiscoverDetailTransitRoute(routes: routes, showSearchInfo: $showSearchInfo)
+                DiscoverDetailTransitRoute(
+                    routes: routes,
+                    fromHour: fromHour,
+                    fromMinute: fromMinute,
+                    showSearchInfo: $showRouteInfo
+                )
             } else {
-                DiscoverDetailSingleRoute(route: routes[0], showSearchInfo: $showSearchInfo)
+                DiscoverDetailSingleRoute(
+                    route: routes[0],
+                    fromHour: fromHour,
+                    fromMinute: fromMinute,
+                    showSearchInfo: $showRouteInfo
+                )
             }
         }
         .padding([.horizontal])
         .background(.white)
         .cornerRadius(12)
         .edgesIgnoringSafeArea(.bottom)
-        .sheet(isPresented: $showSearchInfo) {
-            Text("This space for detail ")
+        .sheet(isPresented: $showRouteInfo) {
+            RouteInfo(routes: routes, isShow: $showRouteInfo)
         }
     }
 }
 
 struct DiscoverDetailTransitRoute: View {
-    var routes: [Route]
+    let routes: [Route]
+    let fromHour: Int
+    let fromMinute: Int
     @Binding var showSearchInfo : Bool
     @State private var topExpanded: Bool = true
     
@@ -69,13 +83,17 @@ struct DiscoverDetailTransitRoute: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     ForEach(routes) { route in
-                        DiscoverDetailTransitRouteContent(route: route)
+                        DiscoverDetailTransitRouteContent(
+                            route: route,
+                            fromHour: fromHour,
+                            fromMinute: fromMinute
+                        )
                         Divider()
                             .padding(.bottom)
                     }
                 }
             }
-            .padding(.bottom, 100)
+//            .padding(.bottom, 70)
             .menuIndicator(.hidden)
             .scrollIndicators(.hidden)
         }
@@ -83,7 +101,10 @@ struct DiscoverDetailTransitRoute: View {
 }
 
 struct DiscoverDetailTransitRouteContent: View {
-    var route: Route
+    let route: Route
+    let fromHour: Int
+    let fromMinute: Int
+    
     @State private var topExpanded: Bool = true
     
     var body: some View {
@@ -97,7 +118,7 @@ struct DiscoverDetailTransitRouteContent: View {
                     .font(.title2)
                     .bold()
                 
-                Text("Schedule show: 13.00 - 14.00")
+                Text("Schedule show from \(fromHour).\(fromMinute)")
                     .font(.caption)
                     .foregroundColor(.gray)
                 VStack(spacing: 0) {
@@ -105,8 +126,9 @@ struct DiscoverDetailTransitRouteContent: View {
                         ScheduleExpandable(
                             index: index,
                             route: route,
-                            fromHour: 7,
-                            fromMinute: 0)
+                            fromHour: fromHour,
+                            fromMinute: fromMinute
+                        )
                     }
                 }
             }
@@ -124,6 +146,8 @@ struct DiscoverDetailTransitRouteContent: View {
 
 struct DiscoverDetailSingleRoute: View {
     var route: Route
+    let fromHour: Int
+    let fromMinute: Int
     @Binding var showSearchInfo : Bool
     
     var body: some View {
@@ -151,14 +175,17 @@ struct DiscoverDetailSingleRoute: View {
                     Text("Bus Stops")
                         .font(.title2)
                         .bold()
-                    Text("Schedule show: 13.00 - 14.00")
+                    Text("Schedule show from \(formatTime(from: timeFrom(fromHour, fromMinute)))")
                         .font(.caption)
                         .foregroundColor(.gray)
                     VStack(spacing: 0) {
                         ForEach(route.busStops.indices, id: \.self) { index in
-                            ScheduleExpandable( index: index, route: route,
-                                                fromHour: 10,
-                                                fromMinute: 0)
+                            ScheduleExpandable(
+                                index: index,
+                                route: route,
+                                fromHour: fromHour,
+                                fromMinute: fromMinute
+                            )
                         }
                     }
                 }
@@ -170,7 +197,7 @@ struct DiscoverDetailSingleRoute: View {
         
     }
 }
-//
+
 struct ScheduleExpandable: View {
     var index : Int
     var route: Route
@@ -184,14 +211,14 @@ struct ScheduleExpandable: View {
             .flatMap { Schedule.getSchedules(by: [$0]) }
             .flatMap { $0.scheduleDetail }
             .map { ScheduleDetail.getScheduleDetail(by: $0) }
-            .filter { $0.BusStop == currentBusStopId }
+            .filter { $0.busStop == currentBusStopId }
         
-//        let stopIndex = matchingDetails.first?.index ?? 0
         let stopIndex = matchingDetails.indices.contains(index)
-            ? matchingDetails[index].index
-            : matchingDetails.first?.index ?? 0
+        ? matchingDetails[index].index
+        : matchingDetails.first?.index ?? 0
         
         ItemExpandable(
+            route: route,
             busStop: BusStop.getSingleStop(by: currentBusStopId),
             fromHour: fromHour,
             fromMinute: fromMinute,
@@ -201,8 +228,9 @@ struct ScheduleExpandable: View {
             contentExpanded: {
                 ScheduleGrid(
                     schedules: Schedule.getScheduleBusStopBasedWithTime(
+                        route: route,
                         busStopId: currentBusStopId,
-                        idx: stopIndex,
+                        index: stopIndex,
                         fromHour: fromHour,
                         fromMinute: fromMinute
                     )
@@ -217,5 +245,9 @@ struct ScheduleExpandable: View {
 
 
 #Preview {
-    DiscoverDetailRoute(routes: [Route.all[0], /*Route.all[0]*/])
+    DiscoverDetailRoute(
+        routes: [Route.all[0], Route.all[0]],
+        fromHour: 6,
+        fromMinute: 0
+    )
 }

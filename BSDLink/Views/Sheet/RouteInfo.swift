@@ -8,103 +8,111 @@
 import SwiftUI
 
 struct RouteInfo: View {
+    let routes: [Route]
+    @Binding var isShow: Bool
+    
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            
-            // Header
-            HStack {
-                Text("Additional Information")
-                    .font(.title2)
-                    .bold()
-                Spacer()
-                Text("Done")
-                    .foregroundColor(.blue)
+        NavigationView {
+            VStack{
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 16) {
+                        // Bus Stops Section
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Bus Stops")
+                                .font(.headline)
+                                .foregroundColor(.black.opacity(0.6))
+                            
+                            HStack(alignment: .top) {
+                                ImageStack(images: ["Intermoda_1"])
+                                
+                                Text("Click bus stop image to see the full picture and some additional picture (if any). And you can pinch to zoom in to see the picture better")
+                                    .font(.subheadline)
+                                    .padding(.leading, 8)
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding()
+                        .background(Color.gray.opacity(0.1))
+                        .cornerRadius(8)
+                        
+                        // Schedule Section
+                        ForEach(routes) { route in
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text("\(route.name)'s Notes")
+                                    .font(.headline)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .foregroundColor(.black.opacity(0.6))
+                                
+                                VStack(alignment: .leading, spacing: 8) {
+                                    ForEach(route.note, id: \.self) { note in
+                                        HStack(alignment: .firstTextBaseline) {
+                                            Image(systemName: "circle.fill")
+                                                .resizable()
+                                                .frame(width: 4, height: 4)
+                                            Text(note.capitalizingFirstLetter())
+                                                .fixedSize(horizontal: false, vertical: true)
+                                                .lineLimit(nil)
+                                                .font(.subheadline)
+                                        }
+                                    }
+                                }
+                                .font(.body)
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding()
+                            .background(Color.gray.opacity(0.1))
+                            .cornerRadius(8)
+                        }
+                        
+                        // Bus Section
+                        VStack(alignment: .leading, spacing: 12) {
+                            Text("Bus")
+                                .font(.headline)
+                                .foregroundColor(.black.opacity(0.6))
+                            
+                            HStack {
+                                Image(systemName: "circle.fill")
+                                    .resizable()
+                                    .frame(width: 4, height: 4)
+                                Text("Conventional Bus")
+                            }
+                            
+                            HStack {
+                                Image(systemName: "circle.fill")
+                                    .resizable()
+                                    .frame(width: 4, height: 4)
+                                Text("Electric Bus (showed by")
+                                Image(systemName: "bolt.fill")
+                                    .foregroundColor(.yellow)
+                                Text(")")
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding()
+                        .background(Color.gray.opacity(0.1))
+                        .cornerRadius(8)
+                    }
+                }
+                .menuIndicator(.hidden)
+                .scrollIndicators(.hidden)
             }
-            .padding(.bottom, 8)
-            
-            // Bus Stops Section
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Bus Stops")
-                    .font(.headline)
-                
-                HStack(alignment: .top) {
-                    Image(systemName: "bus.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 44, height: 44)
-                        .foregroundColor(.orange)
-                    
-                    Text("Click bus stop image to see the full picture and some additional picture (if any).")
-                        .font(.body)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Done") {
+                        isShow = false
+                    }
                 }
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding()
-            .background(Color.gray.opacity(0.1))
-            .cornerRadius(8)
-            
-            // Schedule Section
-            VStack(alignment: .leading, spacing: 12) {
-                Text("Schedule")
-                    .font(.headline)
-                
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("1. Bus stop’s schedule will only show an hour schedule. If u wanna see a schedule in a specific time, try setting it from the clock button (🕒) on the right top.")
-                    
-                    Text("2. You have to keep in mind that the schedule isn’t always be punctual due to several reasons. There might be ±5 minutes late or early arrival from the scheduled time.")
-                    
-                    Text("3. The yellow colored schedule applied on Saturday, Sunday, and national holidays. On weekdays, it applied for pick-up and drop-off dedicated for Sinar Mas Employees.")
-                }
-                .font(.body)
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding()
-            .background(Color.gray.opacity(0.1))
-            .cornerRadius(8)
-            
-            // Bus Section
-            VStack(alignment: .leading, spacing: 12) {
-                Text("Bus")
-                    .font(.headline)
-                
-                HStack {
-                    Image(systemName: "bus.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 44, height: 44)
-                        .foregroundColor(.orange)
-                    Text("Conventional Bus")
-                }
-                
-                HStack {
-                    Image(systemName: "bus.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 44, height: 44)
-                        .foregroundColor(.yellow)
-                    Text("Electric Bus")
-                }
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding()
-            .background(Color.gray.opacity(0.1))
-            .cornerRadius(8)
-               
-            Spacer()
-            
-            // Footer Info
-            HStack {
-                Spacer()
-                Text("Info Sheet — Discover Screen")
-                    .font(.footnote)
-                    .foregroundColor(.gray)
-                Spacer()
-            }
+            .navigationTitle("Additional Information")
+            .navigationBarTitleDisplayMode(.inline)
         }
+        .navigationViewStyle(.stack)
         .padding()
     }
+    
 }
 
-#Preview {
-    RouteInfo()
-}
+//#Preview {
+//        @Previewable @State var show : Bool = true
+//    RouteInfo(routes: [Route.all[0], Route.all[0]])
+//}

@@ -11,6 +11,7 @@
 import SwiftUI
 
 struct ItemExpandable<ExpandedContent: View>: View {
+    let route: Route
     let busStop: BusStop
     let fromHour: Int
     let fromMinute: Int
@@ -60,6 +61,7 @@ struct ItemExpandable<ExpandedContent: View>: View {
             }
             
             ExpandableContentType(
+                route: route,
                 busStop: busStop,
                 scheduleIndex: scheduleIndex,
                 fromHour: fromHour,
@@ -75,6 +77,7 @@ struct ItemExpandable<ExpandedContent: View>: View {
 }
 
 struct ExpandableContentType<ExpandedContent: View>: View {
+    let route: Route
     var busStop: BusStop
     let scheduleIndex: Int
     let fromHour: Int
@@ -106,7 +109,7 @@ struct ExpandableContentType<ExpandedContent: View>: View {
                     }
 
                     if isShowPreviewSchedule && !isExpanded{
-                        let sched = Schedule.getScheduleBusStopBasedWithTime(busStopId: busStop.id, idx: scheduleIndex, fromHour: fromHour, fromMinute: fromMinute)
+                        let sched = Schedule.getScheduleBusStopBasedWithTime(route: route, busStopId: busStop.id, index: scheduleIndex, fromHour: fromHour, fromMinute: fromMinute)
                         ScheduleGrid(
                             schedules: [sched[0], sched[1]],
                             isMore: true,
@@ -150,21 +153,13 @@ struct ExpandableContentType<ExpandedContent: View>: View {
 }
 
 #Preview {
-    ItemExpandable(busStop: BusStop.getSingleStop(by: "intermoda"), fromHour: 6, fromMinute: 0, scheduleIndex: 14, isFirstItem: false, isLastItem: true) {
+    ItemExpandable(route: Route.all[0], busStop: BusStop.getSingleStop(by: "intermoda"), fromHour: 6, fromMinute: 0, scheduleIndex: 14, isFirstItem: false, isLastItem: true) {
         Text("Expanded Content\nMore lines\nAnother line")
                         .padding(.top)
     }
     
-    ItemExpandable(busStop: BusStop.getSingleStop(by: "intermoda"), fromHour: 10, fromMinute: 0, scheduleIndex: 1, isFirstItem: true, isLastItem: false) {
+    ItemExpandable(route: Route.all[0], busStop: BusStop.getSingleStop(by: "intermoda"), fromHour: 10, fromMinute: 0, scheduleIndex: 1, isFirstItem: true, isLastItem: false) {
         Text("Expanded Content\nMore lines\nAnother line")
                         .padding(.top)
     }
 }
-
-
-//#Preview {
-//    ItemExpandable(busStop: BusStop.getSingleStop(by: "intermoda"), fromHour: 10, fromMinute: 0, index: 14, isLastItem: true) {
-//        Text("Expanded Content\nMore lines\nAnother line")
-//                        .padding(.top)
-//    }
-//}

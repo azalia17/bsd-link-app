@@ -174,3 +174,9 @@ func getScheduleForSpecificBus(_ id: String) -> Schedule {
     
     return Schedule.all.filter{$0.bus == id}.first!
 }
+
+extension String {
+    func capitalizingFirstLetter() -> String {
+        prefix(1).capitalized + dropFirst().lowercased()
+    }
+}
