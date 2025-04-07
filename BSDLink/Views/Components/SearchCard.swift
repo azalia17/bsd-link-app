@@ -23,12 +23,12 @@ struct SearchCard: View {
     var body: some View {
         HStack (alignment: .center) {
             HStack(alignment: .center){
-                VStack {
-                    Label("From", systemImage: "mappin.and.ellipse")
+                VStack(alignment: .leading) {
+                    Text("From")
                         .opacity(0.7)
                     Spacer()
                     Spacer()
-                    Label("To", systemImage: "flag.filled.and.flag.crossed")
+                    Text("To")
                         .opacity(0.7)
                     Spacer()
                 }

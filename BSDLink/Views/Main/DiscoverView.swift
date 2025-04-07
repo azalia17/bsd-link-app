@@ -32,6 +32,8 @@ struct DiscoverView: View {
     @State private var showPopover: Bool = false
     @State private var timePicked = Date()
     @State private var isTimePicked: Bool = false
+    
+    @State private var showLocationSearchView: Bool = false
 
     var body: some View {
         
@@ -111,6 +113,9 @@ struct DiscoverView: View {
                             destinationPoint: $destinationPoint,
                             isTimePicked: $isTimePicked
                         )
+                        .onTapGesture {
+                            showLocationSearchView.toggle()
+                        }
                         
                         QuickSearch(
                             startingPoint: $startingPoint,
@@ -154,7 +159,9 @@ struct DiscoverView: View {
                 }
                 .safeAreaPadding()
                 .frame(height: 150)
-                
+                .padding(.bottom)
+                .background(.gray.opacity(0.2))
+                .background(.white)
                 
             }
             .sheet(isPresented: $showTimePicker) {
@@ -170,6 +177,14 @@ struct DiscoverView: View {
                 )
                     .edgesIgnoringSafeArea(.bottom)
                     .transition(.move(edge: .bottom))
+            }
+            if showLocationSearchView {
+                LocationSearchView(
+                    startingPoint: $startingPoint,
+                    destinationPoint: $destinationPoint,
+                    isTimePicked: $isTimePicked,
+                    showSearchLocationView: $showLocationSearchView
+                )
             }
         }
     }

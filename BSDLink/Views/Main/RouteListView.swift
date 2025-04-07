@@ -58,7 +58,7 @@ struct RouteListView: View {
                     }
                     .background(Color(.systemGray6))
                     .cornerRadius(12)
-                    .safeAreaPadding(.horizontal)
+//                    .safeAreaPadding(.horizontal)
                     
                 }
                 
