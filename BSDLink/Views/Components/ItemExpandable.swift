@@ -25,22 +25,24 @@ struct ItemExpandable<ExpandedContent: View>: View {
     
     var isShowPreviewSchedule: Bool = true
     
+    
     var body: some View {
+        let corner: UIRectCorner = if isLastItem {[.bottomLeft, .bottomRight]} else if isFirstItem {[.topLeft, .topRight]} else {[]}
         HStack(alignment: .top) {
             VStack {
                 Rectangle()
-                    .fill(!isFirstItem ? Color.blue : .gray.opacity(0.1))
+                    .fill(!isFirstItem ? Color.blue : .gray.opacity(0.0))
                     .frame(width: 3, height: 32) // Connect to previous item
                     .overlay(content: {
                         Rectangle()
-                            .fill(!isFirstItem ? Color.blue : .gray.opacity(0.1))
+                            .fill(!isFirstItem ? Color.blue : .gray.opacity(0.0))
                             .frame(width: 3, height: 32)
                             .offset(y: 20)
                     })
                 
                 
                 Rectangle()
-                    .fill(isLastItem ? .gray.opacity(0.1) : Color.blue)
+                    .fill(isLastItem ? .gray.opacity(0.0) : Color.blue)
                     .frame(width: 3, height: 40)
                     .offset(y: 24)
                     .overlay(
@@ -52,13 +54,12 @@ struct ItemExpandable<ExpandedContent: View>: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 12, height: 12)
-                                    
-                                    .foregroundColor(.gray.opacity(0.1))
+                                    .foregroundColor(.gray.opacity(0.0))
                             })
                     )
                 
                 Rectangle()
-                    .fill(isLastItem ? .gray.opacity(0.1) : Color.blue)
+                    .fill(isLastItem ? .gray.opacity(0.0) : Color.blue)
                     .frame(width: 3, height: isExpanded ? expandedHeight : 32)
             }
             
@@ -71,16 +72,16 @@ struct ItemExpandable<ExpandedContent: View>: View {
                 contentExpanded: contentExpanded,
                 isExpanded: $isExpanded,
                 expandedHeight: $expandedHeight,
-                isShowPreviewSchedule: isShowPreviewSchedule
+                isShowPreviewSchedule: isShowPreviewSchedule,
+                isFirstItem: isFirstItem
             )
         }
         .padding(.leading, 12)
         .frame(alignment: .leading)
         .background(Color.gray.opacity(0.1))
-        .padding(.bottom, 1)
-        .background(.white)
-        .cornerRadius(10)
-        //        .modifier(TextFieldGrayBackgroundColor())
+        //        .padding(.bottom, 1)
+        //        .background(.white)
+        .cornerRadius(10, corners: corner)
     }
 }
 
@@ -97,8 +98,14 @@ struct ExpandableContentType<ExpandedContent: View>: View {
     
     var isShowPreviewSchedule: Bool = true
     
+    let isFirstItem: Bool
+    
     var body: some View {
-    VStack{
+        VStack{
+            if !isFirstItem {
+                Divider()
+                    .padding(.trailing)
+            }
             HStack {
                 ImageStack(images: busStop.images)
                     .offset(y: 18)
@@ -111,12 +118,12 @@ struct ExpandableContentType<ExpandedContent: View>: View {
                             .offset(y: 18)
                         Spacer()
                         Image(systemName: "chevron.up")
-                            .rotationEffect(.degrees(isExpanded ? 0 : 180))
+                            .rotationEffect(.degrees(isExpanded ? 0 : 90))
                             .foregroundColor(.blue)
                             .offset(x: -8,y: 18)
                         
                     }
-
+                    
                     if isShowPreviewSchedule && !isExpanded{
                         let sched = Schedule.getScheduleBusStopBasedWithTime(route: route, busStopId: busStop.id, index: scheduleIndex, fromHour: fromHour, fromMinute: fromMinute)
                         ScheduleGrid(
@@ -157,18 +164,28 @@ struct ExpandableContentType<ExpandedContent: View>: View {
                     }
                 }
             }
+            
         }
     }
 }
 
 #Preview {
-    ItemExpandable(route: Route.all[0], busStop: BusStop.getSingleStop(by: "intermoda"), fromHour: 6, fromMinute: 0, scheduleIndex: 14, isFirstItem: false, isLastItem: true) {
-        Text("Expanded Content\nMore lines\nAnother line")
-                        .padding(.top)
+    VStack(spacing: 0){
+        ForEach(0..<3){ index in
+            ItemExpandable(route: Route.all[0], busStop: BusStop.getSingleStop(by: "intermoda"), fromHour: 6, fromMinute: 0, scheduleIndex: 14, isFirstItem: false, isLastItem: false) {
+                Text("Expanded Content\nMore lines\nAnother line")
+                    .padding(.top)
+            }
+        }
     }
     
     ItemExpandable(route: Route.all[0], busStop: BusStop.getSingleStop(by: "intermoda"), fromHour: 10, fromMinute: 0, scheduleIndex: 1, isFirstItem: true, isLastItem: false) {
         Text("Expanded Content\nMore lines\nAnother line")
-                        .padding(.top)
+            .padding(.top)
     }
+    
+    ItemExpandable(route: Route.all[0], busStop: BusStop.getSingleStop(by: "intermoda"), fromHour: 10, fromMinute: 0, scheduleIndex: 1, isFirstItem: true, isLastItem: false, contentExpanded:  {
+        Text("Expanded Content\nMore lines\nAnother line")
+            .padding(.top)
+    }, isShowPreviewSchedule: false)
 }

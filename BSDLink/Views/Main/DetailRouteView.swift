@@ -54,21 +54,10 @@ struct DetailRouteView: View {
                 }.ignoresSafeArea(.all)
                 
                 VStack {
-//                    HStack {
-////                        Spacer()
-//                        Text(route.name)
-//                            .font(.headline)
-////                            .background(Color.white)
-////                        Spacer()
-//                    }
-//                    .padding(.horizontal)
-//                    .frame(width: 400, height: 44)
-//                    .background(Color.white)
-//                    
-//                    Spacer()
-                    
                     DetailSheet(route: route)
                 }
+                .edgesIgnoringSafeArea(.bottom)
+                .transition(.move(edge: .bottom))
             }
         }
         
@@ -77,7 +66,7 @@ struct DetailRouteView: View {
 
 
 struct DetailSheet: View {
-    @State private var offsetY: CGFloat = 400 // Default height (collapsed)
+    @State private var offsetY: CGFloat = 500 // Default height (collapsed)
     @State private var screenHeight: CGFloat = 0 // Store screen height
     let route: Route
     
@@ -116,7 +105,7 @@ struct DetailSheet: View {
                         }
                 )
                 .onAppear {
-                    screenHeight = fullHeight
+                    screenHeight = minHeight
                     offsetY = fullHeight - midHeight // Start at 80% height
                 }
                 .edgesIgnoringSafeArea(.bottom)
@@ -129,5 +118,5 @@ struct DetailSheet: View {
 
 
 #Preview {
-    DetailRouteView(route)
+    DetailRouteView(route: Route.all[0])
 }

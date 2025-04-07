@@ -21,7 +21,7 @@ struct ScheduleGrid: View {
                     ScheduleChip(text: formatTime(from: schedule.time), isRegular: schedule.isRegular)
                 }
                 if isMore {
-                    ScheduleChip(text: "...")
+                    Chip(text: "...", color: .gray.opacity(0.3), textColor: .gray)
                 }
             })
         } else {
@@ -39,13 +39,16 @@ struct ScheduleChip: View {
     
     var body: some View {
         if isRegular {
-            Chip(text: text, color: .gray.opacity(0.1), textColor: .gray)
+            Chip(text: text, color: .gray, textColor: .white)
         } else {
-            Chip(text: text, color: .blue.opacity(0.17), textColor: .blue.opacity(0.8))
+            Chip(text: text, color: .orange.opacity(0.8), textColor: .white.opacity(0.9))
         }
     }
 }
 
 #Preview {
-    ScheduleGrid(schedules: [])
+    ScheduleGrid(schedules: [
+        ScheduleTime(time: timeFrom(15, 15)),
+        ScheduleTime(time: timeFrom(17, 20), isRegular: false)
+    ])
 }

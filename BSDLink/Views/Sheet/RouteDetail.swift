@@ -21,7 +21,7 @@ struct RouteDetail: View {
             
             HStack {
                 Text(route.name)
-                    .font(.title)
+                    .font(.title3)
                     .fontWeight(.bold)
                 Spacer()
                 Button(action: {
@@ -42,7 +42,7 @@ struct RouteDetail: View {
                         .padding(.vertical)
                     
                     Text("Bus Stops")
-                        .font(.title2)
+                        .font(.headline)
                         .bold()
                     VStack(spacing: 0) {
                         ForEach(route.busStops.indices, id: \.self) { index in

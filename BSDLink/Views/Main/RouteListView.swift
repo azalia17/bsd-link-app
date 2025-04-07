@@ -14,13 +14,15 @@ struct RouteListView: View {
     
     public var filteredRoutes: [Route] {
         if searchTerm.isEmpty {
-            return []
+            return Route.all
         } else {
             return []
             //            return sampleRoutes.filter { $0.name.localizedCaseInsensitiveContains(searchTerm) }
             // Di atas sisa2 pas awal search rute pake nama rute
 //            return sampleRoutes.filter { route in
-//                route.busStops.contains { busStop in busStop.name.localizedCaseInsensitiveContains(searchTerm)
+//            Route.all.filter { route in
+//                $0.busStops. == searchTerm
+//            }
 //                }
             }
         }
@@ -63,7 +65,7 @@ struct RouteListView: View {
                 //Buat nampilin list rute yang disearch
                 List(filteredRoutes) { route in
                     NavigationLink {
-                        
+                        DetailRouteView(route: route)
                     } label : {
                         RouteTile(routeName: route.name, stops: route.busStops.count)
                     }
