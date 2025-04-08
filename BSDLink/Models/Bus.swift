@@ -30,22 +30,6 @@ extension Bus {
         return buses
     }
     
-//    static let all: [Bus] = [
-//             Bus(
-//                 id: "bus_a001",
-//                 code: "A001",
-//                 platNumber: "B 1234 CDE",
-//                 operationalHour: "07.00 - 17.00",
-//                 isElectric: true
-//             ),
-//             Bus(
-//                 id: "bus_a002",
-//                 code: "A002",
-//                 platNumber: "B 1234 ABC",
-//                 operationalHour: "07.00 - 17.00"
-//             ),
-//         ]
-    
     static let all: [Bus] = [
         Bus(
             id: "bus_001",

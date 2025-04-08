@@ -41,6 +41,32 @@ extension Schedule {
     
     
     
+//    static func getScheduleBusStopBasedWithTime(
+//        route: Route,
+//        busStopId: String,
+//        index: Int,
+//        fromHour: Int,
+//        fromMinute: Int
+//    ) -> [ScheduleTime] {
+//        let startTime = timeFrom(fromHour, fromMinute)
+//        let endTime = timeFrom(fromHour + 20, fromMinute)
+//        
+//        let matchingSchedules = Schedule.all.filter { route.schedule.contains($0.id) }
+//        
+//        let allDetailIDs = matchingSchedules.flatMap { $0.scheduleDetail }
+//        
+//        let allScheduleDetails = ScheduleDetail.getManyScheduleDetails(by: allDetailIDs)
+//        
+//        let matchingDetails =
+//        allScheduleDetails.filter { $0.busStop == busStopId && $0.index == index }
+//        
+//        let filteredTimes = matchingDetails.flatMap { detail in
+//            detail.time.filter { $0.time >= startTime && $0.time < endTime }
+//        }
+//        
+//        return filteredTimes.sorted { $0.time < $1.time }
+//    }
+    
     static func getScheduleBusStopBasedWithTime(
         route: Route,
         busStopId: String,
@@ -48,30 +74,37 @@ extension Schedule {
         fromHour: Int,
         fromMinute: Int
     ) -> [ScheduleTime] {
+        // Define the start and end time range for filtering
         let startTime = timeFrom(fromHour, fromMinute)
         let endTime = timeFrom(fromHour + 20, fromMinute)
         
+        // Filter schedules that belong to the specified route
         let matchingSchedules = Schedule.all.filter { route.schedule.contains($0.id) }
         
+        // Gather all scheduleDetail IDs from those matching schedules
         let allDetailIDs = matchingSchedules.flatMap { $0.scheduleDetail }
         
+        // Fetch all the corresponding ScheduleDetail entries using the IDs
         let allScheduleDetails = ScheduleDetail.getManyScheduleDetails(by: allDetailIDs)
         
-        let matchingDetails =
-        allScheduleDetails.filter { $0.busStop == busStopId && $0.index == index }
+        // Filter for details that match the busStopId and index
+        let matchingDetails = allScheduleDetails.filter { $0.busStop == busStopId && $0.index == index }
         
+        // Gather all ScheduleTimes from the matching details and filter by time range
         let filteredTimes = matchingDetails.flatMap { detail in
             detail.time.filter { $0.time >= startTime && $0.time < endTime }
         }
         
+        // Sort the times in ascending order and return
         return filteredTimes.sorted { $0.time < $1.time }
     }
+
     
     static let all: [Schedule] = [
         Schedule(
             id: "r1_1",
             idx: 1,
-            bus: "bus_a001",
+            bus: "bus_001",
             scheduleDetail: [
                 "sd_r1_b1_intermoda_1",
                 "sd_r1_b1_cosmo_2",
@@ -131,7 +164,7 @@ extension Schedule {
         Schedule(
             id: "r1_2",
             idx: 2,
-            bus: "bus_a002",
+            bus: "bus_002",
             scheduleDetail: [
                 "sd_r1_b2_intermoda_1",
                 "sd_r1_b2_cosmo_2",
@@ -190,9 +223,416 @@ extension Schedule {
         ),
         Schedule(
             id: "r2_1",
-            idx: 2,
-            bus: "bus_a002",
+            idx: 1,
+            bus: "bus_003",
             scheduleDetail: [
+                "sd_r2_b3_greenwichPark_1",
+                "sd_r2_b3_jadeite_2",
+                "sd_r2_b3_deMaja_3",
+                "sd_r2_b3_deHeliconia2_4",
+                "sd_r2_b3_deNara_5",
+                "sd_r2_b3_dePark2_6",
+                "sd_r2_b3_navapark2_7",
+                "sd_r2_b3_giardina_8",
+                "sd_r2_b3_collinare_9",
+                "sd_r2_b3_foglio_10",
+                "sd_r2_b3_studento2_11",
+                "sd_r2_b3_albera_12",
+                "sd_r2_b3_foresta1_13",
+                "sd_r2_b3_gop1_14",
+                "sd_r2_b3_smlplaza_15",
+                "sd_r2_b3_thebreeze_16",
+                "sd_r2_b3_cbdtimur1_17",
+                "sd_r2_b3_cbdtimur2_18",
+                "sd_r2_b3_navapark1_19",
+                "sd_r2_b3_swa2_20",
+                "sd_r2_b3_giant_21",
+                "sd_r2_b3_ekaHospital1_22",
+                "sd_r2_b3_puspitaLoka_23",
+                "sd_r2_b3_polsekSerpong_24",
+                "sd_r2_b3_rukoMadrid_25",
+                "sd_r2_b3_pasmodTimur_26",
+                "sd_r2_b3_griyaLoka1_27",
+                "sd_r2_b3_halteSektor13_28",
+                "sd_r2_b3_halteSektor13_29",
+                "sd_r2_b3_griyaloka2_30",
+                "sd_r2_b3_santaUrsula1_31",
+                "sd_r2_b3_santaUrsula2_32",
+                "sd_r2_b3_sentraOnderdil_33",
+                "sd_r2_b3_autoparts_34",
+                "sd_r2_b3_ekaHospital2_35",
+                "sd_r2_b3_eastBusinessDistrict_36",
+                "sd_r2_b3_swa1_37",
+                "sd_r2_b3_greenCove_38",
+                "sd_r2_b3_theBreeze_39",
+                "sd_r2_b3_cbdTimur1_40",
+                "sd_r2_b3_cbdTimur2_41",
+                "sd_r2_b3_simpangForesta_42",
+                "sd_r2_b3_allevara_43",
+                "sd_r2_b3_fiore_44",
+                "sd_r2_b3_studento1_45",
+                "sd_r2_b3_naturale_46",
+                "sd_r2_b3_fresco_47",
+                "sd_r2_b3_primavera_48",
+                "sd_r2_b3_foresta2_49",
+                "sd_r2_b3_fbl5_50",
+                "sd_r2_b3_courtsMegaStore_51",
+                "sd_r2_b3_qbig1_52",
+                "sd_r2_b3_lulu_53",
+                "sd_r2_b3_greenwichPark1_54",
+                "sd_r2_b3_greenwichParkOffice_55"
+
+            ]
+        ),
+        Schedule(
+            id: "r2_2",
+            idx: 2,
+            bus: "bus_004",
+            scheduleDetail: [
+                "sd_r2_b4_greenwichPark_1",
+                "sd_r2_b4_jadeite_2",
+                "sd_r2_b4_deMaja_3",
+                "sd_r2_b4_deHeliconia2_4",
+                "sd_r2_b4_deNara_5",
+                "sd_r2_b4_dePark2_6",
+                "sd_r2_b4_navapark2_7",
+                "sd_r2_b4_giardina_8",
+                "sd_r2_b4_collinare_9",
+                "sd_r2_b4_foglio_10",
+                "sd_r2_b4_studento2_11",
+                "sd_r2_b4_albera_12",
+                "sd_r2_b4_foresta1_13",
+                "sd_r2_b4_gop1_14",
+                "sd_r2_b4_smlplaza_15",
+                "sd_r2_b4_thebreeze_16",
+                "sd_r2_b4_cbdtimur1_17",
+                "sd_r2_b4_cbdtimur2_18",
+                "sd_r2_b4_navapark1_19",
+                "sd_r2_b4_swa2_20",
+                "sd_r2_b4_giant_21",
+                "sd_r2_b4_ekaHospital1_22",
+                "sd_r2_b4_puspitaLoka_23",
+                "sd_r2_b4_polsekSerpong_24",
+                "sd_r2_b4_rukoMadrid_25",
+                "sd_r2_b4_pasmodTimu_26r",
+                "sd_r2_b4_griyaLoka1_27",
+                "sd_r2_b4_halteSektor13_28",
+                "sd_r2_b4_halteSektor13_29",
+                "sd_r2_b4_griyaloka2_30",
+                "sd_r2_b4_santaUrsula1_31",
+                "sd_r2_b4_santaUrsula2_32",
+                "sd_r2_b4_sentraOnderdil_33",
+                "sd_r2_b4_autoparts_34",
+                "sd_r2_b4_ekaHospital2_35",
+                "sd_r2_b4_eastBusinessDistrict_36",
+                "sd_r2_b4_swa1_37",
+                "sd_r2_b4_greenCove_38",
+                "sd_r2_b4_theBreeze_39",
+                "sd_r2_b4_cbdTimur1_40",
+                "sd_r2_b4_cbdTimur2_41",
+                "sd_r2_b4_simpangForesta_42",
+                "sd_r2_b4_allevara_43",
+                "sd_r2_b4_fiore_44",
+                "sd_r2_b4_studento1_45",
+                "sd_r2_b4_naturale_46",
+                "sd_r2_b4_fresco_47",
+                "sd_r2_b4_primavera_48",
+                "sd_r2_b4_foresta2_49",
+                "sd_r2_b4_fbl5_50",
+                "sd_r2_b4_courtsMegaStore_51",
+                "sd_r2_b4_qbig1_52",
+                "sd_r2_b4_lulu_53",
+                "sd_r2_b4_greenwichPark1_54",
+                "sd_r2_b4_greenwichParkOffice_55"
+            ]
+        ),
+        Schedule(
+            id: "r3_1",
+            idx: 1,
+            bus: "bus_005",
+            scheduleDetail: [
+                "sd_r3_b5_terminalIntermoda_1",
+                "sd_r3_b5_simplicity2_2",
+                "sd_r3_b5_edutown1_3",
+                "sd_r3_b5_edutown2_4",
+                "sd_r3_b5_ice1_5",
+                "sd_r3_b5_ice2_6",
+                "sd_r3_b5_ice6_7",
+                "sd_r3_b5_ice5_8",
+                "sd_r3_b5_froogy_9",
+                "sd_r3_b5_gramedia_10",
+                "sd_r3_b5_astra_11",
+                "sd_r3_b5_courtsMegaStore_12",
+                "sd_r3_b5_qbig1_13",
+                "sd_r3_b5_lulu_14",
+                "sd_r3_b5_greenwichPark1_15",
+                "sd_r3_b5_greenwichParkOffice_16",
+                "sd_r3_b5_jadeite_17",
+                "sd_r3_b5_deMaja_18",
+                "sd_r3_b5_deHeliconia2_19",
+                "sd_r3_b5_deNara_20",
+                "sd_r3_b5_dePark2_21",
+                "sd_r3_b5_navapark2_22",
+                "sd_r3_b5_gop1_23",
+                "sd_r3_b5_smlPlaza_24",
+                "sd_r3_b5_theBreeze_25",
+                "sd_r3_b5_casaDeParco2_26",
+                "sd_r3_b5_lobbyHouseOfTiktokers_27",
+                "sd_r3_b5_digitalHub1_28",
+                "sd_r3_b5_digitalHub2_29",
+                "sd_r3_b5_verdantView_30",
+                "sd_r3_b5_eternity_31",
+                "sd_r3_b5_intermoda_32"
+            ]
+        ),
+        Schedule(
+            id: "r3_2",
+            idx: 2,
+            bus: "bus_007a",
+            scheduleDetail: [
+                "sd_r3_b7a_terminalIntermoda_1",
+                "sd_r3_b7a_simplicity2_2",
+                "sd_r3_b7a_edutown1_3",
+                "sd_r3_b7a_edutown2_4",
+                "sd_r3_b7a_ice1_5",
+                "sd_r3_b7a_ice2_6",
+                "sd_r3_b7a_ice6_7",
+                "sd_r3_b7a_ice5_8",
+                "sd_r3_b7a_froogy_9",
+                "sd_r3_b7a_gramedia_10",
+                "sd_r3_b7a_astra_11",
+                "sd_r3_b7a_courtsMegaStore_12",
+                "sd_r3_b7a_qbig1_13",
+                "sd_r3_b7a_lulu_14",
+                "sd_r3_b7a_greenwichPark1_15",
+                "sd_r3_b7a_greenwichParkOffice_16",
+                "sd_r3_b7a_jadeite_17",
+                "sd_r3_b7a_deMaja_18",
+                "sd_r3_b7a_deHeliconia2_19",
+                "sd_r3_b7a_deNara_20",
+                "sd_r3_b7a_dePark2_21",
+                "sd_r3_b7a_navapark2_22",
+                "sd_r3_b7a_gop1_23",
+                "sd_r3_b7a_smlPlaza_24",
+                "sd_r3_b7a_theBreeze_25",
+                "sd_r3_b7a_casaDeParco2_26",
+                "sd_r3_b7a_lobbyHouseOfTiktokers_27",
+                "sd_r3_b7a_digitalHub1_28",
+                "sd_r3_b7a_digitalHub2_29",
+                "sd_r3_b7a_verdantView_30",
+                "sd_r3_b7a_eternity_31",
+                "sd_r3_b7a_intermoda_32"
+
+            ]
+        ),
+        Schedule(
+            id: "r4_1",
+            idx: 1,
+            bus: "bus_006",
+            scheduleDetail: [
+                "sd_r4_b6_terminalIntermoda_1",
+                "sd_r4_b6_iconIncentro_2",
+                "sd_r4_b6_horizonBroadway_3",
+                "sd_r4_b6_extremePark_4",
+                "sd_r4_b6_saveria_5",
+                "sd_r4_b6_casaDeParco1_6",
+                "sd_r4_b6_smlPlaza_7",
+                "sd_r4_b6_theBreeze_8",
+                "sd_r4_b6_cbdTimur1_9",
+                "sd_r4_b6_aeonMall1_10",
+                "sd_r4_b6_aeonMall2_11",
+                "sd_r4_b6_cbdTimur2_12",
+                "sd_r4_b6_simpangForesta_13",
+                "sd_r4_b6_allevare_14",
+                "sd_r4_b6_fiore_15",
+                "sd_r4_b6_studento1_16",
+                "sd_r4_b6_naturale_17",
+                "sd_r4_b6_fresco_18",
+                "sd_r4_b6_primavera_19",
+                "sd_r4_b6_foresta2_20",
+                "sd_r4_b6_dePark1_21",
+                "sd_r4_b6_deFrangipani_22",
+                "sd_r4_b6_deHeliconia1_23",
+                "sd_r4_b6_deBrassia_24",
+                "sd_r4_b6_jadeite_25",
+                "sd_r4_b6_greenwichPark2_26",
+                "sd_r4_b6_qbig2_27",
+                "sd_r4_b6_qbig3_28",
+                "sd_r4_b6_bca_29",
+                "sd_r4_b6_fbl2_30",
+                "sd_r4_b6_fbl1_31",
+                "sd_r4_b6_ice1_32",
+                "sd_r4_b6_ice2_33",
+                "sd_r4_b6_ice6_34",
+                "sd_r4_b6_ice5_35",
+                "sd_r4_b6_cbdBarat1_36",
+                "sd_r4_b6_cbdBarat2_37",
+                "sd_r4_b6_simplicity1_38",
+                "sd_r4_b6_intermoda_39"
+
+            ]
+        ),
+        Schedule(
+            id: "r4_2",
+            idx: 2,
+            bus: "bus_008a",
+            scheduleDetail: [
+                "sd_r4_b8a_terminalIntermoda_1",
+                "sd_r4_b8a_iconIncentro_2",
+                "sd_r4_b8a_horizonBroadway_3",
+                "sd_r4_b8a_extremePark_4",
+                "sd_r4_b8a_saveria_5",
+                "sd_r4_b8a_casaDeParco1_6",
+                "sd_r4_b8a_smlPlaza_7",
+                "sd_r4_b8a_theBreeze_8",
+                "sd_r4_b8a_cbdTimur1_9",
+                "sd_r4_b8a_aeonMall1_10",
+                "sd_r4_b8a_aeonMall2_11",
+                "sd_r4_b8a_cbdTimur2_12",
+                "sd_r4_b8a_simpangForesta_13",
+                "sd_r4_b8a_allevare_14",
+                "sd_r4_b8a_fiore_15",
+                "sd_r4_b8a_studento1_16",
+                "sd_r4_b8a_naturale_17",
+                "sd_r4_b8a_fresco_18",
+                "sd_r4_b8a_primavera_19",
+                "sd_r4_b8a_foresta2_20",
+                "sd_r4_b8a_dePark1_21",
+                "sd_r4_b8a_deFrangipani_22",
+                "sd_r4_b8a_deHeliconia1_23",
+                "sd_r4_b8a_deBrassia_24",
+                "sd_r4_b8a_jadeite_25",
+                "sd_r4_b8a_greenwichPark2_26",
+                "sd_r4_b8a_qbig2_27",
+                "sd_r4_b8a_qbig3_28",
+                "sd_r4_b8a_bca_29",
+                "sd_r4_b8a_fbl2_30",
+                "sd_r4_b8a_fbl1_31",
+                "sd_r4_b8a_ice1_32",
+                "sd_r4_b8a_ice2_33",
+                "sd_r4_b8a_ice6_34",
+                "sd_r4_b8a_ice5_35",
+                "sd_r4_b8a_cbdBarat1_36",
+                "sd_r4_b8a_cbdBarat2_37",
+                "sd_r4_b8a_simplicity1_38",
+                "sd_r4_b8a_intermoda_39"
+
+            ]
+        ),
+        Schedule(
+            id: "r5_1",
+            idx: 1,
+            bus: "bus_007b",
+            scheduleDetail: [
+                "sd_r5_b7_theBreeze_1",
+                "sd_r5_b7_cbdTimur1_2",
+                "sd_r5_b7_lobbyAeonMall_3",
+                "sd_r5_b7_aeonMall2_4",
+                "sd_r5_b7_cbdUtara_5",
+                "sd_r5_b7_ice1_6",
+                "sd_r5_b7_ice2_7",
+                "sd_r5_b7_ice6_8",
+                "sd_r5_b7_ice5_9",
+                "sd_r5_b7_cbdBarat1_10",
+                "sd_r5_b7_cbdBarat2_11",
+                "sd_r5_b7_lobbyAeonMall_12",
+                "sd_r5_b7_aeonMall2_13",
+                "sd_r5_b7_cbdTimur2_14",
+                "sd_r5_b7_nawaPark1_15",
+                "sd_r5_b7_greenCove_16",
+                "sd_r5_b7_theBreeze_17"
+            ]
+        ),
+        Schedule(
+            id: "r5_2",
+            idx: 2,
+            bus: "bus_008b",
+            scheduleDetail: [
+                "sd_r5_b8_theBreeze_1",
+                "sd_r5_b8_cbdTimur1_2",
+                "sd_r5_b8_lobbyAeonMall_3",
+                "sd_r5_b8_aeonMall2_4",
+                "sd_r5_b8_cbdUtara_5",
+                "sd_r5_b8_ice1_6",
+                "sd_r5_b8_ice2_7",
+                "sd_r5_b8_ice6_8",
+                "sd_r5_b8_ice5_9",
+                "sd_r5_b8_cbdBarat1_10",
+                "sd_r5_b8_cbdBarat2_11",
+                "sd_r5_b8_lobbyAeonMall_12",
+                "sd_r5_b8_aeonMall2_13",
+                "sd_r5_b8_cbdTimur2_14",
+                "sd_r5_b8_nawaPark1_15",
+                "sd_r5_b8_greenCove_16",
+                "sd_r5_b8_theBreeze_17"
+            ]
+        ),
+        Schedule(
+            id: "r6_1",
+            idx: 1,
+            bus: "bus_009",
+            scheduleDetail: [
+                "sd_r6_b9_terminalIntermoda_1",
+                "sd_r6_b9_simplicity2_2",
+                "sd_r6_b9_edutown1_3",
+                "sd_r6_b9_edutown2_4",
+                "sd_r6_b9_ice1_5",
+                "sd_r6_b9_ice2_6",
+                "sd_r6_b9_ice6_7",
+                "sd_r6_b9_prestigia_8",
+                "sd_r6_b9_theMozia1_9",
+                "sd_r6_b9_piazzaMozia_10",
+                "sd_r6_b9_tabebuya_11",
+                "sd_r6_b9_vanyaPark_12",
+                "sd_r6_b9_theMozia2_13",
+                "sd_r6_b9_illustria_14",
+                "sd_r6_b9_ice2_15",
+                "sd_r6_b9_ice6_16",
+                "sd_r6_b9_ice5_17",
+                "sd_r6_b9_cbdBarat1_18",
+                "sd_r6_b9_cbdBarat2_19",
+                "sd_r6_b9_simplicity1_20",
+                "sd_r6_b9_intermoda_21"
+            ]
+        ),
+        Schedule(
+            id: "r7_1",
+            idx: 1,
+            bus: "bus_010",
+            scheduleDetail: [
+                "sd_r7_b10_terminalIntermoda_1",
+                "sd_r7_b10_simplicity2_2",
+                "sd_r7_b10_edutown1_3",
+                "sd_r7_b10_edutown2_4",
+                "sd_r7_b10_ice1_5",
+                "sd_r7_b10_ice2_6",
+                "sd_r7_b10_ice6_7",
+                "sd_r7_b10_ice5_8",
+                "sd_r7_b10_froogy_9",
+                "sd_r7_b10_gramedia_10",
+                "sd_r7_b10_astra_11",
+                "sd_r7_b10_courtsMegaStore_12",
+                "sd_r7_b10_qbig1_13",
+                "sd_r7_b10_lulu_14",
+                "sd_r7_b10_qbig2_15",
+                "sd_r7_b10_qbig3_16",
+                "sd_r7_b10_bca_17",
+                "sd_r7_b10_fbl2_18",
+                "sd_r7_b10_fbl1_19",
+                "sd_r7_b10_gop1_20",
+                "sd_r7_b10_smlPlaza_21",
+                "sd_r7_b10_theBreeze_22",
+                "sd_r7_b10_casaDeParco2_23",
+                "sd_r7_b10_lobbyHouseOfTiktokers_24",
+                "sd_r7_b10_digitalHub1_25",
+                "sd_r7_b10_saveria_26",
+                "sd_r7_b10_casaDeParco1_27",
+                "sd_r7_b10_cbdTimur1_28",
+                "sd_r7_b10_lobbyAeonMall_29",
+                "sd_r7_b10_aeonMall2_30",
+                "sd_r7_b10_cbdBarat2_31",
+                "sd_r7_b10_simplicity1_32",
+                "sd_r7_b10_intermoda_33"
             ]
         )
     ]

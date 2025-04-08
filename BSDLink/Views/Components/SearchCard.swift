@@ -69,6 +69,7 @@ struct SearchCard: View {
                             .submitLabel(.search)
                             .onSubmit {
                                 searchHandler()
+//                                print(ScheduleDetail.all)
                             }
                         //                            .k
                         Spacer()

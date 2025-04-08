@@ -164,16 +164,7 @@ struct DiscoverView: View {
                             )
                             .shadow(color: Color.black.opacity(0.3), radius: 15, x: 0, y: 10)
                             
-                            Button("Search", systemImage: "chevron.backward") {
-                                getDirections()
-                                getWalkingDirections()
-                            }
-                            .frame(height: 35, alignment: .center)
-                            .labelStyle(.iconOnly)
-                            .buttonStyle(.borderedProminent)
-                            .tint(.white)
-                            .foregroundColor(.black)
-                            .shadow(color: Color.black.opacity(0.3), radius: 15, x: 0, y: 10)
+                    
                         }
                     }
                     Spacer()

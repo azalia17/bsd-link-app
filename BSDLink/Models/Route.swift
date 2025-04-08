@@ -29,7 +29,7 @@ extension Route {
                 "edutown2",
                 "ice1",
                 "ice2",
-                "iceBusinessPark",
+//                "iceBusinessPark",
                 "ice6",
                 "ice5",
                 "gop1",
@@ -145,8 +145,8 @@ extension Route {
                 "greenwichPark1"
             ],
             bus: ["bus_003", "bus_004"],
-            schedule: ["r1_1"],
-//            schedule: ["r2_1", "r2_2"],
+//            schedule: ["r1_1"],
+            schedule: ["r2_1", "r2_2"],
             note: [
                 "TIME TABLE SEWAKTU - WAKTU DAPAT BERUBAH MENYESUAIKAN KONDISI OPERASIONAL DAN TRAFFIC",
                 "JADWAL BERWARNA KUNING HANYA BERLAKU, SABTU, MINGGU DAN HARI LIBUR BERLAKU",
@@ -199,9 +199,8 @@ extension Route {
                 "eternity",
                 "intermoda"
             ],
-            bus: ["bus_005", "bus_008a"],
-//            schedule: ["r3_1", "r3_2"],
-            schedule: ["r1_1"],
+            bus: ["bus_005", "bus_007a"],
+            schedule: ["r3_1", "r3_2"],
             note: [
                 "TIME TABLE SEWAKTU - WAKTU DAPAT BERUBAH MENYESUAIKAN KONDISI OPERASIONAL DAN TRAFFIC",
                 "JADWAL BERWARNA KUNING HANYA BERLAKU, SABTU, MINGGU DAN HARI LIBUR BERLAKU",
@@ -256,9 +255,8 @@ extension Route {
                 "simplicity1",
                 "intermoda"
             ],
-            bus: ["bus_006", "bus_007a"],
-//            schedule: ["r4_1", "r4_2"],
-            schedule: ["r1_1"],
+            bus: ["bus_006", "bus_008a"],
+            schedule: ["r4_1", "r4_2"],
             note: [
                 "TIME TABLE SEWAKTU - WAKTU DAPAT BERUBAH MENYESUAIKAN KONDISI OPERASIONAL DAN TRAFFIC",
                 "JADWAL BERWARNA KUNING HANYA BERLAKU, SABTU, MINGGU DAN HARI LIBUR BERLAKU",
@@ -293,8 +291,7 @@ extension Route {
                 "theBreeze"
             ],
             bus: ["bus_007b", "bus_008b"],
-//            schedule: ["r5_1", "r5_2"],
-            schedule: ["r1_1"],
+            schedule: ["r5_1", "r5_2"],
             note: [
                 "TIME TABLE SEWAKTU - WAKTU DAPAT BERUBAH MENYESUAIKAN KONDISI OPERASIONAL DAN TRAFFIC",
                 "JADWAL BERWARNA KUNING HANYA BERLAKU, SABTU, MINGGU DAN HARI LIBUR BERLAKU",
@@ -338,8 +335,7 @@ extension Route {
                 "intermoda"
             ],
             bus: ["bus_009"],
-//            schedule: ["r6_1"],
-            schedule: ["r1_1"],
+            schedule: ["r6_1"],
             note: [
                 "TIME TABLE SEWAKTU - WAKTU DAPAT BERUBAH MENYESUAIKAN KONDISI OPERASIONAL DAN TRAFFIC",
                 "JADWAL BERWARNA KUNING HANYA BERLAKU, SABTU, MINGGU DAN HARI LIBUR BERLAKU",
@@ -391,8 +387,7 @@ extension Route {
                 "intermoda"
             ],
             bus: ["bus_010"],
-//            schedule: ["r7_1"],
-            schedule: ["r1_1"],
+            schedule: ["r7_1"],
             note: [
                 "TIME TABLE SEWAKTU - WAKTU DAPAT BERUBAH MENYESUAIKAN KONDISI OPERASIONAL DAN TRAFFIC",
                 "JADWAL BERWARNA KUNING HANYA BERLAKU, SABTU, MINGGU DAN HARI LIBUR BERLAKU",
