@@ -77,8 +77,8 @@ extension BusStop {
             routes: ["route_2", "route_4"]
         ),
         BusStop(
-            id: "amarilla",
-            name: "Amarilla",
+            id: "ammarilla",
+            name: "Ammarilla",
             latitude: CLLocationCoordinate2D.amarilla.latitude,
             longitude: CLLocationCoordinate2D.amarilla.longitude,
             images: ["Intermoda_1"],
@@ -191,7 +191,7 @@ extension BusStop {
         ),
 
         BusStop(
-            id: "cbdTimurGop2",
+            id: "cbdTimur2",
             name: "CBDTimur2",
             latitude: CLLocationCoordinate2D.cbdTimurGop2.latitude,
             longitude: CLLocationCoordinate2D.cbdTimurGop2.longitude,
@@ -722,7 +722,7 @@ extension BusStop {
         ),
 
         BusStop(
-            id: "navaPark1",
+            id: "navapark1",
             name: "NavaPark1",
             latitude: CLLocationCoordinate2D.navaPark1.latitude,
             longitude: CLLocationCoordinate2D.navaPark1.longitude,
@@ -740,7 +740,7 @@ extension BusStop {
         ),
 
         BusStop(
-            id: "pasarModernTimur",
+            id: "pasmodTimur",
             name: "PasarModernTimur",
             latitude: CLLocationCoordinate2D.pasarModernTimur.latitude,
             longitude: CLLocationCoordinate2D.pasarModernTimur.longitude,
@@ -866,7 +866,7 @@ extension BusStop {
         ),
 
         BusStop(
-            id: "sektor13",
+            id: "halteSektor13",
             name: "Sektor1.3",
             latitude: CLLocationCoordinate2D.sektor13.latitude,
             longitude: CLLocationCoordinate2D.sektor13.longitude,

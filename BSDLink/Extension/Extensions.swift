@@ -180,6 +180,25 @@ extension String {
     func capitalizingFirstLetter() -> String {
         prefix(1).capitalized + dropFirst().lowercased()
     }
+    
+    // Function to extract the last number from the string
+    func getLastNumber() -> String? {
+        // Regular expression to match the last number in the string
+        let regexPattern = "\\d+$"
+        
+        if let regex = try? NSRegularExpression(pattern: regexPattern, options: []) {
+            let range = NSRange(location: 0, length: self.utf16.count)
+            
+            if let match = regex.firstMatch(in: self, options: [], range: range) {
+                if let numberRange = Range(match.range, in: self) {
+                    return String(self[numberRange])
+                }
+            }
+        }
+        
+        // Return nil if no number is found
+        return nil
+    }
 }
 
 extension View {
@@ -201,3 +220,7 @@ struct RoundedCorner: Shape {
         return Path(path.cgPath)
     }
 }
+
+//extension String {
+//
+//}

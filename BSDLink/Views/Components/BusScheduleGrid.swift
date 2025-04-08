@@ -18,6 +18,7 @@ struct BusScheduleGrid: View {
         VStack(alignment: .leading) {
             ForEach(busSchedules) { schedule in
                 HStack {
+                    Text("\(index)")
                     Text("Schedule \(schedule.idx):")
                         .bold()
                     Text(Bus.getBus(by: schedule.bus).platNumber)

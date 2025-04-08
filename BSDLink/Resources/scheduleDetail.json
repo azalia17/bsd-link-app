@@ -1403,7 +1403,7 @@
     {
         "id": "sd_r1_b1_puspitaLoka_21",
         "index": 21,
-        "BusStop": "puspitaLoka",
+        "BusStop": "puspitaloka",
         "time": [
             {
                 "hour": 6,
@@ -1438,7 +1438,7 @@
     {
         "id": "sd_r1_b2_puspitaLoka_21",
         "index": 21,
-        "BusStop": "puspitaLoka",
+        "BusStop": "puspitaloka",
         "time": [
             {
                 "hour": 7,
@@ -1683,7 +1683,7 @@
     {
         "id": "sd_r1_b1_griyaloka1_25",
         "index": 25,
-        "BusStop": "griyaloka1",
+        "BusStop": "griyaLoka1",
         "time": [
             {
                 "hour": 6,
@@ -1718,7 +1718,7 @@
     {
         "id": "sd_r1_b2_griyaloka1_25",
         "index": 25,
-        "BusStop": "griyaloka1",
+        "BusStop": "griyaLoka1",
         "time": [
             {
                 "hour": 7,
@@ -1889,7 +1889,7 @@
     {
         "id": "sd_r1_b1_griyaloka2_28",
         "index": 28,
-        "BusStop": "griyaloka2",
+        "BusStop": "griyaLoka2",
         "time": [
             {
                 "hour": 7,
@@ -1924,7 +1924,7 @@
     {
         "id": "sd_r1_b2_griyaloka2_28",
         "index": 28,
-        "BusStop": "griyaloka2",
+        "BusStop": "griyaLoka2",
         "time": [
             {
                 "hour": 7,
@@ -2417,7 +2417,7 @@
     {
         "id": "sd_r1_b1_greenCove_36",
         "index": 36,
-        "BusStop": "greenCove",
+        "BusStop": "greencove",
         "time": [
             {
                 "hour": 7,
@@ -2452,7 +2452,7 @@
     {
         "id": "sd_r1_b2_greenCove_36",
         "index": 36,
-        "BusStop": "greenCove",
+        "BusStop": "greencove",
         "time": [
             {
                 "hour": 8,
@@ -2615,7 +2615,7 @@
     {
         "id": "sd_r1_b1_aeonMall11_39",
         "index": 39,
-        "BusStop": "aeonMall11",
+        "BusStop": "aeonMall1",
         "time": [
             {
                 "hour": 7,
@@ -2650,7 +2650,7 @@
     {
         "id": "sd_r1_b2_aeonMall11_39",
         "index": 39,
-        "BusStop": "aeonMall11",
+        "BusStop": "aeonMall1",
         "time": [
             {
                 "hour": 8,
@@ -2747,7 +2747,7 @@
     {
         "id": "sd_r1_b1_simplicity_41",
         "index": 41,
-        "BusStop": "simplicity",
+        "BusStop": "simplicity1",
         "time": [
             {
                 "hour": 7,
@@ -2782,7 +2782,7 @@
     {
         "id": "sd_r1_b2_simplicity_41",
         "index": 41,
-        "BusStop": "simplicity",
+        "BusStop": "simplicity1",
         "time": [
             {
                 "hour": 8,
@@ -3275,7 +3275,7 @@
     {
         "id": "sd_r1_b1_theAvaniClubHouse_49",
         "index": 49,
-        "BusStop": "theAvaniClubHouse",
+        "BusStop": "avani",
         "time": [
             {
                 "hour": 7,
@@ -3310,7 +3310,7 @@
     {
         "id": "sd_r1_b2_theAvaniClubHouse_49",
         "index": 49,
-        "BusStop": "theAvaniClubHouse",
+        "BusStop": "avani",
         "time": [
             {
                 "hour": 8,
@@ -5145,7 +5145,7 @@
     {
         "id": "sd_r2_b3_puspitaLoka_23",
         "index": 23,
-        "BusStop": "puspitaLoka",
+        "BusStop": "puspitaloka",
         "time": [
             {
                 "hour": 6,
@@ -5180,7 +5180,7 @@
     {
         "id": "sd_r2_b4_puspitaLoka_23",
         "index": 23,
-        "BusStop": "puspitaLoka",
+        "BusStop": "puspitaloka",
         "time": [
             {
                 "hour": 7,
@@ -5631,7 +5631,7 @@
     {
         "id": "sd_r2_b3_griyaloka2_30",
         "index": 30,
-        "BusStop": "griyaloka2",
+        "BusStop": "griyaLoka2",
         "time": [
             {
                 "hour": 7,
@@ -5666,7 +5666,7 @@
     {
         "id": "sd_r2_b4_griyaloka2_30",
         "index": 30,
-        "BusStop": "griyaloka2",
+        "BusStop": "griyaLoka2",
         "time": [
             {
                 "hour": 7,
@@ -6159,7 +6159,7 @@
     {
         "id": "sd_r2_b3_greenCove_38",
         "index": 38,
-        "BusStop": "greenCove",
+        "BusStop": "greencove",
         "time": [
             {
                 "hour": 7,
@@ -6194,7 +6194,7 @@
     {
         "id": "sd_r2_b4_greenCove_38",
         "index": 38,
-        "BusStop": "greenCove",
+        "BusStop": "greencove",
         "time": [
             {
                 "hour": 7,
@@ -14493,7 +14493,7 @@
     {
         "id": "sd_r5_b7_greenCove_16",
         "index": 16,
-        "BusStop": "greenCove",
+        "BusStop": "greencove",
         "time": [
             {
                 "hour": 9,
@@ -14544,7 +14544,7 @@
     {
         "id": "sd_r5_b8_greenCove_16",
         "index": 16,
-        "BusStop": "greenCove",
+        "BusStop": "greencove",
         "time": [
             {
                 "hour": 10,

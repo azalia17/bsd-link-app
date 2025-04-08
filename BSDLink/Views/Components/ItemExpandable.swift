@@ -20,7 +20,7 @@ struct ItemExpandable<ExpandedContent: View>: View {
     let isLastItem: Bool  // Pass info if this is the last item
     let contentExpanded: () -> ExpandedContent
     
-    @State private var isExpanded: Bool = false
+    @State private var isExpanded: Bool = true
     @State private var expandedHeight: CGFloat = 0  // Store the expanded height
     
     var isShowPreviewSchedule: Bool = true

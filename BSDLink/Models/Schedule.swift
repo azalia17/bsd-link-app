@@ -697,7 +697,7 @@ extension ScheduleDetail {
     }
     
     static func getScheduleTime(schedule: [String], index: Int, busStopId: String) -> [ScheduleTime] {
-        
+        print()
         return getManyScheduleDetails(by: schedule).filter { $0.index == index && $0.busStop == busStopId }.first?.time ?? [ScheduleTime(time: timeFrom(0, 0))]
     }
     

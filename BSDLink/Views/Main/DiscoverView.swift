@@ -120,6 +120,7 @@ struct DiscoverView: View {
                             activeTextField: $activeTextField,
                             isTimePicked: $isTimePicked,
                             showSearchLocationView: $showLocationSearchView) {
+//                                print(ScheduleDetail.all[0])
                                 showLocationSearchView.toggle()
                             }
                         

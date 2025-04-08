@@ -95,7 +95,7 @@ struct ScheduleExpandableForDetailRoute: View {
             isFirstItem: index == 0,
             isLastItem: index == route.busStops.count - 1,
             contentExpanded: {
-                BusScheduleGrid(busStopId: currentBusStopId, index: stopIndex, busSchedules: Schedule.getSchedules(by: route.schedule))
+                BusScheduleGrid(busStopId: currentBusStopId, index: index+1, busSchedules: Schedule.getSchedules(by: route.schedule))
                 .padding([.top, .trailing])
                 .padding(.top, 8)
             },
