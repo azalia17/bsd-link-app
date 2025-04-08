@@ -28,6 +28,6 @@ struct Chip: View {
     }
 }
 
-#Preview {
-    Chip(text: "Hello")
-}
+//#Preview {
+//    Chip(text: "Hello")
+//}

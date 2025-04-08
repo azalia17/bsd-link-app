@@ -51,10 +51,10 @@ struct ImageStack: View {
     }
 }
 
-#Preview {
-    ImageStack(
-        images: ["Intermoda_1"]
-        //        ,
-        //        secondImage: "Intermoda_2"
-    )
-}
+//#Preview {
+//    ImageStack(
+//        images: ["Intermoda_1"]
+//        //        ,
+//        //        secondImage: "Intermoda_2"
+//    )
+//}

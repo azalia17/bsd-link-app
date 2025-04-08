@@ -9,9 +9,17 @@ import SwiftUI
 
 @main
 struct BSDLinkApp: App {
+    
     @StateObject var locationViewModel = LocationSearchViewModel()
+
+//    init() {
+//        _locationViewModel = StateObject(wrappedValue: LocationSearchViewModel())
+//    }
+    
     var body: some Scene {
         WindowGroup {
+//            TabBar()
+//            Text("Aaa")
             ContentView()
                 .environmentObject(locationViewModel)
         }

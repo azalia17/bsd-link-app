@@ -117,6 +117,6 @@ struct DetailSheet: View {
 
 
 
-#Preview {
-    DetailRouteView(route: Route.all[0])
-}
+//#Preview {
+//    DetailRouteView(route: Route.all[0])
+//}

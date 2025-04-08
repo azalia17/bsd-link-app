@@ -30,6 +30,6 @@ struct RouteTile: View {
     }
 }
 
-#Preview {
-    RouteTile(routeName: "Intermoda - Sektor 1.3 - Intermoda", stops: 22)
-}
+//#Preview {
+//    RouteTile(routeName: "Intermoda - Sektor 1.3 - Intermoda", stops: 22)
+//}

@@ -41,6 +41,6 @@ struct BusScheduleGrid: View {
     }
 }
 
-#Preview {
-    BusScheduleGrid(busStopId: "intermoda", index: 1, busSchedules: Schedule.all)
-}
+//#Preview {
+//    BusScheduleGrid(busStopId: "intermoda", index: 1, busSchedules: Schedule.all)
+//}

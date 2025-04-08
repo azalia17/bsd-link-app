@@ -17,7 +17,7 @@ struct LocationSearchView: View {
     @State private var showTimePicker: Bool = false
     @State private var timePicked = Date()
     
-    @EnvironmentObject var viewModel : LocationSearchViewModel
+    @EnvironmentObject var locationViewModel : LocationSearchViewModel
     
     var searchAction: () -> Void
     
@@ -37,7 +37,7 @@ struct LocationSearchView: View {
                 }
                 SearchCard(
                     searchHandler: {
-                        viewModel.searchDirection()
+                        locationViewModel.searchDirection()
 //                        searchAction()
 //                        isSearch = true
 //                        showSearchLocationView = false
@@ -51,13 +51,13 @@ struct LocationSearchView: View {
                         showTimePicker = true
                     },
                     swapHandler: {
-                        viewModel.swapDestination(
-                            start: viewModel.startLocationSearch,
-                            end: viewModel.endLocationSearch
+                        locationViewModel.swapDestination(
+                            start: locationViewModel.startLocationSearch,
+                            end: locationViewModel.endLocationSearch
                         )
                     },
-                    startingPoint: $viewModel.startLocationQueryFragment,
-                    destinationPoint: $viewModel.endLocationQueryFragment,
+                    startingPoint: $locationViewModel.startLocationQueryFragment,
+                    destinationPoint: $locationViewModel.endLocationQueryFragment,
                     activeTextField: $activeTextField,
                     isTimePicked: $isTimePicked,
                     showSearchLocationView: $showSearchLocationView
@@ -69,12 +69,12 @@ struct LocationSearchView: View {
             
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
-                    ForEach(viewModel.results, id: \.self) { result in
+                    ForEach(locationViewModel.results, id: \.self) { result in
                         LocationSearchResultCell(
                             title: result.title,
                             subtitle: result.subtitle
                         ).onTapGesture {
-                            viewModel.selectLocation(result, textField: activeTextField)
+                            locationViewModel.selectLocation(result, textField: activeTextField)
                         }
                     }
                 }

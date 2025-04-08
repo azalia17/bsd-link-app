@@ -35,7 +35,7 @@ struct LocationSearchResultCell: View {
         .padding(.leading)
     }
 }
-
-#Preview {
-    LocationSearchResultCell(title: "title", subtitle: "subtitle")
-}
+//
+//#Preview {
+//    LocationSearchResultCell(title: "title", subtitle: "subtitle")
+//}

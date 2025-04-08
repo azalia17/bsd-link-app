@@ -46,9 +46,9 @@ struct ScheduleChip: View {
     }
 }
 
-#Preview {
-    ScheduleGrid(schedules: [
-        ScheduleTime(time: timeFrom(15, 15)),
-        ScheduleTime(time: timeFrom(17, 20), isRegular: false)
-    ])
-}
+//#Preview {
+//    ScheduleGrid(schedules: [
+//        ScheduleTime(time: timeFrom(15, 15)),
+//        ScheduleTime(time: timeFrom(17, 20), isRegular: false)
+//    ])
+//}

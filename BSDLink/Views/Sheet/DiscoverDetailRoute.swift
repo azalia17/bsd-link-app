@@ -244,10 +244,10 @@ struct ScheduleExpandable: View {
 }
 
 
-#Preview {
-    DiscoverDetailRoute(
-        routes: [Route.all[0], Route.all[0]],
-        fromHour: 6,
-        fromMinute: 0
-    )
-}
+//#Preview {
+//    DiscoverDetailRoute(
+//        routes: [Route.all[0], Route.all[0]],
+//        fromHour: 6,
+//        fromMinute: 0
+//    )
+//}

@@ -36,7 +36,7 @@ struct DiscoverView: View {
     
     @State private var showLocationSearchView: Bool = false
     
-    @EnvironmentObject var viewModel : LocationSearchViewModel
+    @EnvironmentObject var locationViewModel : LocationSearchViewModel
     
     var body: some View {
         
@@ -44,10 +44,10 @@ struct DiscoverView: View {
             Map(initialPosition: cameraPosition) {
                 
                 if isSearch {
-                    Marker(viewModel.startLocationQueryFragment, systemImage: "bus", coordinate: viewModel.selectedStartCoordinate)
+                    Marker(locationViewModel.startLocationQueryFragment, systemImage: "bus", coordinate: locationViewModel.selectedStartCoordinate)
                         .tint(.orange.gradient)
                     
-                    Marker(viewModel.endLocationQueryFragment, systemImage: "bus", coordinate: viewModel.selectedEndCoordinate)
+                    Marker(locationViewModel.endLocationQueryFragment, systemImage: "bus", coordinate: locationViewModel.selectedEndCoordinate)
                         .tint(.orange.gradient)
                     //
                     //                    Annotation("Istiqlal", coordinate: .istiqlal, anchor: .bottom) {
@@ -134,7 +134,7 @@ struct DiscoverView: View {
                             Button("Search", systemImage: "chevron.backward") {
                                 isSearch = false
                                 showLocationSearchView = true
-                                viewModel.reset()
+                                locationViewModel.reset()
                                 routePolylines.removeAll()
                                 route = MKRoute()
                             }
@@ -146,10 +146,10 @@ struct DiscoverView: View {
                             .shadow(color: Color.black.opacity(0.3), radius: 15, x: 0, y: 10)
                             
                             HStack{
-                                Text(viewModel.startLocationQueryFragment)
+                                Text(locationViewModel.startLocationQueryFragment)
                                     .lineLimit(1)
                                 Image(systemName: "arrow.forward")
-                                Text(viewModel.endLocationQueryFragment)
+                                Text(locationViewModel.endLocationQueryFragment)
                                     .lineLimit(1)
                                 
                                 Spacer()
@@ -187,7 +187,6 @@ struct DiscoverView: View {
             }
             .sheet(isPresented: $showTimePicker) {
                 VStack {
-                    Text("\(timePicked)")
                     TimePicker(showTimePicker: $showTimePicker, timePicked: $timePicked, isTimePicked: $isTimePicked)
                         .presentationDetents([.fraction(0.45)])
                 }
@@ -216,6 +215,7 @@ struct DiscoverView: View {
                         getWalkingDirections()
                         getDirections()
                     }
+                    .environmentObject(locationViewModel)
                     .onDisappear {
                         getDirections()
                         getWalkingDirections()
@@ -247,8 +247,8 @@ struct DiscoverView: View {
     func getDirections() {
         Task {
             let waypoints: [CLLocationCoordinate2D] = [
-                viewModel.selectedStartCoordinate,
-                viewModel.selectedEndCoordinate
+                locationViewModel.selectedStartCoordinate,
+                locationViewModel.selectedEndCoordinate
             ]
             
             guard waypoints.count >= 2 else { return }
@@ -280,7 +280,7 @@ struct DiscoverView: View {
             
             let request = MKDirections.Request()
             request.source = MKMapItem(placemark: .init(coordinate: userLocation))
-            request.destination = MKMapItem(placemark: .init(coordinate: viewModel.selectedStartCoordinate ?? userLocation))
+            request.destination = MKMapItem(placemark: .init(coordinate: locationViewModel.selectedStartCoordinate))
             request.transportType = .walking
             
             do {
@@ -350,8 +350,8 @@ struct DraggableSheet: View {
     }
 }
 
-#Preview {
-    DiscoverView()
-}
-
+//#Preview {
+//    DiscoverView()
+//}
+//
 
