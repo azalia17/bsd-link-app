@@ -7,6 +7,7 @@
 
 import Foundation
 import MapKit
+import SwiftUI
 
 extension CLLocationCoordinate2D {
     static let istiqlal = CLLocationCoordinate2D(latitude: -6.170166, longitude: 106.831375)
@@ -173,4 +174,30 @@ func getRoute(_ ids: [String]) -> [Route] {
 func getScheduleForSpecificBus(_ id: String) -> Schedule {
     
     return Schedule.all.filter{$0.bus == id}.first!
+}
+
+extension String {
+    func capitalizingFirstLetter() -> String {
+        prefix(1).capitalized + dropFirst().lowercased()
+    }
+}
+
+extension View {
+    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+        clipShape(RoundedCorner(radius: radius, corners: corners))
+    }
+}
+
+struct RoundedCorner: Shape {
+    var radius: CGFloat = .infinity
+    var corners: UIRectCorner = .allCorners
+    
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(
+            roundedRect: rect,
+            byRoundingCorners: corners,
+            cornerRadii: CGSize(width: radius, height: radius)
+        )
+        return Path(path.cgPath)
+    }
 }

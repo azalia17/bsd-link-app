@@ -29,7 +29,7 @@ extension Route {
                 "edutown2",
                 "ice1",
                 "ice2",
-                "iceBusinessPark",
+//                "iceBusinessPark",
                 "ice6",
                 "ice5",
                 "gop1",
@@ -145,6 +145,7 @@ extension Route {
                 "greenwichPark1"
             ],
             bus: ["bus_003", "bus_004"],
+//            schedule: ["r1_1"],
             schedule: ["r2_1", "r2_2"],
             note: [
                 "TIME TABLE SEWAKTU - WAKTU DAPAT BERUBAH MENYESUAIKAN KONDISI OPERASIONAL DAN TRAFFIC",
@@ -198,7 +199,7 @@ extension Route {
                 "eternity",
                 "intermoda"
             ],
-            bus: ["bus_005", "bus_008a"],
+            bus: ["bus_005", "bus_007a"],
             schedule: ["r3_1", "r3_2"],
             note: [
                 "TIME TABLE SEWAKTU - WAKTU DAPAT BERUBAH MENYESUAIKAN KONDISI OPERASIONAL DAN TRAFFIC",
@@ -254,7 +255,7 @@ extension Route {
                 "simplicity1",
                 "intermoda"
             ],
-            bus: ["bus_006", "bus_007a"],
+            bus: ["bus_006", "bus_008a"],
             schedule: ["r4_1", "r4_2"],
             note: [
                 "TIME TABLE SEWAKTU - WAKTU DAPAT BERUBAH MENYESUAIKAN KONDISI OPERASIONAL DAN TRAFFIC",
@@ -397,4 +398,25 @@ extension Route {
         )
         
     ]
+    
+//    static let all: [Route] = [
+//             Route(
+//                 id: "route_1",
+//                 name: "Intermoda - Sektor 1.3 - Intermoda",
+//                 routeNumber: 1,
+//                 busStops: [
+//                     "intermoda",
+//                     "intermoda",
+//                     "intermoda"
+//                 ],
+//                 bus: ["bus_a001", "bus_a002"],
+//                 schedule: ["r1_1", "r1_2"],
+//                 note: [
+//                     "TIME TABLE SEWAKTU - WAKTU DAPAT BERUBAH MENYESUAIKAN KONDISI OPERASIONAL DAN TRAFFIC",
+//                     "JADWAL BERWARNA KUNING HANYA BERLAKU, SABTU, MINGGU DAN HARI LIBUR BERLAKU",
+//                     "THE BREEZE BERHENTI DAN MENUNGGU 1 MENIT ATAU MENYESUAIKAN DENGAN JADWAL",
+//                     "ICE 6 BERHENTI DAN MENUNGGU 1 MENIT ATAU MENYESUAIKAN DENGAN JADWAL"
+//                 ]
+//             )
+//         ]
 }

@@ -19,6 +19,7 @@ struct DiscoverView: View {
     @State private var routePolylines: [MKPolyline] = []
     @State private var startingPoint: String = ""
     @State private var destinationPoint: String = ""
+    @State private var activeTextField: String = ""
     
     @State private var startingCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2D()
     @State private var userLocation: CLLocationCoordinate2D = CLLocationCoordinate2D()
@@ -32,25 +33,32 @@ struct DiscoverView: View {
     @State private var showPopover: Bool = false
     @State private var timePicked = Date()
     @State private var isTimePicked: Bool = false
-
+    
+    @State private var showLocationSearchView: Bool = false
+    
+    @EnvironmentObject var locationViewModel : LocationSearchViewModel
+    
     var body: some View {
         
         ZStack(alignment: .bottom) {
             Map(initialPosition: cameraPosition) {
-                Marker("Halte A", systemImage: "bus", coordinate: .bbb)
-                    .tint(.orange.gradient)
                 
-                Marker("Halte B", systemImage: "bus", coordinate: .ccc)
-                    .tint(.orange.gradient)
-                
-                Annotation("Istiqlal", coordinate: .istiqlal, anchor: .bottom) {
-                    Image(systemName: "moon.fill")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .foregroundStyle(.white)
-                        .frame(width: 30, height: 30)
-                        .padding(7)
-                        .background(.orange.gradient, in: .circle)
+                if isSearch {
+                    Marker(locationViewModel.startLocationQueryFragment, systemImage: "bus", coordinate: locationViewModel.selectedStartCoordinate)
+                        .tint(.orange.gradient)
+                    
+                    Marker(locationViewModel.endLocationQueryFragment, systemImage: "bus", coordinate: locationViewModel.selectedEndCoordinate)
+                        .tint(.orange.gradient)
+                    //
+                    //                    Annotation("Istiqlal", coordinate: .istiqlal, anchor: .bottom) {
+                    //                        Image(systemName: "moon.fill")
+                    //                            .resizable()
+                    //                            .aspectRatio(contentMode: .fit)
+                    //                            .foregroundStyle(.white)
+                    //                            .frame(width: 30, height: 30)
+                    //                            .padding(7)
+                    //                            .background(.orange.gradient, in: .circle)
+                    //                    }
                 }
                 
                 UserAnnotation()
@@ -94,9 +102,9 @@ struct DiscoverView: View {
                     if(!isSearch){
                         SearchCard(
                             searchHandler: {
-                                getWalkingDirections(to: .bbb)
-                                getDirections()
-                                isSearch = true
+                                //                                getWalkingDirections(to: .bbb)
+                                //                                getDirections()
+                                //                                isSearch = true
                             },
                             filterHandler: {
                                 showTimePicker = true
@@ -109,63 +117,100 @@ struct DiscoverView: View {
                             },
                             startingPoint: $startingPoint,
                             destinationPoint: $destinationPoint,
-                            isTimePicked: $isTimePicked
-                        )
+                            activeTextField: $activeTextField,
+                            isTimePicked: $isTimePicked,
+                            showSearchLocationView: $showLocationSearchView) {
+                                showLocationSearchView.toggle()
+                            }
+                        
                         
                         QuickSearch(
                             startingPoint: $startingPoint,
                             destinationPoint: $destinationPoint
                         )
                     } else {
-                        HStack{
-                            Text(startingPoint)
-                            Image(systemName: "arrow.forward")
-                            Text(destinationPoint)
+                        HStack {
+                            //                            Button()
+                            Button("Search", systemImage: "chevron.backward") {
+                                isSearch = false
+                                showLocationSearchView = true
+                                locationViewModel.reset()
+                                routePolylines.removeAll()
+                                route = MKRoute()
+                            }
+                            .frame(height: 35, alignment: .center)
+                            .labelStyle(.iconOnly)
+                            .buttonStyle(.borderedProminent)
+                            .tint(.white)
+                            .foregroundColor(.black)
+                            .shadow(color: Color.black.opacity(0.3), radius: 15, x: 0, y: 10)
                             
-                            Spacer()
+                            HStack{
+                                Text(locationViewModel.startLocationQueryFragment)
+                                    .lineLimit(1)
+                                Image(systemName: "arrow.forward")
+                                Text(locationViewModel.endLocationQueryFragment)
+                                    .lineLimit(1)
+                                
+                                Spacer()
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(12)
+                            .background(
+                                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                    .fill(.white)
+                                    .frame(maxWidth: .infinity)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            )
+                            .shadow(color: Color.black.opacity(0.3), radius: 15, x: 0, y: 10)
                             
-                            Image(systemName: "ellipsis.circle")
-                                .contextMenu{
-                                    Button("Edit", systemImage: "magnifyingglass") {
-                                        isSearch = false
-                                    }
-                                    Button("Filter", systemImage: isTimePicked ? "clock.badge.checkmark" : "clock") {
-                                        showTimePicker = true
-                                    }
-                                    .foregroundColor(isTimePicked ? .blue : .black)
-                                    Button("Reverse", systemImage: "rectangle.2.swap") {
-                                        swapDirections(start: startingPoint, destination: destinationPoint)
-                                        getWalkingDirections(to: .bbb)
-                                        getDirections()
-                                        isSearch = true
-                                    }
-                                }
+                    
                         }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(12)
-                        .background(
-                            RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                .fill(.white)
-                                .frame(maxWidth: .infinity)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                        )
                     }
                     Spacer()
                 }
                 .safeAreaPadding()
                 .frame(height: 150)
-                
+                .padding(.bottom)
+                .background(isSearch ? .gray.opacity(0.0) : .gray.opacity(0.27))
+                .background(isSearch ? .white.opacity(0.0) : .white.opacity(0.9))
                 
             }
             .sheet(isPresented: $showTimePicker) {
-                TimePicker(showTimePicker: $showTimePicker, timePicked: $timePicked, isTimePicked: $isTimePicked)
-                    .presentationDetents([.fraction(0.45)])
+                VStack {
+                    TimePicker(showTimePicker: $showTimePicker, timePicked: $timePicked, isTimePicked: $isTimePicked)
+                        .presentationDetents([.fraction(0.45)])
+                }
             }
             
             if isSearch {
-                DraggableSheet()
-                    .edgesIgnoringSafeArea(.bottom)
-                    .transition(.move(edge: .bottom))
+//                getDirections()
+//                getWalkingDirections()
+                DraggableSheet(
+                    routes: [Route.all[0]],
+                    fromHour: 6,
+                    fromMinute: 0
+                )
+                .edgesIgnoringSafeArea(.bottom)
+                .transition(.move(edge: .bottom))
+//                .onAppear {
+//                    getDirections()
+//                    getWalkingDirections()
+//                }
+            }
+            if showLocationSearchView {
+                LocationSearchView(
+                    isTimePicked: $isTimePicked,
+                    showSearchLocationView: $showLocationSearchView,
+                    isSearch: $isSearch) {
+                        getWalkingDirections()
+                        getDirections()
+                    }
+                    .environmentObject(locationViewModel)
+                    .onDisappear {
+                        getDirections()
+                        getWalkingDirections()
+                    }
             }
         }
     }
@@ -193,9 +238,8 @@ struct DiscoverView: View {
     func getDirections() {
         Task {
             let waypoints: [CLLocationCoordinate2D] = [
-                .bbb,
-                .ccc,
-                .istiqlal
+                locationViewModel.selectedStartCoordinate,
+                locationViewModel.selectedEndCoordinate
             ]
             
             guard waypoints.count >= 2 else { return }
@@ -221,13 +265,13 @@ struct DiscoverView: View {
         }
     }
     
-    func getWalkingDirections(to destination: CLLocationCoordinate2D) {
+    func getWalkingDirections(/*to destination: CLLocationCoordinate2D*/) {
         Task {
             guard let userLocation = await getUserLocation() else { return }
             
             let request = MKDirections.Request()
             request.source = MKMapItem(placemark: .init(coordinate: userLocation))
-            request.destination = MKMapItem(placemark: .init(coordinate: destination))
+            request.destination = MKMapItem(placemark: .init(coordinate: locationViewModel.selectedStartCoordinate))
             request.transportType = .walking
             
             do {
@@ -242,9 +286,13 @@ struct DiscoverView: View {
 
 
 struct DraggableSheet: View {
+    let routes: [Route]
+    let fromHour: Int
+    let fromMinute: Int
+    
     @State private var offsetY: CGFloat = 400 // Default height (collapsed)
     @State private var screenHeight: CGFloat = 0 // Store screen height
-
+    
     var body: some View {
         GeometryReader { geometry in
             let fullHeight = geometry.size.height
@@ -252,46 +300,49 @@ struct DraggableSheet: View {
             let midHeight = fullHeight * 0.6 // 80% of the screen
             let maxHeight = fullHeight // Fully expanded
             
-            DiscoverDetailRoute(routes: Route.all
+            DiscoverDetailRoute(
+                routes: routes,
+                fromHour: fromHour,
+                fromMinute: fromMinute
             )
-                .frame(height: max(minHeight, min(maxHeight, fullHeight - offsetY)))
-                .background(Color.white)
-                .clipShape(RoundedRectangle(cornerRadius: 20))
-                .offset(y: offsetY)
-                .gesture(
-                    DragGesture()
-                        .onChanged { gesture in
-                            let newOffset = offsetY + gesture.translation.height
-                            if newOffset >= 0 && newOffset <= fullHeight - minHeight {
-                                offsetY = newOffset
+            .frame(height: max(minHeight, min(maxHeight, fullHeight - offsetY)))
+            .background(Color.white)
+            .clipShape(RoundedRectangle(cornerRadius: 20))
+            .offset(y: offsetY)
+            .gesture(
+                DragGesture()
+                    .onChanged { gesture in
+                        let newOffset = offsetY + gesture.translation.height
+                        if newOffset >= 0 && newOffset <= fullHeight - minHeight {
+                            offsetY = newOffset
+                        }
+                    }
+                    .onEnded { _ in
+                        withAnimation {
+                            let threshold = (fullHeight - midHeight) / 2
+                            
+                            if offsetY > fullHeight - midHeight + threshold {
+                                offsetY = fullHeight - minHeight // Snap to 10pt height
+                            } else if offsetY > threshold {
+                                offsetY = fullHeight - midHeight // Snap to 80% height
+                            } else {
+                                offsetY = 0 // Fully expanded
                             }
                         }
-                        .onEnded { _ in
-                            withAnimation {
-                                let threshold = (fullHeight - midHeight) / 2
-                                
-                                if offsetY > fullHeight - midHeight + threshold {
-                                    offsetY = fullHeight - minHeight // Snap to 10pt height
-                                } else if offsetY > threshold {
-                                    offsetY = fullHeight - midHeight // Snap to 80% height
-                                } else {
-                                    offsetY = 0 // Fully expanded
-                                }
-                            }
-                        }
-                )
-                .onAppear {
-                    screenHeight = fullHeight
-                    offsetY = fullHeight - midHeight // Start at 80% height
-                }
-                .edgesIgnoringSafeArea(.bottom)
-                .transition(.move(edge: .bottom))
+                    }
+            )
+            .onAppear {
+                screenHeight = fullHeight
+                offsetY = fullHeight - midHeight // Start at 80% height
+            }
+            .edgesIgnoringSafeArea(.bottom)
+            .transition(.move(edge: .bottom))
         }
     }
 }
 
-#Preview {
-    DiscoverView()
-}
-
+//#Preview {
+//    DiscoverView()
+//}
+//
 

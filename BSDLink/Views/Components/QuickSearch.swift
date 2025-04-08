@@ -16,7 +16,7 @@ struct QuickSearch: View {
     
     var body: some View {
         HStack {
-            Text("Quick Search :")
+            Text("Suggestion :")
                 .font(.headline)
                 .foregroundColor(.black)
                 .shadow(color: .white, radius: 3)
@@ -30,7 +30,7 @@ struct QuickSearch: View {
                         .buttonStyle(.borderedProminent)
                         .tint(.white)
                         .foregroundColor(.black)
-                        .shadow(color: Color.black.opacity(0.1), radius: 4, x: 7, y: 8)
+//                        .shadow(color: Color.black.opacity(0.1), radius: 4, x: 7, y: 8)
                     }
                 }
             }

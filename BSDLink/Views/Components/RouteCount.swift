@@ -13,6 +13,9 @@ struct RouteCount: View {
     var body: some View {
         HStack {
             Text("\(count) Routes")
+                .font(.headline)
+                .bold()
+                .foregroundColor(.black.opacity(0.8))
             Spacer()
         }
         

@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var locationViewModel = LocationSearchViewModel()
+    
     var body: some View {
         TabBar()
+            .environmentObject(locationViewModel)
     }
 }
 
-#Preview {
-    ContentView()
-}
+//#Preview {
+//    ContentView()
+//}
+

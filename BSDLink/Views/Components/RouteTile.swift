@@ -5,7 +5,7 @@
 //  Created by Brayen Fredgin Cahyadi on 30/03/25.
 //
 
-/** Complete but more styling **/
+/** Complete **/
 
 import SwiftUI
 
@@ -19,9 +19,17 @@ struct RouteTile: View {
         HStack(){
             VStack(alignment: .leading, spacing: 5){
                 Text(routeName)
+                    .font(.title3)
+                    .bold()
                 Text(String(stops) + " Stops")
+                    .font(.body)
+                    .foregroundColor(.black.opacity(0.7))
             }
             Spacer()
         }
     }
 }
+
+//#Preview {
+//    RouteTile(routeName: "Intermoda - Sektor 1.3 - Intermoda", stops: 22)
+//}

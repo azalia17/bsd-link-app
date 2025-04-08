@@ -21,7 +21,7 @@ struct RouteDetail: View {
             
             HStack {
                 Text(route.name)
-                    .font(.title)
+                    .font(.title3)
                     .fontWeight(.bold)
                 Spacer()
                 Button(action: {
@@ -42,24 +42,16 @@ struct RouteDetail: View {
                         .padding(.vertical)
                     
                     Text("Bus Stops")
-                        .font(.title2)
+                        .font(.headline)
                         .bold()
-                    Text("Schedule show: 13.00 - 14.00")
-                        .font(.caption)
-                        .foregroundColor(.gray)
                     VStack(spacing: 0) {
-                        ForEach(0..<3) { index in
-//                            ItemExpandable(
-//                                busStopName: "Courts Mega Store \(index)",
-//                                index: index,
-//                                isLastItem: index == 2,
-//                                contentExpanded: {
-//                                    BusScheduleGrid(busSchedules: [])
-//                                    .padding(.top)
-//                                },
-//                                isShowPreviewSchedule: false
-//                            )
-                            
+                        ForEach(route.busStops.indices, id: \.self) { index in
+                            ScheduleExpandableForDetailRoute(
+                                index: index,
+                                route: route,
+                                fromHour: 10,
+                                fromMinute: 0
+                            )
                         }
                     }
                 }
@@ -68,15 +60,51 @@ struct RouteDetail: View {
             .menuIndicator(.hidden)
             .scrollIndicators(.hidden)
             .sheet(isPresented: $showInfoSheet) {
-                Text("For info")
+                RouteInfo(routes: [route], isShow: $showInfoSheet)
             }
         }
         .padding(.horizontal)
     }
 }
 
-#Preview {
-    @Previewable @State var show : Bool = false
-    RouteDetail(route: Route.all[0])
-//    RouteDetail(route: Route(name: "aaa", routeNumber: "Route 1", busStops: [], bus: []))
+struct ScheduleExpandableForDetailRoute: View {
+    var index : Int
+    var route: Route
+    let fromHour: Int
+    let fromMinute: Int
+    
+    var body: some View {
+        let currentBusStopId = route.busStops[index]
+        
+        let matchingDetails = route.schedule
+            .flatMap { Schedule.getSchedules(by: [$0]) }
+            .flatMap { $0.scheduleDetail }
+            .map { ScheduleDetail.getScheduleDetail(by: $0) }
+            .filter { $0.busStop == currentBusStopId }
+        
+        let stopIndex = matchingDetails.indices.contains(index)
+        ? matchingDetails[index].index
+        : matchingDetails.first?.index ?? 0
+        
+        ItemExpandable(
+            route: route,
+            busStop: BusStop.getSingleStop(by: currentBusStopId),
+            fromHour: fromHour,
+            fromMinute: fromMinute,
+            scheduleIndex: stopIndex,
+            isFirstItem: index == 0,
+            isLastItem: index == route.busStops.count - 1,
+            contentExpanded: {
+                BusScheduleGrid(busStopId: currentBusStopId, index: stopIndex, busSchedules: Schedule.getSchedules(by: route.schedule))
+                .padding([.top, .trailing])
+                .padding(.top, 8)
+            },
+            isShowPreviewSchedule: false
+        )
+    }
 }
+
+//#Preview {
+//    @Previewable @State var show : Bool = false
+//    RouteDetail(route: Route.all[0])
+//}

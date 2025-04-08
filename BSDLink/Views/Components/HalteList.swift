@@ -23,6 +23,6 @@ struct HalteList: View {
     }
 }
 
-#Preview {
-    HalteList(halteNames: BusStop.all)
-}
+//#Preview {
+//    HalteList(halteNames: BusStop.all)
+//}

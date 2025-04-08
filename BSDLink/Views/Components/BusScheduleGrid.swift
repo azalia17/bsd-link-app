@@ -5,13 +5,15 @@
 //  Created by Azalia Amanda on 03/04/25.
 //
 
-/** Complete **/
+/** done **/
 
 import SwiftUI
 
 struct BusScheduleGrid: View {
-    var busSchedules: [Schedule]
-
+    let busStopId: String
+    let index: Int
+    let busSchedules: [Schedule]
+    
     var body: some View {
         VStack(alignment: .leading) {
             ForEach(busSchedules) { schedule in
@@ -21,16 +23,24 @@ struct BusScheduleGrid: View {
                     Text(Bus.getBus(by: schedule.bus).platNumber)
                         .font(.subheadline)
                 }
+//                .padding(.top)
                 
-                ScheduleGrid(schedules: [], spacing: 1)
-                Divider()
-                    .padding(.vertical)
+                ScheduleGrid(
+                    schedules: ScheduleDetail.getScheduleTime(
+                        schedule: schedule.scheduleDetail,
+                        index: index,
+                        busStopId: busStopId
+                    )
+                )
+                .padding(.bottom, 8)
+//                Divider()
+//                    .padding(.top)
             }
         }
         .padding(.top)
     }
 }
 
-#Preview {
-    BusScheduleGrid(busSchedules: Schedule.all)
-}
+//#Preview {
+//    BusScheduleGrid(busStopId: "intermoda", index: 1, busSchedules: Schedule.all)
+//}

@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct TabBar: View {
+    @StateObject var locationViewModel = LocationSearchViewModel()
+    
     var body: some View {
         TabView {
             DiscoverView()
                 .tabItem {
                     Label("Discover", systemImage: "map")
                 }
+                .environmentObject(locationViewModel)
             
             RouteListView()
                 .tabItem {
@@ -23,6 +26,6 @@ struct TabBar: View {
     }
 }
 
-#Preview {
-    TabBar()
-}
+//#Preview {
+//    TabBar()
+//}
