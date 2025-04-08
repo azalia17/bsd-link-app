@@ -196,7 +196,7 @@ struct DiscoverView: View {
 //                getDirections()
 //                getWalkingDirections()
                 DraggableSheet(
-                    routes: Route.all,
+                    routes: [Route.all[0]],
                     fromHour: 6,
                     fromMinute: 0
                 )

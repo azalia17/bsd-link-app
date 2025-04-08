@@ -127,8 +127,10 @@ struct ExpandableContentType<ExpandedContent: View>: View {
                     
                     if isShowPreviewSchedule && !isExpanded{
                         let sched = Schedule.getScheduleBusStopBasedWithTime(route: route, busStopId: busStop.id, index: scheduleIndex, fromHour: fromHour, fromMinute: fromMinute)
+                        let previewSchedule : [ScheduleTime] = if sched.isEmpty {[]} else {[sched[0], sched[1]]}
+                        
                         ScheduleGrid(
-                            schedules: [sched[0], sched[1]],
+                            schedules: previewSchedule,
                             isMore: true,
                             spacing: 1
                         )
