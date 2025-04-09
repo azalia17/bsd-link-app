@@ -43,6 +43,7 @@ struct DiscoverView: View {
     @State private var previousStartCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     @State private var previousEndCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
 
+    @State var busStopData: [String : [String]] = [:]
     
     @EnvironmentObject var locationViewModel : LocationSearchViewModel
     
@@ -209,7 +210,8 @@ struct DiscoverView: View {
 //                    routes: Route.all.filter {$0.id == bestRoutes[0].id},
 //                    routes: locationViewModel.bestRoutes,
                     fromHour: 6,
-                    fromMinute: 0
+                    fromMinute: 0,
+                    busStopData: busStopData
                 )
                 .edgesIgnoringSafeArea(.bottom)
                 .transition(.move(edge: .bottom))
@@ -361,6 +363,10 @@ struct DiscoverView: View {
                 } else {
                     print("No matching route found")
                 }
+                
+                busStopData = getScheduleForInterestedStops(route: bestRoutes[0], schedules: Schedule.getSchedules(by: bestRoutes[0].schedule), interestedStops: locationViewModel.busStopsGenerated.map { $0.busStopId })
+                
+//                print()
 
                 
                 /**END*/
@@ -398,6 +404,8 @@ struct DiscoverView: View {
             } else {
                 print("Could not generate a route.")
             }
+            
+            
             
             openSheet = true
         }
@@ -480,6 +488,206 @@ struct DiscoverView: View {
         return (startBusStop, endBusStop, matchingRoutes)
     }
     
+//    func getScheduleForInterestedStops(route: Route, schedules: [Schedule], interestedStops: [String]) -> [String] {
+//        var result: [String] = []
+//        
+//        // Iterate through each schedule
+//        for schedule in schedules {
+//            // Check the schedule details for the interested bus stops
+//            for stop in interestedStops {
+//                // Find the schedule detail for the bus stop
+//                if let detail = schedule.scheduleDetail.first(where: { $0.contains(stop) }) {
+//                    result.append(detail)
+//                }
+//            }
+//        }
+//        
+//        return result
+//    }
+    
+//    func getScheduleForInterestedStops(route: Route, schedules: [Schedule], interestedStops: [String]) -> [String: [String]] {
+//        var result: [String: [String]] = [:]
+//        
+//        // Iterate through each schedule
+//        for schedule in schedules {
+//            // Check the schedule details for the interested bus stops
+//            for stop in interestedStops {
+//                // Filter schedule details for the current stop
+//                let details = schedule.scheduleDetail.filter { $0.contains(stop) }
+//                
+//                // If there are matching details, sort them by the number at the end of the string
+//                if !details.isEmpty {
+//                    // Extract the number from each schedule detail (after the last underscore)
+//                    let sortedDetails = details.sorted { (first, second) -> Bool in
+//                        // Extract the number after the last underscore
+//                        let firstNumber = extractNumber(from: first)
+//                        let secondNumber = extractNumber(from: second)
+//                        return firstNumber < secondNumber
+//                    }
+//                    
+//                    // Add sorted details to the result
+//                    if result[stop] != nil {
+//                        result[stop]?.append(contentsOf: sortedDetails)
+//                    } else {
+//                        result[stop] = sortedDetails
+//                    }
+//                }
+//            }
+//        }
+//        
+//        return result
+//    }
+//
+//    // Helper function to extract the number after the last underscore
+//    func extractNumber(from string: String) -> Int {
+//        let components = string.split(separator: "_")
+//        if let numberString = components.last, let number = Int(numberString) {
+//            return number
+//        }
+//        return 0  // Default to 0 if the number cannot be extracted
+//    }
+    
+    func getScheduleForInterestedStops(route: Route, schedules: [Schedule], interestedStops: [String]) -> [String: [String]] {
+        var result: [String: [String]] = [:]
+        
+        // Iterate through each schedule
+        for schedule in schedules {
+            // Check the schedule details for the interested bus stops
+            for stop in interestedStops {
+                // Filter schedule details for the current stop
+                var details = schedule.scheduleDetail.filter { $0.contains(stop) }
+                
+                // If there are matching details, merge them into the result
+                if !details.isEmpty {
+                    // If the bus stop is already in the result, append the details
+                    if result[stop] != nil {
+                        result[stop]?.append(contentsOf: details)
+                    } else {
+                        // Otherwise, create a new entry for the bus stop
+                        result[stop] = details
+                    }
+                }
+            }
+        }
+        
+        // Now, for each bus stop, sort the schedule details by the number at the end
+        for (stop, details) in result {
+            // Sort the details by the number after the last underscore
+            result[stop] = details.sorted { (first, second) -> Bool in
+                let firstNumber = extractNumber(from: first)
+                let secondNumber = extractNumber(from: second)
+                return firstNumber < secondNumber
+            }
+        }
+        
+        return result
+    }
+
+    // Helper function to extract the number from the schedule detail
+    func extractNumber(from string: String) -> Int {
+        let components = string.split(separator: "_")
+        if let numberString = components.last, let number = Int(numberString) {
+            return number
+        }
+        return 0  // Default to 0 if the number cannot be extracted
+    }
+
+
+
+
+    
+//    func getRoutee(by id: String, from routes: [Route]) -> Route? {
+//        return routes.first(where: { $0.id == id })
+//    }
+//    
+//    // Function to get the schedule based on the bus associated with the route
+//    func getSchedulee(for route: Route, from schedules: [Schedule]) -> Schedule? {
+//        return schedules.first(where: { $0.bus == route.bus.first })  // Assume first bus for simplicity
+//    }
+//    
+//    // Function to get schedule details and sort by bus stop index
+//    func getOrderedScheduleDetailss(for route: Route, schedule: Schedule) -> [ScheduleDetail]? {
+//        var orderedDetails: [ScheduleDetail] = []
+//
+//        // For each bus stop in the route, find the corresponding ScheduleDetail
+//        for (index, busStop) in route.busStops.enumerated() {
+//            if let scheduleDetail = ScheduleDetail.getScheduleDetail(by: schedule.first.scheduleDetail)(where: { $0.busStop == busStop }) {
+//                var updatedScheduleDetail = scheduleDetail
+//                updatedScheduleDetail.index = index  // Set the index based on the bus stop position
+//                orderedDetails.append(updatedScheduleDetail)
+//            }
+//        }
+//
+//        // Sort details by index (to ensure correct order)
+//        orderedDetails.sort { $0.index < $1.index }
+//
+//        return orderedDetails
+//    }
+
+
+    
+//    func getScheduleDetail(routeId: String) {
+        // Example route ID (you know the route already)
+//        let routeId = "route_4"
+
+        // Example list of routes and schedules
+//        let routes: [Route] = Route.all
+//        let schedules: [Schedule] = Schedule.all
+//
+//        // Step 1: Get the route by ID
+//        if let route = getRoutee(by: routeId, from: routes) {
+//            print("Found route: \(route.name)")
+//            
+//            // Step 2: Get the corresponding schedule for the route
+//            if let schedule = getSchedulee(for: route, from: schedules) {
+//                print("Found schedule for route: \(schedule.id)")
+//                
+//                // Step 3: Get ordered schedule details based on bus stops
+//                if let orderedDetails = getOrderedScheduleDetailss(for: route, schedule: schedule) {
+//                    // Step 4: Print out the ordered schedule details
+//                    for detail in orderedDetails {
+//                        print("Bus Stop: \(detail.busStop), Time: \(detail.time)")
+//                    }
+//                }
+//            } else {
+//                print("No schedule found for route.")
+//            }
+//        } else {
+//            print("Route not found.")
+//        }
+        // Example route ID (you already know the route)
+//        let routeId = "route_4"
+//
+//        // Example list of routes and schedules (populated as per your data)
+//        let routes: [Route] = [ /* Your route data here */ ]
+//        let schedules: [Schedule] = [ /* Your schedule data here */ ]
+//
+//        // Step 1: Get the route by ID
+//        if let route = getRoute(by: routeId, from: routes) {
+//            print("Found route: \(route.name)")
+//            
+//            // Step 2: Get the corresponding schedule for the route
+//            if let schedule = getSchedule(for: route, from: schedules) {
+//                print("Found schedule for route: \(schedule.id)")
+//                
+//                // Step 3: Get ordered schedule details based on bus stops
+//                if let orderedDetails = getOrderedScheduleDetails(for: route, schedule: schedule) {
+//                    // Step 4: Print out the ordered schedule details
+//                    for detail in orderedDetails {
+//                        // Print schedule details in order of bus stops
+//                        print("Bus Stop: \(detail.busStop), Time: \(detail.time)")
+//                    }
+//                }
+//            } else {
+//                print("No schedule found for route.")
+//            }
+//        } else {
+//            print("Route not found.")
+//        }
+//
+//
+//    }
+    
 }
 
 
@@ -487,6 +695,7 @@ struct DraggableSheet: View {
     var routes: [Route]
     let fromHour: Int
     let fromMinute: Int
+    var busStopData: [String : [String]]
     
     @State private var offsetY: CGFloat = 400 // Default height (collapsed)
     @State private var screenHeight: CGFloat = 0 // Store screen height
@@ -500,6 +709,7 @@ struct DraggableSheet: View {
             
             DiscoverDetailRoute(
                 routes: routes,
+                busStopData: busStopData,
                 fromHour: fromHour,
                 fromMinute: fromMinute
             )
