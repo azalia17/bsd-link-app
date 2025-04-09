@@ -507,7 +507,7 @@ extension BusStop {
 
         BusStop(
             id: "gop1",
-            name: "Gop1",
+            name: "GOP 1",
             latitude: CLLocationCoordinate2D.gop1.latitude,
             longitude: CLLocationCoordinate2D.gop1.longitude,
             images: ["Intermoda_1"],
@@ -533,8 +533,8 @@ extension BusStop {
         ),
 
         BusStop(
-            id: "greencove",
-            name: "Greencove",
+            id: "greenCove",
+            name: "Green Cove",
             latitude: CLLocationCoordinate2D.greencove.latitude,
             longitude: CLLocationCoordinate2D.greencove.longitude,
             images: ["Intermoda_1"],

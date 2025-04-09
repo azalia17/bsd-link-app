@@ -62,8 +62,8 @@ extension Bus {
             operationalHour: "06.00 - 21.00"
         ),
         Bus(
-            id: "bus_008a",
-            code: "B08",
+            id: "bus_007a",
+            code: "B07",
             platNumber: "B 7166 PAA",
             operationalHour: "06.00 - 09.00"
         ),
@@ -74,8 +74,8 @@ extension Bus {
             operationalHour: "06.00 - 21.00"
         ),
         Bus(
-            id: "bus_007a",
-            code: "B07",
+            id: "bus_008a",
+            code: "B08",
             platNumber: "B 7866 PAA",
             operationalHour: "06.00 - 09.00"
         ),
