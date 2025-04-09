@@ -11,17 +11,11 @@ import MapKit
 struct DiscoverView: View {
     var cameraPosition: MapCameraPosition = .region(.init(center: .init(latitude: -6.305968, longitude: 106.672272), latitudinalMeters: 13000, longitudinalMeters: 13000))
     
-    //    var cameraPosition: MapCameraPosition = .camera(MapCamera(centerCoordinate: CLLocationCoordinate2D(latitude: -6.305968, longitude: 106.672272), distance: 400000.0, heading: 0, pitch: 0))
-    
-    
-    
     let locationManager = CLLocationManager()
     @State private var routePolylines: [MKPolyline] = []
     @State private var startingPoint: String = ""
     @State private var destinationPoint: String = ""
     @State private var activeTextField: String = ""
-    
-//    private var startCoordinate: CLLocationCoordinate2D
     
     @State private var startingCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2D()
     @State private var userLocation: CLLocationCoordinate2D = CLLocationCoordinate2D()
