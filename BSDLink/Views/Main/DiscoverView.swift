@@ -47,6 +47,15 @@ struct DiscoverView: View {
                     
                     Marker(locationViewModel.endLocationQueryFragment, systemImage: "flag.circle.fill", coordinate: locationViewModel.selectedEndCoordinate)
                         .tint(.red.gradient)
+                    
+                    ForEach(locationViewModel.busStopsGenerated) { identifiableCoordinate in
+                        Marker(identifiableCoordinate.busStopName,
+                               systemImage: "bus",
+                               coordinate: identifiableCoordinate.coordinate
+                        ) // Access the coordinate here
+                        .tint(.orange.gradient)
+                    }
+
                 }
                 
                 UserAnnotation().tint(.blue)
@@ -130,9 +139,10 @@ struct DiscoverView: View {
                             )
                             .shadow(color: Color.black.opacity(0.3), radius: 15, x: 0, y: 10)
                             
+                    
                         }
-                        Spacer()
                     }
+                    Spacer()
                 }
                 .safeAreaPadding()
                 .frame(height: 150)
@@ -221,11 +231,14 @@ struct DiscoverView: View {
                         }
                     }
                 }
-                
-                let waypoints: [CLLocationCoordinate2D] = [
-                    CLLocationCoordinate2D(latitude: startBusStop.latitude, longitude: startBusStop.longitude),
-                    CLLocationCoordinate2D(latitude: endBusStop.latitude, longitude: endBusStop.longitude)
-                ]
+                let waypoints: [CLLocationCoordinate2D] = locationViewModel.busStopsGenerated.map { $0.coordinate }
+
+//                let waypoints: [CLLocationCoordinate2D] = locationViewModel.busStopsGenerated
+//                [
+//                    CLLocationCoordinate2D(latitude: startBusStop.latitude, longitude: startBusStop.longitude),
+//                    CLLocationCoordinate2D(latitude: endBusStop.latitude, longitude: endBusStop.longitude)
+                    
+//                ]
                 
                 guard waypoints.count >= 2 else { return }
                 

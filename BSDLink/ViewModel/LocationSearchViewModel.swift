@@ -39,6 +39,9 @@ class LocationSearchViewModel: NSObject, ObservableObject {
     /*@Published */var route: MKRoute?
     /*@Published*/ var routePolylines: [MKPolyline] = []
     
+//    @Published var busStopsGenerated: [CLLocationCoordinate2D] = []
+    @Published var busStopsGenerated: [IdentifiableCoordinate] = []
+    
     override init() {
         super.init()
         
@@ -262,17 +265,17 @@ class LocationSearchViewModel: NSObject, ObservableObject {
                 }
             }
         }
-        //        } else {
-        //
-        //            print("Could not generate a route.")
-        //        }
-        //
-        // Return the result with the nearest bus stops and matching routes
         return (startBusStop, endBusStop, matchingRoutes)
     }
+    
     func generateBusStops(from startBusStop: BusStop, to endBusStop: BusStop, routes: [Route]) -> [BusStop]? {
-        // Find the first route that has both start and end bus stops
+        var bestBusStops: [BusStop]? = nil
+        var minBusStopsCount = Int.max  // We will use this to track the route with the least bus stops
+
+        // Iterate over each route to find the valid routes with start and end bus stops
         for route in routes {
+            print("\nChecking route: \(route.name) id: \(route.id)\n")
+            
             if let startIndex = route.busStops.firstIndex(of: startBusStop.id),
                let endIndex = route.busStops.firstIndex(of: endBusStop.id),
                startIndex <= endIndex {
@@ -285,15 +288,29 @@ class LocationSearchViewModel: NSObject, ObservableObject {
                     return BusStop.all.first { $0.id == busStopID }
                 }
                 
+                print("busStopsOnRoute \(busStopsOnRoute)\n")
                 
-                
-                return busStopsOnRoute
+                // Compare the count of bus stops with the current minimum
+                if busStopsOnRoute.count < minBusStopsCount {
+                    minBusStopsCount = busStopsOnRoute.count
+                    bestBusStops = busStopsOnRoute  // Update the best route with the least bus stops
+                }
             }
         }
         
-        // Return nil if no matching route was found
-        return nil
+        generateBusStopCoordinates(from: bestBusStops ?? [])
+        
+        
+        // Return the bus stops with the least number of stops, or nil if no valid route was found
+        return bestBusStops
     }
+    
+    func generateBusStopCoordinates(from busStops: [BusStop]) {
+        busStopsGenerated = busStops.map { busStop in
+            return IdentifiableCoordinate(coordinate: CLLocationCoordinate2D(latitude: busStop.latitude, longitude: busStop.longitude), busStopName: busStop.name)
+        }
+    }
+
     
     func generatePathsWithTransfers(startBusStop: BusStop, endBusStop: BusStop, routes: [Route]) -> [[BusStop]] {
         var possiblePaths: [[BusStop]] = []
@@ -340,10 +357,18 @@ class LocationSearchViewModel: NSObject, ObservableObject {
         return possiblePaths
     }
     
+    
+    
 }
 
 extension LocationSearchViewModel: MKLocalSearchCompleterDelegate {
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
         self.results = completer.results
     }
+}
+
+struct IdentifiableCoordinate: Identifiable {
+    let id = UUID() // Automatically generates a unique ID
+    let coordinate: CLLocationCoordinate2D
+    let busStopName: String
 }
