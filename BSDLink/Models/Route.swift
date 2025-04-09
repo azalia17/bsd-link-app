@@ -13,6 +13,22 @@ struct Route: Identifiable, Codable {
 }
 
 extension Route {
+    func getRouteGeneralDetail(routeid: String) -> (String, Int, [String]){
+        let route = Route.all.filter {$0.id == routeid}.first ?? Route(id: "xx", name: "xx", routeNumber: 0, busStops: [], bus: [], schedule: [], note: ["xx"])
+        return (route.name, route.routeNumber, route.note)
+    }
+
+    // Returns the schedule for a bus stop (for simplicity, assume the bus stop is indexed)
+//    func getSchedule(for busStopID: String) -> [ScheduleDetail] {
+//        // Fetch the schedule for this bus stop from the route's schedule
+//        return self.schedule
+//            .flatMap { Schedule.getSchedules(by: [$0]) }
+//            .flatMap { ScheduleDetail.getManyScheduleDetails(by: [$0.scheduleDetail])}
+//            .flatMap { $0.scheduleDetail }
+//            .filter { $0.busStop == busStopID }
+//    }
+//    
+    
 //    static.le
     static let all: [Route] = [
         Route(
@@ -119,6 +135,7 @@ extension Route {
                 "pasarModernTimur",
                 "griyaLoka1",
                 "sektor13",
+                "sektor13",
                 "griyaLoka2",
                 "santaUrsula1",
                 "santaUrsula2",
@@ -177,6 +194,7 @@ extension Route {
                 "qBig1",
                 "lulu",
                 "greenwichPark1",
+                "greenwichParkOffice",
                 "jadeite",
                 "deMaja",
                 "deHeliconia2",
@@ -218,7 +236,6 @@ extension Route {
                 "smlPlaza",
                 "theBreeze",
                 "cbdTimur1",
-//                "cbdSelatan1",
                 "aeonMall1",
                 "aeonMall2",
                 "cbdTimur2",
@@ -387,27 +404,5 @@ extension Route {
                 "LOBBY AEON MALL BERHENTI DAN MENUNGGU 3 MENIT ATAU MENYESUAIKAN DENGAN JADWAL"
             ]
         )
-        
     ]
-    
-//    static let all: [Route] = [
-//             Route(
-//                 id: "route_1",
-//                 name: "Intermoda - Sektor 1.3 - Intermoda",
-//                 routeNumber: 1,
-//                 busStops: [
-//                     "intermoda",
-//                     "intermoda",
-//                     "intermoda"
-//                 ],
-//                 bus: ["bus_a001", "bus_a002"],
-//                 schedule: ["r1_1", "r1_2"],
-//                 note: [
-//                     "TIME TABLE SEWAKTU - WAKTU DAPAT BERUBAH MENYESUAIKAN KONDISI OPERASIONAL DAN TRAFFIC",
-//                     "JADWAL BERWARNA KUNING HANYA BERLAKU, SABTU, MINGGU DAN HARI LIBUR BERLAKU",
-//                     "THE BREEZE BERHENTI DAN MENUNGGU 1 MENIT ATAU MENYESUAIKAN DENGAN JADWAL",
-//                     "ICE 6 BERHENTI DAN MENUNGGU 1 MENIT ATAU MENYESUAIKAN DENGAN JADWAL"
-//                 ]
-//             )
-//         ]
 }

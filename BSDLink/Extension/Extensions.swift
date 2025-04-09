@@ -8,6 +8,7 @@
 import Foundation
 import MapKit
 import SwiftUI
+import CoreLocation
 
 extension CLLocationCoordinate2D {
     static let istiqlal = CLLocationCoordinate2D(latitude: -6.170166, longitude: 106.831375)
@@ -161,6 +162,13 @@ func getBus(_ ids: [String]) -> [Bus] {
     return buses
 }
 
+extension CLLocationCoordinate2D: @retroactive Equatable {
+    public static func ==(lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
+        return lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
+    }
+}
+
+
 func getRoute(_ ids: [String]) -> [Route] {
     var routes : [Route] = []
     
@@ -180,7 +188,42 @@ extension String {
     func capitalizingFirstLetter() -> String {
         prefix(1).capitalized + dropFirst().lowercased()
     }
+    
+    // Function to extract the last number from the string
+    func getLastNumber() -> String? {
+        // Regular expression to match the last number in the string
+        let regexPattern = "\\d+$"
+        
+        if let regex = try? NSRegularExpression(pattern: regexPattern, options: []) {
+            let range = NSRange(location: 0, length: self.utf16.count)
+            
+            if let match = regex.firstMatch(in: self, options: [], range: range) {
+                if let numberRange = Range(match.range, in: self) {
+                    return String(self[numberRange])
+                }
+            }
+        }
+        
+        // Return nil if no number is found
+        return nil
+    }
 }
+
+extension CLLocationCoordinate2D {
+    func distance(to location: CLLocationCoordinate2D) -> CLLocationDistance {
+        let location1 = CLLocation(latitude: self.latitude, longitude: self.longitude)
+        let location2 = CLLocation(latitude: location.latitude, longitude: location.longitude)
+        return location1.distance(from: location2) // This calls the correct distance method
+    }
+}
+//
+//extension CLLocationCoordinate2D {
+//    func distance(to location: CLLocationCoordinate2D) -> CLLocationDistance {
+//        let location1 = CLLocation(latitude: self.latitude, longitude: self.longitude)
+//        let location2 = CLLocation(latitude: location.latitude, longitude: location.longitude)
+//        return location1.distance(from: location2)
+//    }
+//}
 
 extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
@@ -201,3 +244,7 @@ struct RoundedCorner: Shape {
         return Path(path.cgPath)
     }
 }
+
+//extension String {
+//
+//}

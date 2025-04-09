@@ -7481,7 +7481,7 @@
     {
         "id": "sd_r3_b5_terminalIntermoda_1",
         "index": 1,
-        "BusStop": "terminalIntermoda",
+        "BusStop": "intermoda",
         "time": [
             {
                 "hour": 6,
@@ -7544,7 +7544,7 @@
     {
         "id": "sd_r3_b7a_terminalIntermoda_1",
         "index": 1,
-        "BusStop": "terminalIntermoda",
+        "BusStop": "intermoda",
         "time": [
             {
                 "hour": 6,
@@ -16512,7 +16512,7 @@
     {
         "id": "sd_r7_b10_terminalIntermoda_1",
         "index": 1,
-        "BusStop": "terminalIntermoda",
+        "BusStop": "intermoda",
         "time": [
             {
                 "hour": 7,
