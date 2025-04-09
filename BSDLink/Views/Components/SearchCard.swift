@@ -126,19 +126,19 @@ struct SearchCard: View {
 
 //                    Spacer()
                     
-                    Button(action: {
-                        filterHandler()
-                    }) {
-                        Image(systemName: isTimePicked ? "line.3.horizontal.decrease.circle.fill" : "line.horizontal.3.decrease.circle")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 20, height: 20)
-                            .foregroundColor(isTimePicked ? .blue : .black)
-                    }
-                    .frame(width: 44, height: 44)
-                    .background(Color.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                    .shadow(color: Color.black.opacity(0.1), radius: 15, x: 0, y: 10)
+//                    Button(action: {
+//                        filterHandler()
+//                    }) {
+//                        Image(systemName: isTimePicked ? "line.3.horizontal.decrease.circle.fill" : "line.horizontal.3.decrease.circle")
+//                            .resizable()
+//                            .scaledToFit()
+//                            .frame(width: 20, height: 20)
+//                            .foregroundColor(isTimePicked ? .blue : .black)
+//                    }
+//                    .frame(width: 44, height: 44)
+//                    .background(Color.white)
+//                    .clipShape(RoundedRectangle(cornerRadius: 8))
+//                    .shadow(color: Color.black.opacity(0.1), radius: 15, x: 0, y: 10)
 
                     
 //                    Button("Swap", systemImage: "rectangle.2.swap") {

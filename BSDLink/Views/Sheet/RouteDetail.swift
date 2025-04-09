@@ -44,6 +44,12 @@ struct RouteDetail: View {
                     Text("Bus Stops")
                         .font(.headline)
                         .bold()
+                    HStack(alignment: .center){
+                        Text("Schedule Type: ")
+                            .font(.caption)
+                        ScheduleChip(text: "Weekday")
+                        ScheduleChip(text: "Weekend", isRegular: false)
+                    }.padding(.bottom, 8)
                     VStack(spacing: 0) {
                         ForEach(route.busStops.indices, id: \.self) { index in
                             ScheduleExpandableForDetailRoute(

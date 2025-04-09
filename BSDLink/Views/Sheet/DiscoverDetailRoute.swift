@@ -186,9 +186,17 @@ struct DiscoverDetailSingleRoute: View {
                     Text("Bus Stops")
                         .font(.title2)
                         .bold()
-                    Text("Schedule show from \(formatTime(from: timeFrom(fromHour, fromMinute)))")
-                        .font(.caption)
-                        .foregroundColor(.gray)
+                    
+                    HStack(alignment: .center){
+                        Text("Schedule Type: ")
+                            .font(.caption)
+                        ScheduleChip(text: "Weekday")
+                        ScheduleChip(text: "Weekend", isRegular: false)
+                    }.padding(.bottom, 8)
+                    
+                    //                    Text("Schedule show from \(formatTime(from: timeFrom(fromHour, fromMinute)))")
+//                        .font(.caption)
+//                        .foregroundColor(.gray)
                     VStack(spacing: 0) {
 //
                         ForEach(filteredBusStop.indices, id: \.self) { bus in
