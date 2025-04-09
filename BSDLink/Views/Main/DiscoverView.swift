@@ -48,21 +48,11 @@ struct DiscoverView: View {
             Map(initialPosition: cameraPosition) {
                 
                 if isSearch {
-                    Marker(locationViewModel.startLocationQueryFragment, systemImage: "bus", coordinate: locationViewModel.selectedStartCoordinate)
-                        .tint(.orange.gradient)
+                    Marker(locationViewModel.startLocationQueryFragment, systemImage: "mappin.circle.fill", coordinate: locationViewModel.selectedStartCoordinate)
+                        .tint(.red.gradient)
                     
-                    Marker(locationViewModel.endLocationQueryFragment, systemImage: "bus", coordinate: locationViewModel.selectedEndCoordinate)
-                        .tint(.orange.gradient)
-                    //
-                    //                    Annotation("Istiqlal", coordinate: .istiqlal, anchor: .bottom) {
-                    //                        Image(systemName: "moon.fill")
-                    //                            .resizable()
-                    //                            .aspectRatio(contentMode: .fit)
-                    //                            .foregroundStyle(.white)
-                    //                            .frame(width: 30, height: 30)
-                    //                            .padding(7)
-                    //                            .background(.orange.gradient, in: .circle)
-                    //                    }
+                    Marker(locationViewModel.endLocationQueryFragment, systemImage: "flag.circle.fill", coordinate: locationViewModel.selectedEndCoordinate)
+                        .tint(.red.gradient)
                 }
                 
                 UserAnnotation().tint(.blue)
@@ -84,85 +74,24 @@ struct DiscoverView: View {
                         .stroke(.orange, lineWidth: 3)
                 }
             }
-            .task {
-                //            guard let userCoordinate = await getUserLocation() else { return }
-                ////            if let userLocation = locationManager.currentLocation {
-                //                cameraPosition = .camera(MapCamera(centerCoordinate: userCoordinate, distance: 400000.0, heading: 0, pitch: 0))
-                ////                }
-                //            getUserLocation()
-                //            guard let userLocation2 = await getUserLocation() else { return }
-                //            do {
-                //                userLocation = userLocation2
-                //            } catch {
-                //                print("Error fetch user")
-                //            }
-            }
-            .tint(.orange)
             .onAppear {
                 locationManager.requestWhenInUseAuthorization()
-            }
-            .mapControls {
-                
-                //            MapUserLocationButton()
-                //            MapCompass()
-                //            MapPitchToggle()
-                //            MapScaleView()
             }
             .mapStyle(.standard(elevation: .realistic))
             .overlay(alignment: .topLeading) {
                 VStack(alignment: .leading) {
                     if(!isSearch){
                         SearchCard(
-                            searchHandler: {
-                                //                                getWalkingDirections(to: .bbb)
-                                //                                getDirections()
-                                //                                isSearch = true
-                            },
+                            searchHandler: {},
                             filterHandler: {
                                 showTimePicker = true
                             },
-                            swapHandler: {
-                                //                                swapDirections(
-                                //                                    start: startingPoint,
-                                //                                    destination: destinationPoint
-                                //                                )
-                            },
+                            swapHandler: {},
                             startingPoint: $startingPoint,
                             destinationPoint: $destinationPoint,
                             activeTextField: $activeTextField,
                             isTimePicked: $isTimePicked,
                             showSearchLocationView: $showLocationSearchView) {
-                                //                                if let routeDetails = locationViewModel.generateRoute(from: .gramedia, to: .eternity) {
-                                //                                    let startBusStop = routeDetails.startBusStop
-                                //                                    let endBusStop = routeDetails.endBusStop
-                                //                                    let routes = routeDetails.routes
-                                //
-                                //                                    // Generate the bus stops the user will pass through based on the first matching route
-                                //                                    if let busStopsOnRoute = locationViewModel.generateBusStops(from: startBusStop, to: endBusStop, routes: routes) {
-                                //                                        // Print out the bus stops
-                                //                                        for busStop in busStopsOnRoute {
-                                //                                            print("Bus stop: \(busStop.name)")
-                                //                                        }
-                                //                                    } else {
-                                //
-                                //
-                                //                                        // Generate paths with possible transfers considering transit bus stops
-                                //                                        let pathsWithTransfers = locationViewModel.generatePathsWithTransfers(startBusStop: startBusStop, endBusStop: endBusStop, routes: routes)
-                                //
-                                //                                        // Print out the possible paths
-                                //                                        for (index, path) in pathsWithTransfers.enumerated() {
-                                //                                            print("Path \(index + 1):")
-                                //                                            for busStop in path {
-                                //                                                print("  \(busStop.name)")
-                                //                                            }
-                                //                                        }
-                                //                                    }
-                                //                                } else {
-                                //
-                                //                                    print("Could not generate a route.")
-                                //                                }
-                                
-                                
                                 showLocationSearchView.toggle()
                             }
                         
@@ -224,8 +153,6 @@ struct DiscoverView: View {
                 }
                 
                 if isSearch {
-                    //                getDirections()
-                    //                getWalkingDirections()
                     DraggableSheet(
                         routes: [Route.all[0]],
                         fromHour: 6,
@@ -233,10 +160,6 @@ struct DiscoverView: View {
                     )
                     .edgesIgnoringSafeArea(.bottom)
                     .transition(.move(edge: .bottom))
-                    //                .onAppear {
-                    //                    getDirections()
-                    //                    getWalkingDirections()
-                    //                }
                 }
                 if showLocationSearchView {
                     LocationSearchView(
@@ -246,58 +169,12 @@ struct DiscoverView: View {
                             getWalkingDirections()
                             getDirections()
                             locationViewModel.searchDirection()
-//                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-//
-//
-//                                }
-                            
-                            
-                        
-                            
-//                            print("loc : \(loc)")
-                            
-                            //                            route = locationViewModel.route
-                            //                            routePolylines = locationViewModel.routePolylines
-                            //                            show
-                            
-                            
                         }
                         .environmentObject(locationViewModel)
                         .onDisappear {
                             getDirections()
                             getWalkingDirections()
                         }
-//                        .onAppear {
-//                                                            if let routeDetails = locationViewModel.generateRoute() {
-//                                                                let startBusStop = routeDetails.startBusStop
-//                                                                let endBusStop = routeDetails.endBusStop
-//                                                                let routes = routeDetails.routes
-//                            
-//                                                                // Generate the bus stops the user will pass through based on the first matching route
-//                                                                if let busStopsOnRoute = locationViewModel.generateBusStops(from: startBusStop, to: endBusStop, routes: routes) {
-//                                                                    // Print out the bus stops
-//                                                                    for busStop in busStopsOnRoute {
-//                                                                        print("Bus stop: \(busStop.name)")
-//                                                                    }
-//                                                                } else {
-//                            
-//                            
-//                                                                    // Generate paths with possible transfers considering transit bus stops
-//                                                                    let pathsWithTransfers = locationViewModel.generatePathsWithTransfers(startBusStop: startBusStop, endBusStop: endBusStop, routes: routes)
-//                            
-//                                                                    // Print out the possible paths
-//                                                                    for (index, path) in pathsWithTransfers.enumerated() {
-//                                                                        print("Path \(index + 1):")
-//                                                                        for busStop in path {
-//                                                                            print("  \(busStop.name)")
-//                                                                        }
-//                                                                    }
-//                                                                }
-//                                                            } else {
-//                            
-//                                                                print("Could not generate a route.")
-//                                                            }
-//                        }
                 }
             }
         }
@@ -356,9 +233,6 @@ struct DiscoverView: View {
                     CLLocationCoordinate2D(latitude: endBusStop.latitude, longitude: endBusStop.longitude)
                 ]
                 
-    //            startingCoordinate =
-    //            destinationCoordiante =
-                
                 guard waypoints.count >= 2 else { return }
                 
                 routePolylines.removeAll()
@@ -378,22 +252,13 @@ struct DiscoverView: View {
                         print("Error calculating route: \(error.localizedDescription)")
                     }
                 }
-                
             } else {
-                
                 print("Could not generate a route.")
             }
-            
-            
-            
-            
-            
         }
-        
-        
     }
-    //
-    func getWalkingDirections(/*to destination: CLLocationCoordinate2D*/) {
+    
+    func getWalkingDirections() {
         Task {
             guard let userLocation = await getUserLocation() else { return }
             
@@ -413,8 +278,6 @@ struct DiscoverView: View {
     
     func getWalkingFromStopsDirections(from start: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D, type: String ) {
         Task {
-//            guard let userLocation = await getUserLocation() else { return }
-            
             let request = MKDirections.Request()
             request.source = MKMapItem(placemark: .init(coordinate: start))
             request.destination = MKMapItem(placemark: .init(coordinate: destination))
@@ -432,40 +295,6 @@ struct DiscoverView: View {
             }
         }
     }
-    
-    //
-    //    func findNearestBusStop(from userLocation: CLLocationCoordinate2D) -> BusStop? {
-    //        let userLocationCLLocation = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
-    //
-    //        // Find the nearest bus stop by calculating the distance to each bus stop
-    //        var nearestBusStop: BusStop?
-    //        var shortestDistance: CLLocationDistance = CLLocationDistanceMax
-    //
-    //        for busStop in BusStop.all {
-    //            let busStopLocation = CLLocation(latitude: busStop.latitude, longitude: busStop.longitude)
-    //            let distance = userLocationCLLocation.distance(from: busStopLocation)
-    //
-    //            if distance < shortestDistance {
-    //                shortestDistance = distance
-    //                nearestBusStop = busStop
-    //            }
-    //        }
-    //
-    //        return nearestBusStop
-    //    }
-    //
-    //    func findRoutes(for busStop: BusStop) -> [Route] {
-    //        var matchingRoutes: [Route] = []
-    //
-    //        for route in Route.all {
-    //            if route.busStops.contains(busStop.id) {
-    //                matchingRoutes.append(route)
-    //            }
-    //        }
-    //
-    //        return matchingRoutes
-    //    }
-    //
         func generateRoute(from startLocation: CLLocationCoordinate2D, to endLocation: CLLocationCoordinate2D) -> (startBusStop: BusStop, endBusStop: BusStop, routes: [Route])? {
             print("start generateRoute()")
             
@@ -505,186 +334,6 @@ struct DiscoverView: View {
             // Return the result with the nearest bus stops and matching routes
             return (startBusStop, endBusStop, matchingRoutes)
         }
-    //    func generateBusStops(from startBusStop: BusStop, to endBusStop: BusStop, routes: [Route]) -> [BusStop]? {
-    //        // Find the first route that has both start and end bus stops
-    //        for route in routes {
-    //            if let startIndex = route.busStops.firstIndex(of: startBusStop.id),
-    //               let endIndex = route.busStops.firstIndex(of: endBusStop.id),
-    //               startIndex <= endIndex {
-    //
-    //                // Get the bus stops between start and end indices (inclusive)
-    //                let busStopIDs = Array(route.busStops[startIndex...endIndex])
-    //
-    //                // Convert the bus stop IDs to BusStop objects
-    //                let busStopsOnRoute = busStopIDs.compactMap { busStopID in
-    //                    return BusStop.all.first { $0.id == busStopID }
-    //                }
-    //
-    //
-    //
-    //                return busStopsOnRoute
-    //            }
-    //        }
-    //
-    //        // Return nil if no matching route was found
-    //        return nil
-    //    }
-    //
-    //    func generatePathsWithTransfers(startBusStop: BusStop, endBusStop: BusStop, routes: [Route]) -> [[BusStop]] {
-    //        var possiblePaths: [[BusStop]] = []
-    //
-    //        // Find transit bus stops (those that appear in multiple routes)
-    //        let transitBusStops = BusStop.all.filter { $0.isTransitStop }
-    //
-    //        // Iterate through routes to find possible paths with transfers
-    //        for route in routes {
-    //            // Check if the route contains both start and end bus stops
-    //            if let startIndex = route.busStops.firstIndex(of: startBusStop.id),
-    //               let endIndex = route.busStops.firstIndex(of: endBusStop.id),
-    //               startIndex <= endIndex {
-    //
-    //                // Generate path for this route without transferring
-    //                let busStopsOnRoute = Array(route.busStops[startIndex...endIndex]).compactMap { busStopID in
-    //                    return BusStop.all.first { $0.id == busStopID }
-    //                }
-    //                possiblePaths.append(busStopsOnRoute)
-    //
-    //                // Now, check for paths with transfers
-    //                for transitBusStop in transitBusStops {
-    //                    // Check if the transit bus stop exists in this route
-    //                    if let transferIndex = route.busStops.firstIndex(of: transitBusStop.id),
-    //                       transferIndex > startIndex {
-    //
-    //                        // Split the route at the transfer point and create a path with transfer
-    //                        let firstPart = Array(route.busStops[startIndex...transferIndex])
-    //                        let secondPart = Array(route.busStops[transferIndex...endIndex])
-    //
-    //                        let firstPath = firstPart.compactMap { busStopID in
-    //                            return BusStop.all.first { $0.id == busStopID }
-    //                        }
-    //                        let secondPath = secondPart.compactMap { busStopID in
-    //                            return BusStop.all.first { $0.id == busStopID }
-    //                        }
-    //
-    //                        possiblePaths.append(firstPath + secondPath)
-    //                    }
-    //                }
-    //            }
-    //        }
-    //
-    //        return possiblePaths
-    //    }
-    
-    /**END OF COPY**/
-    
-    //    // Returns the schedule for a bus stop (for simplicity, assume the bus stop is indexed)
-    //    func getSchedule(for busStopID: String) -> [ScheduleDetail] {
-    //        // Fetch the schedule for this bus stop from the route's schedule
-    //        return self.schedule
-    //            .flatMap { Schedule.getSchedules(by: [$0]) }
-    //            .flatMap { $0.scheduleDetail }
-    //            .filter { $0.busStop == busStopID }
-    //    }
-    
-    //    func generatePathsWithTransfers(
-    //        startBusStop: BusStop,
-    //        endBusStop: BusStop,
-    //        routes: [Route],
-    //        startHour: Int,
-    //        startMinute: Int
-    //    ) -> [[BusStop]] {
-    //        var possiblePaths: [[BusStop]] = []
-    //
-    //        // Find transit bus stops (those that appear in multiple routes)
-    //        let transitBusStops = BusStop.all.filter { $0.isTransitStop }
-    //
-    //        // Convert the start time to a `Date` object for comparison
-    //        let startTime = Calendar.current.date(bySettingHour: startHour, minute: startMinute, second: 0, of: Date())!
-    //
-    //        // Iterate through routes to find possible paths with transfers
-    //        for route in routes {
-    //            // Check if the route contains both start and end bus stops
-    //            if let startIndex = route.busStops.firstIndex(of: startBusStop.id),
-    //               let endIndex = route.busStops.firstIndex(of: endBusStop.id),
-    //               startIndex <= endIndex {
-    //
-    //                // Generate path for this route without transferring
-    //                let busStopsOnRoute = Array(route.busStops[startIndex...endIndex]).compactMap { busStopID in
-    //                    return BusStop.all.first { $0.id == busStopID }
-    //                }
-    //
-    //                // Check if the user can catch the first bus on this route at the start bus stop
-    //                let schedule = route.getSchedule(for: startBusStop.id)
-    //                let firstDeparture = schedule.first { $0.time >= startTime }
-    //
-    //                if let firstDepartureTime = firstDeparture?.time {
-    //                    // User can catch the bus, add the path
-    //                    possiblePaths.append(busStopsOnRoute)
-    //                }
-    //
-    //                // Now, check for paths with transfers at transit bus stops
-    //                for transitBusStop in transitBusStops {
-    //                    // Check if the transit bus stop exists in this route and can be reached in time
-    //                    if let transferIndex = route.busStops.firstIndex(of: transitBusStop.id),
-    //                       transferIndex > startIndex {
-    //
-    //                        // Generate a path before and after the transfer
-    //                        let firstPart = Array(route.busStops[startIndex...transferIndex])
-    //                        let secondPart = Array(route.busStops[transferIndex...endIndex])
-    //
-    //                        let firstPath = firstPart.compactMap { busStopID in
-    //                            return BusStop.all.first { $0.id == busStopID }
-    //                        }
-    //                        let secondPath = secondPart.compactMap { busStopID in
-    //                            return BusStop.all.first { $0.id == busStopID }
-    //                        }
-    //
-    //                        // Check the schedule for the transfer bus stop to ensure the user can catch the second part
-    //                        let transferSchedule = route.getSchedule(for: transitBusStop.id)
-    //                        let transferDeparture = transferSchedule.first { $0.time >= firstDepartureTime }
-    //
-    //                        if let transferDepartureTime = transferDeparture?.time {
-    //                            // User can transfer, add the path
-    //                            possiblePaths.append(firstPath + secondPath)
-    //                        }
-    //                    }
-    //                }
-    //            }
-    //        }
-    //
-    //        return possiblePaths
-    //    }
-    
-    
-    
-    
-    //    func generateBusStops(from startBusStop: BusStop, to endBusStop: BusStop, routes: [Route]) -> [BusStop] {
-    //        var selectedBusStops: [BusStop] = []
-    //
-    //        // Iterate over each matching route
-    //        for route in routes {
-    //            // Find the indices of the start and end bus stops in the route's busStops array
-    //            if let startIndex = route.busStops.firstIndex(of: startBusStop.id),
-    //               let endIndex = route.busStops.firstIndex(of: endBusStop.id) {
-    //
-    //                // Make sure that start index comes before the end index (order matters)
-    //                if startIndex <= endIndex {
-    //                    // Get the subarray of bus stops from start to end
-    //                    let busStopIDs = Array(route.busStops[startIndex...endIndex])
-    //
-    //                    // Convert bus stop IDs to BusStop objects
-    //                    for busStopID in busStopIDs {
-    //                        if let busStop = BusStop.all.first(where: { $0.id == busStopID }) {
-    //                            selectedBusStops.append(busStop)
-    //                        }
-    //                    }
-    //                }
-    //            }
-    //        }
-    //        print("generate bus stops")
-    //
-    //        return selectedBusStops
-    //    }
     
 }
 
@@ -747,9 +396,3 @@ struct DraggableSheet: View {
     
     
 }
-
-//#Preview {
-//    DiscoverView()
-//}
-//
-
