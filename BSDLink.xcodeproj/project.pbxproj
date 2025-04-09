@@ -399,6 +399,7 @@
 				DEVELOPMENT_TEAM = 64QCUQX59Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = EaseLinked;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need the location to show it on the map.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -429,6 +430,7 @@
 				DEVELOPMENT_TEAM = 64QCUQX59Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = EaseLinked;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need the location to show it on the map.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
