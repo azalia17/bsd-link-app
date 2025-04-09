@@ -22,6 +22,11 @@ struct BusStop: Identifiable, Codable {
 
 
 extension BusStop {
+    
+    var isTransitStop: Bool {
+        return routes.count > 1
+    }
+    
     static func getSingleStop(by id: String) -> BusStop {
         return all.first(where: {$0.id == id}) ?? BusStop(id: "", name: "xx", latitude: 0.0, longitude: 0.0, images: [], routes: [])
     }

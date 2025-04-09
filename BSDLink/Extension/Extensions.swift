@@ -8,6 +8,7 @@
 import Foundation
 import MapKit
 import SwiftUI
+import CoreLocation
 
 extension CLLocationCoordinate2D {
     static let istiqlal = CLLocationCoordinate2D(latitude: -6.170166, longitude: 106.831375)
@@ -200,6 +201,22 @@ extension String {
         return nil
     }
 }
+
+extension CLLocationCoordinate2D {
+    func distance(to location: CLLocationCoordinate2D) -> CLLocationDistance {
+        let location1 = CLLocation(latitude: self.latitude, longitude: self.longitude)
+        let location2 = CLLocation(latitude: location.latitude, longitude: location.longitude)
+        return location1.distance(from: location2) // This calls the correct distance method
+    }
+}
+//
+//extension CLLocationCoordinate2D {
+//    func distance(to location: CLLocationCoordinate2D) -> CLLocationDistance {
+//        let location1 = CLLocation(latitude: self.latitude, longitude: self.longitude)
+//        let location2 = CLLocation(latitude: location.latitude, longitude: location.longitude)
+//        return location1.distance(from: location2)
+//    }
+//}
 
 extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {

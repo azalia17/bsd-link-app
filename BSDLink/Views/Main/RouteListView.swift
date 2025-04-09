@@ -124,7 +124,7 @@ struct RouteListView: View {
 //                    .listStyle(PlainListStyle())
 //                    .padding(.horizontal)
 //                    
-////                    .navigationTitle(Text("All Routes"))
+//                    .navigationTitle(Text("All Routes"))
 ////                    
 ////                    //Buat nampilin search info
 ////                    .toolbar {
@@ -157,9 +157,9 @@ struct RouteListView: View {
             }
                 
             
-            
+                
         }
-//        .navigationTitle(Text("All Routes"))
+        .navigationTitle(Text("All Routes"))
         
         //Buat nampilin search info
         .toolbar {

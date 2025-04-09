@@ -185,7 +185,7 @@ struct SearchCard: View {
                     .fill(.white)
                     .frame(maxWidth: .infinity)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.trailing, 40)
+//                    .padding(.trailing, 40)
             )
             
             
