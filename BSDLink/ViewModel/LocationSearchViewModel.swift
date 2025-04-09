@@ -93,11 +93,33 @@ class LocationSearchViewModel: NSObject, ObservableObject {
     func reset() {
         self.endLocationQueryFragment = ""
         self.startLocationQueryFragment = ""
+//        self.startLocationQueryFragment = ""
+//        self.endLocationQueryFragment = ""
+//        self.selectedEndCoordinate = CLLocationCoordinate2D()
+//        self.selectedStartCoordinate = CLLocationCoordinate2D()
+        self.results = [MKLocalSearchCompletion]()
+    }
+    
+    func resetResultsCompletion() {
+//        self.endLocationQueryFragment = ""
+//        self.startLocationQueryFragment = ""
+//        self.startLocationQueryFragment = ""
+//        self.endLocationQueryFragment = ""
+//        self.selectedEndCoordinate = CLLocationCoordinate2D()
+//        self.selectedStartCoordinate = CLLocationCoordinate2D()
+        self.results = [MKLocalSearchCompletion]()
+    }
+    
+    func resetAll() {
+        self.endLocationQueryFragment = ""
+        self.startLocationQueryFragment = ""
         self.startLocationQueryFragment = ""
         self.endLocationQueryFragment = ""
         self.selectedEndCoordinate = CLLocationCoordinate2D()
         self.selectedStartCoordinate = CLLocationCoordinate2D()
+        self.results = [MKLocalSearchCompletion]()
     }
+    
     
     func swapDestination(start: MKLocalSearchCompletion, end: MKLocalSearchCompletion) {
         self.startLocationQueryFragment = end.title
@@ -350,7 +372,7 @@ class LocationSearchViewModel: NSObject, ObservableObject {
     
     func generateBusStopCoordinates(from busStops: [BusStop]) {
         busStopsGenerated = busStops.map { busStop in
-            return IdentifiableCoordinate(coordinate: CLLocationCoordinate2D(latitude: busStop.latitude, longitude: busStop.longitude), busStopName: busStop.name)
+            return IdentifiableCoordinate(coordinate: CLLocationCoordinate2D(latitude: busStop.latitude, longitude: busStop.longitude), busStopName: busStop.name, busStopId: busStop.id)
         }
     }
 
@@ -414,4 +436,5 @@ struct IdentifiableCoordinate: Identifiable {
     let id = UUID() // Automatically generates a unique ID
     let coordinate: CLLocationCoordinate2D
     let busStopName: String
+    let busStopId: String
 }

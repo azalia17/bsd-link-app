@@ -25,7 +25,7 @@ struct DiscoverDetailRoute: View {
                 .padding(.top, 12)
             if (routes.count < 1) {
                 Spacer()
-                Text("No routes found. Try other places")
+                Text("Oh no! Something went wrong. Please go back to discover view and try to search again.\n\nSorry!!")
                     .frame(maxWidth: .infinity)
                     .multilineTextAlignment(.center)
                     .contentShape(Rectangle())

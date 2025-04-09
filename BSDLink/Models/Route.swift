@@ -236,7 +236,6 @@ extension Route {
                 "smlPlaza",
                 "theBreeze",
                 "cbdTimur1",
-//                "cbdSelatan1",
                 "aeonMall1",
                 "aeonMall2",
                 "cbdTimur2",
@@ -405,10 +404,5 @@ extension Route {
                 "LOBBY AEON MALL BERHENTI DAN MENUNGGU 3 MENIT ATAU MENYESUAIKAN DENGAN JADWAL"
             ]
         )
-        
     ]
-    
-    
-
-
 }

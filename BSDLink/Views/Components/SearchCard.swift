@@ -14,6 +14,7 @@ struct SearchCard: View {
     var searchHandler: () -> Void
     var filterHandler: () -> Void
     var swapHandler: () -> Void
+    var resetResultsCompletion: () -> Void
     
     @Binding var startingPoint : String
     @Binding var destinationPoint : String
@@ -55,7 +56,9 @@ struct SearchCard: View {
                             .submitLabel(.next)
                             .onSubmit {
                                 focusedField = .to
+                                resetResultsCompletion()
                             }
+                            
                         //                            .on
                         Spacer()
                         
@@ -73,6 +76,8 @@ struct SearchCard: View {
                             }
                         //                            .k
                         Spacer()
+                    }.onChange(of: focusedField) { oldValue, newValue in
+                        resetResultsCompletion()
                     }
                     
                 } else {

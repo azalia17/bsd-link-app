@@ -27,6 +27,7 @@ struct LocationSearchView: View {
                 Button(action: {
                     withAnimation(.spring){
                         showSearchLocationView.toggle()
+                        locationViewModel.resetAll()
                     }
                 }) {
                     HStack {
@@ -57,6 +58,7 @@ struct LocationSearchView: View {
                             end: locationViewModel.endLocationSearch
                         )
                     },
+                    resetResultsCompletion: {locationViewModel.resetResultsCompletion()},
                     startingPoint: $locationViewModel.startLocationQueryFragment,
                     destinationPoint: $locationViewModel.endLocationQueryFragment,
                     activeTextField: $activeTextField,

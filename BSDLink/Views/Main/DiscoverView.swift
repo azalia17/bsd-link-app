@@ -36,6 +36,14 @@ struct DiscoverView: View {
     
     @State var bestRoutes: [Route] = []
     
+    @State var openSheet: Bool = false
+    
+    @State private var shouldRetry = false
+
+    @State private var previousStartCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+    @State private var previousEndCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+
+    
     @EnvironmentObject var locationViewModel : LocationSearchViewModel
     
     var body: some View {
@@ -62,21 +70,23 @@ struct DiscoverView: View {
                 
                 UserAnnotation().tint(.blue)
                 
-                if route != nil{
-                    MapPolyline(route!)
-                        .stroke(.blue, style: StrokeStyle(lineWidth: 1, dash: [6, 3]))
-                }
-                if routeStartDestination != nil{
+//                if route != nil{
+//                    MapPolyline(route!)
+//                        .stroke(.blue, style: StrokeStyle(lineWidth: 1, dash: [6, 3]))
+//                }
+                if routeStartDestination != nil && isSearch {
                     MapPolyline(routeStartDestination!)
                         .stroke(.orange, style: StrokeStyle(lineWidth: 1, dash: [6, 3]))
                 }
-                if routeEndDestination != nil{
+                if routeEndDestination != nil && isSearch {
                     MapPolyline(routeEndDestination!)
                         .stroke(.orange, style: StrokeStyle(lineWidth: 1, dash: [6, 3]))
                 }
-                ForEach(routePolylines, id: \.self) { polyline in
-                    MapPolyline(polyline)
-                        .stroke(.orange, lineWidth: 3)
+                if isSearch{
+                    ForEach(routePolylines, id: \.self) { polyline in
+                        MapPolyline(polyline)
+                            .stroke(.orange, lineWidth: 3)
+                    }
                 }
             }
             .onAppear {
@@ -92,6 +102,7 @@ struct DiscoverView: View {
                                 showTimePicker = true
                             },
                             swapHandler: {},
+                            resetResultsCompletion: {},
                             startingPoint: $startingPoint,
                             destinationPoint: $destinationPoint,
                             activeTextField: $activeTextField,
@@ -109,11 +120,42 @@ struct DiscoverView: View {
                         HStack {
                             //                            Button()
                             Button("Search", systemImage: "chevron.backward") {
+//                                isSearch = false
+//                                showLocationSearchView = true
+//                                locationViewModel.reset()
+//                                routePolylines.removeAll()
+//                                route = MKRoute()
+//                                bestRoutes = []
+//                                openSheet = false
+//                                routeEndDestination = MKRoute()
+//                                routeStartDestination = MKRoute()
+//                                previousStartCoordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+//                                previousEndCoordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+                                
                                 isSearch = false
-                                showLocationSearchView = true
-                                locationViewModel.reset()
-                                routePolylines.removeAll()
+                                    showLocationSearchView = true
+                                    locationViewModel.reset()  // Assuming this method resets the location view model
+
+                                    // Reset coordinates
+//                                previousStartCoordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+//                                previousEndCoordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+
+                                    // Reset any routes or route polylines
+                                    routePolylines.removeAll()
                                 route = MKRoute()
+                                    routeStartDestination = MKRoute()
+                                    routeEndDestination = MKRoute()
+                                    bestRoutes = []
+
+                                    // Optionally, reset any other UI elements like text fields, labels, etc.
+                                    startingPoint = ""
+                                    destinationPoint = ""
+                                    activeTextField = ""
+
+                                    // Reset time-related data if necessary
+                                    timePicked = Date()
+                                    isTimePicked = false
+                                
                             }
                             .frame(height: 35, alignment: .center)
                             .labelStyle(.iconOnly)
@@ -160,32 +202,50 @@ struct DiscoverView: View {
             }
             
             if isSearch {
+                
                 DraggableSheet(
-                    //                        routes: bestRoutes,
-                    routes: [Route.all[0]],
-                    //                        routes: [locationViewModel.bestRoute],
+                    routes: bestRoutes,
+//                    routes: [Route.all[0]],
+//                    routes: Route.all.filter {$0.id == bestRoutes[0].id},
+//                    routes: locationViewModel.bestRoutes,
                     fromHour: 6,
                     fromMinute: 0
                 )
                 .edgesIgnoringSafeArea(.bottom)
                 .transition(.move(edge: .bottom))
+//                .visib
             }
+            
             if showLocationSearchView {
                 LocationSearchView(
                     isTimePicked: $isTimePicked,
                     showSearchLocationView: $showLocationSearchView,
                     isSearch: $isSearch) {
+                        locationViewModel.searchDirection()
                         getWalkingDirections()
                         getDirections()
-                        locationViewModel.searchDirection()
+                        
                     }
                     .environmentObject(locationViewModel)
                     .onDisappear {
+                        locationViewModel.searchDirection()
                         getDirections()
                         getWalkingDirections()
+                        
                     }
             }
+
         }
+        .onChange(of: locationViewModel.selectedStartCoordinate) { newCoordinate in
+            // Trigger retry if the coordinates are valid and different from previous ones
+            if shouldRetry && newCoordinate != previousStartCoordinate {
+                previousStartCoordinate = newCoordinate
+                if newCoordinate.latitude != 0.0 && newCoordinate.longitude != 0.0 {
+                    getDirections() // Retry the route generation
+                }
+            }
+        }
+
         
     }
     
@@ -210,8 +270,28 @@ struct DiscoverView: View {
     }
     
     func getDirections() {
+        // Check if both the start and end coordinates are valid (i.e., not 0.0, 0.0)
+        guard locationViewModel.selectedStartCoordinate.latitude != 0.0,
+              locationViewModel.selectedStartCoordinate.longitude != 0.0,
+              locationViewModel.selectedEndCoordinate.latitude != 0.0,
+              locationViewModel.selectedEndCoordinate.longitude != 0.0 else {
+            print("Invalid coordinates, retrying once valid coordinates are available.")
+            shouldRetry = true // Set the flag to retry once coordinates are valid
+            return
+        }
+
+        // Reset retry flag before proceeding with the route generation
+        shouldRetry = false
+        
         print("start getDirection()")
+        
+        routePolylines.removeAll()
+                    route = nil
+                    routeStartDestination = nil
+                    routeEndDestination = nil
+        
         Task {
+//            locationViewModel.searchDirection()
             if let routeDetails = generateRoute(from: locationViewModel.selectedStartCoordinate, to: locationViewModel.selectedEndCoordinate) {
                 let startBusStop = routeDetails.startBusStop
                 let endBusStop = routeDetails.endBusStop
@@ -222,7 +302,7 @@ struct DiscoverView: View {
                 if let busStopsOnRoute = locationViewModel.generateBusStops(from: startBusStop, to: endBusStop, routes: routes) {
                     // Print out the bus stops
                     for busStop in busStopsOnRoute {
-                        print("Bus stop: \(busStop.name)")
+                        print("\"\(busStop.id)\",")
                     }
                     
                 } else {
@@ -237,7 +317,55 @@ struct DiscoverView: View {
                         }
                     }
                 }
-                bestRoutes = locationViewModel.bestRoutes
+                
+                /**Start**/
+                
+
+                // Define your list of bus stops to search for
+                
+
+                // Define a function to find the route that matches the bus stops in order
+                func findRoute(forBusStops busStopsToSearch: [String], in routes: [Route]) -> Route? {
+                    // Iterate over each route
+                    for route in routes {
+                        let busStops = route.busStops
+                        
+                        // Check if the busStops in the route match the busStopsToSearch in the exact order
+                        if isSubsequence(busStopsToSearch, in: busStops) {
+                            return route
+                        }
+                    }
+                    
+                    // If no route matches, return nil
+                    return nil
+                }
+
+                // Helper function to check if busStopsToSearch is a subsequence of busStops in the correct order
+                func isSubsequence(_ subsequence: [String], in sequence: [String]) -> Bool {
+                    var subsequenceIndex = 0
+                    for stop in sequence {
+                        if subsequenceIndex < subsequence.count && subsequence[subsequenceIndex] == stop {
+                            subsequenceIndex += 1
+                        }
+                        if subsequenceIndex == subsequence.count {
+                            return true
+                        }
+                    }
+                    return false
+                }
+
+                // Usage
+                if let matchingRoute = findRoute(forBusStops: locationViewModel.busStopsGenerated.map{ $0.busStopId }, in: Route.all) {
+                    print("Found route: \(matchingRoute.name), \(matchingRoute.id)")
+                    bestRoutes = [matchingRoute]
+                } else {
+                    print("No matching route found")
+                }
+
+                
+                /**END*/
+                
+//                bestRoutes = locationViewModel.bestRoutes
                 //                routes
                 let waypoints: [CLLocationCoordinate2D] = locationViewModel.busStopsGenerated.map { $0.coordinate }
                 
@@ -270,6 +398,8 @@ struct DiscoverView: View {
             } else {
                 print("Could not generate a route.")
             }
+            
+            openSheet = true
         }
     }
     
@@ -354,7 +484,7 @@ struct DiscoverView: View {
 
 
 struct DraggableSheet: View {
-    let routes: [Route]
+    var routes: [Route]
     let fromHour: Int
     let fromMinute: Int
     
