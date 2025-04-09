@@ -29,6 +29,8 @@ struct DiscoverView: View {
     
     @State private var showResultRoute = false
     @State private var route: MKRoute?
+    @State private var routeEndDestination: MKRoute?
+    @State private var routeStartDestination: MKRoute?
     
     @State private var isSearch: Bool = false
     @State private var showTimePicker: Bool = false
@@ -63,10 +65,18 @@ struct DiscoverView: View {
                     //                    }
                 }
                 
-                UserAnnotation()
+                UserAnnotation().tint(.blue)
                 
                 if route != nil{
                     MapPolyline(route!)
+                        .stroke(.blue, style: StrokeStyle(lineWidth: 1, dash: [6, 3]))
+                }
+                if routeStartDestination != nil{
+                    MapPolyline(routeStartDestination!)
+                        .stroke(.orange, style: StrokeStyle(lineWidth: 1, dash: [6, 3]))
+                }
+                if routeEndDestination != nil{
+                    MapPolyline(routeEndDestination!)
                         .stroke(.orange, style: StrokeStyle(lineWidth: 1, dash: [6, 3]))
                 }
                 ForEach(routePolylines, id: \.self) { polyline in
@@ -316,35 +326,7 @@ struct DiscoverView: View {
     func getDirections() {
         print("start getDirection()")
         Task {
-            let waypoints: [CLLocationCoordinate2D] = [
-                locationViewModel.selectedStartCoordinate,
-                locationViewModel.selectedEndCoordinate
-            ]
-            
-            startingCoordinate = locationViewModel.selectedStartCoordinate
-            destinationCoordiante = locationViewModel.selectedEndCoordinate
-            
-            guard waypoints.count >= 2 else { return }
-            
-            routePolylines.removeAll()
-            
-            for index in 0..<waypoints.count - 1 {
-                let request = MKDirections.Request()
-                request.source = MKMapItem(placemark: MKPlacemark(coordinate: waypoints[index]))
-                request.destination = MKMapItem(placemark: MKPlacemark(coordinate: waypoints[index + 1]))
-                request.transportType = .automobile
-                
-                do {
-                    let directions = try await MKDirections(request: request).calculate()
-                    if let route = directions.routes.first {
-                        routePolylines.append(route.polyline)
-                    }
-                } catch {
-                    print("Error calculating route: \(error.localizedDescription)")
-                }
-            }
-            
-            if let routeDetails = generateRoute(from: startingCoordinate, to: destinationCoordiante) {
+            if let routeDetails = generateRoute(from: locationViewModel.selectedStartCoordinate, to: locationViewModel.selectedEndCoordinate) {
                 let startBusStop = routeDetails.startBusStop
                 let endBusStop = routeDetails.endBusStop
                 let routes = routeDetails.routes
@@ -368,10 +350,43 @@ struct DiscoverView: View {
                         }
                     }
                 }
+                
+                let waypoints: [CLLocationCoordinate2D] = [
+                    CLLocationCoordinate2D(latitude: startBusStop.latitude, longitude: startBusStop.longitude),
+                    CLLocationCoordinate2D(latitude: endBusStop.latitude, longitude: endBusStop.longitude)
+                ]
+                
+    //            startingCoordinate =
+    //            destinationCoordiante =
+                
+                guard waypoints.count >= 2 else { return }
+                
+                routePolylines.removeAll()
+                
+                for index in 0..<waypoints.count - 1 {
+                    let request = MKDirections.Request()
+                    request.source = MKMapItem(placemark: MKPlacemark(coordinate: waypoints[index]))
+                    request.destination = MKMapItem(placemark: MKPlacemark(coordinate: waypoints[index + 1]))
+                    request.transportType = .automobile
+                    
+                    do {
+                        let directions = try await MKDirections(request: request).calculate()
+                        if let route = directions.routes.first {
+                            routePolylines.append(route.polyline)
+                        }
+                    } catch {
+                        print("Error calculating route: \(error.localizedDescription)")
+                    }
+                }
+                
             } else {
                 
                 print("Could not generate a route.")
             }
+            
+            
+            
+            
             
         }
         
@@ -395,6 +410,29 @@ struct DiscoverView: View {
             }
         }
     }
+    
+    func getWalkingFromStopsDirections(from start: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D, type: String ) {
+        Task {
+//            guard let userLocation = await getUserLocation() else { return }
+            
+            let request = MKDirections.Request()
+            request.source = MKMapItem(placemark: .init(coordinate: start))
+            request.destination = MKMapItem(placemark: .init(coordinate: destination))
+            request.transportType = .walking
+            
+            do {
+                let directions = try await MKDirections(request: request).calculate()
+                if (type == "start") {
+                    routeStartDestination = directions.routes.first
+                } else {
+                    routeEndDestination = directions.routes.first
+                }
+            } catch {
+                print("Show error")
+            }
+        }
+    }
+    
     //
     //    func findNearestBusStop(from userLocation: CLLocationCoordinate2D) -> BusStop? {
     //        let userLocationCLLocation = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
@@ -450,6 +488,9 @@ struct DiscoverView: View {
             print("start: \(startLocation)")
             print("end: \(endLocation)")
             print("start stop \(startBusStop), end stop \(endBusStop)")
+            
+            getWalkingFromStopsDirections(from: startLocation, to: CLLocationCoordinate2D(latitude: startBusStop.latitude, longitude: startBusStop.longitude), type: "start")
+            getWalkingFromStopsDirections(from: endLocation, to: CLLocationCoordinate2D(latitude: endBusStop.latitude, longitude: endBusStop.longitude), type: "end")
     
             // Filter routes that pass through both the start and end bus stops
             let matchingRoutes = startRoutes.filter { route in
