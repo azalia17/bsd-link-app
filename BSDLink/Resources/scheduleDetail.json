@@ -7422,7 +7422,8 @@
             },
             {
                 "hour": 8,
-                "minute": 0
+                "minute": 0,
+                "isRegular": false
             }
         ]
     },
@@ -7504,7 +7505,8 @@
             },
             {
                 "hour": 8,
-                "minute": 3
+                "minute": 3,
+                "isRegular": false
             }
         ]
     },
@@ -7586,7 +7588,8 @@
             },
             {
                 "hour": 8,
-                "minute": 5
+                "minute": 5,
+                "isRegular": false
             }
         ]
     },
@@ -7668,7 +7671,8 @@
             },
             {
                 "hour": 8,
-                "minute": 5
+                "minute": 5,
+                "isRegular": false
             }
         ]
     },
@@ -7750,7 +7754,8 @@
             },
             {
                 "hour": 8,
-                "minute": 6
+                "minute": 6,
+                "isRegular": false
             }
         ]
     },
@@ -7832,7 +7837,8 @@
             },
             {
                 "hour": 8,
-                "minute": 7
+                "minute": 7,
+                "isRegular": false
             }
         ]
     },
@@ -7914,7 +7920,8 @@
             },
             {
                 "hour": 8,
-                "minute": 9
+                "minute": 9,
+                "isRegular": false
             }
         ]
     },
@@ -7996,7 +8003,8 @@
             },
             {
                 "hour": 8,
-                "minute": 10
+                "minute": 10,
+                "isRegular": false
             }
         ]
     },
@@ -8078,7 +8086,8 @@
             },
             {
                 "hour": 8,
-                "minute": 11
+                "minute": 11,
+                "isRegular": false
             }
         ]
     },
@@ -8160,7 +8169,8 @@
             },
             {
                 "hour": 8,
-                "minute": 12
+                "minute": 12,
+                "isRegular": false
             }
         ]
     },
@@ -8242,7 +8252,8 @@
             },
             {
                 "hour": 8,
-                "minute": 13
+                "minute": 13,
+                "isRegular": false
             }
         ]
     },
@@ -8324,14 +8335,15 @@
             },
             {
                 "hour": 8,
-                "minute": 15
+                "minute": 15,
+                "isRegular": false
             }
         ]
     },
     {
-        "id": "sd_r3_b5_qbig1_13",
+        "id": "sd_r3_b5_qBig1_13",
         "index": 13,
-        "BusStop": "qbig1",
+        "BusStop": "qBig1",
         "time": [
             {
                 "hour": 6,
@@ -8392,9 +8404,9 @@
         ]
     },
     {
-        "id": "sd_r3_b7a_qbig1_13",
+        "id": "sd_r3_b7a_qBig1_13",
         "index": 13,
-        "BusStop": "qbig1",
+        "BusStop": "qBig1",
         "time": [
             {
                 "hour": 6,
@@ -8406,7 +8418,8 @@
             },
             {
                 "hour": 8,
-                "minute": 16
+                "minute": 16,
+                "isRegular": false
             }
         ]
     },
@@ -8488,7 +8501,8 @@
             },
             {
                 "hour": 8,
-                "minute": 17
+                "minute": 17,
+                "isRegular": false
             }
         ]
     },
@@ -8570,7 +8584,8 @@
             },
             {
                 "hour": 8,
-                "minute": 18
+                "minute": 18,
+                "isRegular": false
             }
         ]
     },
@@ -8652,7 +8667,8 @@
             },
             {
                 "hour": 8,
-                "minute": 20
+                "minute": 20,
+                "isRegular": false
             }
         ]
     },
@@ -8734,7 +8750,8 @@
             },
             {
                 "hour": 8,
-                "minute": 23
+                "minute": 23,
+                "isRegular": false
             }
         ]
     },
@@ -8816,7 +8833,8 @@
             },
             {
                 "hour": 8,
-                "minute": 25
+                "minute": 25,
+                "isRegular": false
             }
         ]
     },
@@ -8898,7 +8916,8 @@
             },
             {
                 "hour": 8,
-                "minute": 25
+                "minute": 25,
+                "isRegular": false
             }
         ]
     },
@@ -8980,7 +8999,8 @@
             },
             {
                 "hour": 8,
-                "minute": 26
+                "minute": 26,
+                "isRegular": false
             }
         ]
     },
@@ -9062,14 +9082,15 @@
             },
             {
                 "hour": 8,
-                "minute": 28
+                "minute": 28,
+                "isRegular": false
             }
         ]
     },
     {
-        "id": "sd_r3_b5_navapark2_22",
+        "id": "sd_r3_b5_navaPark2_22",
         "index": 22,
-        "BusStop": "navapark2",
+        "BusStop": "navaPark2",
         "time": [
             {
                 "hour": 7,
@@ -9130,9 +9151,9 @@
         ]
     },
     {
-        "id": "sd_r3_b7a_navapark2_22",
+        "id": "sd_r3_b7a_navaPark2_22",
         "index": 22,
-        "BusStop": "navapark2",
+        "BusStop": "navaPark2",
         "time": [
             {
                 "hour": 6,
@@ -9144,7 +9165,8 @@
             },
             {
                 "hour": 8,
-                "minute": 30
+                "minute": 30,
+                "isRegular": false
             }
         ]
     },
@@ -9226,7 +9248,8 @@
             },
             {
                 "hour": 8,
-                "minute": 32
+                "minute": 32,
+                "isRegular": false
             }
         ]
     },
@@ -9308,7 +9331,8 @@
             },
             {
                 "hour": 8,
-                "minute": 34
+                "minute": 34,
+                "isRegular": false
             }
         ]
     },
@@ -9390,7 +9414,8 @@
             },
             {
                 "hour": 8,
-                "minute": 36
+                "minute": 36,
+                "isRegular": false
             }
         ]
     },
@@ -9472,7 +9497,8 @@
             },
             {
                 "hour": 8,
-                "minute": 37
+                "minute": 37,
+                "isRegular": false
             }
         ]
     },
@@ -9554,7 +9580,8 @@
             },
             {
                 "hour": 8,
-                "minute": 39
+                "minute": 39,
+                "isRegular": false
             }
         ]
     },
@@ -9636,7 +9663,8 @@
             },
             {
                 "hour": 8,
-                "minute": 40
+                "minute": 40,
+                "isRegular": false
             }
         ]
     },
@@ -9718,7 +9746,8 @@
             },
             {
                 "hour": 8,
-                "minute": 41
+                "minute": 41,
+                "isRegular": false
             }
         ]
     },
@@ -9800,7 +9829,8 @@
             },
             {
                 "hour": 8,
-                "minute": 42
+                "minute": 42,
+                "isRegular": false
             }
         ]
     },
@@ -9882,7 +9912,8 @@
             },
             {
                 "hour": 8,
-                "minute": 43
+                "minute": 43,
+                "isRegular": false
             }
         ]
     },
@@ -9964,7 +9995,8 @@
             },
             {
                 "hour": 8,
-                "minute": 46
+                "minute": 46,
+                "isRegular": false
             }
         ]
     },
@@ -10042,7 +10074,7 @@
             },
             {
                 "hour": 8,
-                "minute": 5
+                "minute": 5,
             }
         ]
     },
@@ -13050,7 +13082,8 @@
             },
             {
                 "hour": 17,
-                "minute": 30
+                "minute": 30,
+                "isRegular": false
             },
             {
                 "hour": 18,
@@ -13152,7 +13185,8 @@
             },
             {
                 "hour": 17,
-                "minute": 32
+                "minute": 32,
+                "isRegular": false
             },
             {
                 "hour": 18,
@@ -13254,7 +13288,8 @@
             },
             {
                 "hour": 17,
-                "minute": 39
+                "minute": 39,
+                "isRegular": false
             },
             {
                 "hour": 18,
@@ -13356,7 +13391,8 @@
             },
             {
                 "hour": 17,
-                "minute": 41
+                "minute": 41,
+                "isRegular": false
             },
             {
                 "hour": 18,
@@ -13369,9 +13405,9 @@
         ]
     },
     {
-        "id": "sd_r5_b7_cbdUtara_5",
+        "id": "sd_r5_b7_cbdUtara3_5",
         "index": 5,
-        "BusStop": "cbdUtara",
+        "BusStop": "cbdUtara3",
         "time": [
             {
                 "hour": 9,
@@ -13407,7 +13443,8 @@
             },
             {
                 "hour": 17,
-                "minute": 12
+                "minute": 12,
+                "isRegular": false
             },
             {
                 "hour": 18,
@@ -13420,9 +13457,9 @@
         ]
     },
     {
-        "id": "sd_r5_b8_cbdUtara_5",
+        "id": "sd_r5_b8_cbdUtara3_5",
         "index": 5,
-        "BusStop": "cbdUtara",
+        "BusStop": "cbdUtara3",
         "time": [
             {
                 "hour": 9,
@@ -13458,7 +13495,8 @@
             },
             {
                 "hour": 17,
-                "minute": 42
+                "minute": 42,
+                "isRegular": false
             },
             {
                 "hour": 18,
@@ -13560,7 +13598,8 @@
             },
             {
                 "hour": 17,
-                "minute": 45
+                "minute": 45,
+                "isRegular": false
             },
             {
                 "hour": 18,
@@ -13662,7 +13701,8 @@
             },
             {
                 "hour": 17,
-                "minute": 50
+                "minute": 50,
+                "isRegular": false
             },
             {
                 "hour": 18,
@@ -13764,7 +13804,8 @@
             },
             {
                 "hour": 17,
-                "minute": 52
+                "minute": 52,
+                "isRegular": false
             },
             {
                 "hour": 18,
@@ -13866,7 +13907,8 @@
             },
             {
                 "hour": 17,
-                "minute": 53
+                "minute": 53,
+                "isRegular": false
             },
             {
                 "hour": 18,
@@ -13968,7 +14010,8 @@
             },
             {
                 "hour": 17,
-                "minute": 56
+                "minute": 56,
+                "isRegular": false
             },
             {
                 "hour": 18,
@@ -14070,7 +14113,8 @@
             },
             {
                 "hour": 17,
-                "minute": 56
+                "minute": 56,
+                "isRegular": false
             },
             {
                 "hour": 18,
@@ -14168,7 +14212,8 @@
             },
             {
                 "hour": 17,
-                "minute": 3
+                "minute": 3,
+                "isRegular": false
             },
             {
                 "hour": 18,
@@ -14223,7 +14268,7 @@
             },
             {
                 "hour": 17,
-                "minute": 34
+                "minute": 34,
             },
             {
                 "hour": 18,
@@ -14274,7 +14319,8 @@
             },
             {
                 "hour": 18,
-                "minute": 4
+                "minute": 4,
+                "isRegular": false
             },
             {
                 "hour": 19,
@@ -14376,7 +14422,8 @@
             },
             {
                 "hour": 18,
-                "minute": 7
+                "minute": 7,
+                "isRegular": false
             },
             {
                 "hour": 19,
@@ -14389,9 +14436,9 @@
         ]
     },
     {
-        "id": "sd_r5_b7_nawaPark1_15",
+        "id": "sd_r5_b7_navaPark1_15",
         "index": 15,
-        "BusStop": "nawaPark1",
+        "BusStop": "navaPark1",
         "time": [
             {
                 "hour": 9,
@@ -14440,9 +14487,9 @@
         ]
     },
     {
-        "id": "sd_r5_b8_nawaPark1_15",
+        "id": "sd_r5_b8_navaPark1_15",
         "index": 15,
-        "BusStop": "nawaPark1",
+        "BusStop": "navaPark1",
         "time": [
             {
                 "hour": 10,
@@ -14478,7 +14525,8 @@
             },
             {
                 "hour": 18,
-                "minute": 9
+                "minute": 9,
+                "isRegular": false
             },
             {
                 "hour": 19,
@@ -14580,7 +14628,8 @@
             },
             {
                 "hour": 18,
-                "minute": 12
+                "minute": 12,
+                "isRegular": false
             },
             {
                 "hour": 19,
@@ -14682,7 +14731,8 @@
             },
             {
                 "hour": 18,
-                "minute": 15
+                "minute": 15,
+                "isRegular": false
             },
             {
                 "hour": 19,
@@ -16930,9 +16980,9 @@
         ]
     },
     {
-        "id": "sd_r7_b10_qbig1_13",
+        "id": "sd_r7_b10_qBig1_13",
         "index": 13,
-        "BusStop": "qbig1",
+        "BusStop": "qBig1",
         "time": [
             {
                 "hour": 7,
@@ -17040,9 +17090,9 @@
         ]
     },
     {
-        "id": "sd_r7_b10_qbig2_15",
+        "id": "sd_r7_b10_qBig2_15",
         "index": 15,
-        "BusStop": "qbig2",
+        "BusStop": "qBig2",
         "time": [
             {
                 "hour": 7,
@@ -17095,9 +17145,9 @@
         ]
     },
     {
-        "id": "sd_r7_b10_qbig3_16",
+        "id": "sd_r7_b10_qBig3_16",
         "index": 16,
-        "BusStop": "qbig3",
+        "BusStop": "qBig3",
         "time": [
             {
                 "hour": 7,

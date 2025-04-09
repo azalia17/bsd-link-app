@@ -46,7 +46,7 @@ extension BusStop {
         
         BusStop(
             id: "aeonMall1",
-            name: "AeonMall1",
+            name: "Aeon Mall 1",
             latitude: CLLocationCoordinate2D.aeonMall1.latitude,
             longitude: CLLocationCoordinate2D.aeonMall1.longitude,
             images: ["Aeon Mall 1_1", "Aeon Mall 1_2"],
@@ -54,7 +54,7 @@ extension BusStop {
         ),
         BusStop(
             id: "aeonMall2",
-            name: "AeonMall2",
+            name: "Aeon Mall 2",
             latitude: CLLocationCoordinate2D.aeonMall2.latitude,
             longitude: CLLocationCoordinate2D.aeonMall2.longitude,
             images: ["Aeon Mall 2_1"],
@@ -118,18 +118,26 @@ extension BusStop {
         ),
         
         BusStop(
-            id: "bmcDigitalHub1",
-            name: "BMC",
+            id: "digitalHub1",
+            name: "Digital Hub 1",
             latitude: CLLocationCoordinate2D.bmcDigitalHub1.latitude,
             longitude: CLLocationCoordinate2D.bmcDigitalHub1.longitude,
             images: ["Digital Hub 1_1", "Digital Hub 1_2"],
             routes: ["route_3", "route_7"]
         ),
         
+        BusStop(
+            id: "lobbyHouseOfTiktokers",
+            name: "Lobby House of Tiktokers",
+            latitude: CLLocationCoordinate2D.bmcDigitalHub1.latitude,
+            longitude: CLLocationCoordinate2D.bmcDigitalHub1.longitude,
+            images: ["Digital Hub 1_1", "Digital Hub 1_2"],
+            routes: ["route_3", "route_7"]
+        ),
         
         BusStop(
             id: "bca",
-            name: "Bca",
+            name: "BCA",
             latitude: CLLocationCoordinate2D.bca.latitude,
             longitude: CLLocationCoordinate2D.bca.longitude,
             images: ["BCA_1", "BCA_2"],
@@ -138,7 +146,7 @@ extension BusStop {
 
         BusStop(
             id: "casaDeParco1",
-            name: "CasaDeParco1",
+            name: "Casa De Parco 1",
             latitude: CLLocationCoordinate2D.casaDeParco1.latitude,
             longitude: CLLocationCoordinate2D.casaDeParco1.longitude,
             images: ["Casa De Parco 1_1"],
@@ -147,7 +155,7 @@ extension BusStop {
 
         BusStop(
             id: "casaDeParco2",
-            name: "CasaDeParco2",
+            name: "Casa De Parco 2",
             latitude: CLLocationCoordinate2D.casaDeParco2.latitude,
             longitude: CLLocationCoordinate2D.casaDeParco2.longitude,
             images: ["Casa De Parco 2_1"],
@@ -156,7 +164,7 @@ extension BusStop {
 
         BusStop(
             id: "cbdBarat1",
-            name: "CbdBarat1",
+            name: "CBD Barat 1",
             latitude: CLLocationCoordinate2D.cbdBarat1.latitude,
             longitude: CLLocationCoordinate2D.cbdBarat1.longitude,
             images: ["CBD Barat 1_1"],
@@ -165,7 +173,7 @@ extension BusStop {
 
         BusStop(
             id: "cbdBarat2",
-            name: "CbdBarat2",
+            name: "CBD Barat 2",
             latitude: CLLocationCoordinate2D.cbdBarat2.latitude,
             longitude: CLLocationCoordinate2D.cbdBarat2.longitude,
             images: ["CBD Barat 2_1"],
@@ -174,7 +182,7 @@ extension BusStop {
 
         BusStop(
             id: "cbdSelatan1",
-            name: "CbdSelatan1",
+            name: "CBD Selatan 1",
             latitude: CLLocationCoordinate2D.cbdSelatan1.latitude,
             longitude: CLLocationCoordinate2D.cbdSelatan1.longitude,
             images: [""],
@@ -183,7 +191,7 @@ extension BusStop {
 
         BusStop(
             id: "cbdTimur1",
-            name: "CbdTimur1",
+            name: "CBD Timur 1",
             latitude: CLLocationCoordinate2D.cbdTimur1.latitude,
             longitude: CLLocationCoordinate2D.cbdTimur1.longitude,
             images: ["CBD Timur 1_1"],
@@ -191,8 +199,8 @@ extension BusStop {
         ),
 
         BusStop(
-            id: "cbdTimurGop2",
-            name: "CBDTimur2",
+            id: "cbdTimur2",
+            name: "CBD Timur 2",
             latitude: CLLocationCoordinate2D.cbdTimurGop2.latitude,
             longitude: CLLocationCoordinate2D.cbdTimurGop2.longitude,
             images: ["CBD Timur 2_1"],
@@ -201,7 +209,7 @@ extension BusStop {
 
         BusStop(
             id: "cbdUtara3",
-            name: "CBD Utara 3_1",
+            name: "CBD Utara 3",
             latitude: CLLocationCoordinate2D.cbdUtara3.latitude,
             longitude: CLLocationCoordinate2D.cbdUtara3.longitude,
             images: ["Intermoda_1"],
@@ -237,7 +245,7 @@ extension BusStop {
 
         BusStop(
             id: "courtsMegaStore",
-            name: "CourtsMegaStore",
+            name: "Courts Mega Store",
             latitude: CLLocationCoordinate2D.courtsMegaStore.latitude,
             longitude: CLLocationCoordinate2D.courtsMegaStore.longitude,
             images: ["Courts Mega Store_1"],
@@ -246,7 +254,7 @@ extension BusStop {
 
         BusStop(
             id: "deBrassia",
-            name: "DeBrassia",
+            name: "De Brassia",
             latitude: CLLocationCoordinate2D.deBrassia.latitude,
             longitude: CLLocationCoordinate2D.deBrassia.longitude,
             images: ["De Brassia_1"],
@@ -255,7 +263,7 @@ extension BusStop {
 
         BusStop(
             id: "deFrangpani",
-            name: "DeFrangipani",
+            name: "De Frangipani",
             latitude: CLLocationCoordinate2D.deFrangpani.latitude,
             longitude: CLLocationCoordinate2D.deFrangpani.longitude,
             images: ["De Frangipani_1"],
@@ -264,7 +272,7 @@ extension BusStop {
 
         BusStop(
             id: "deHeliconia1",
-            name: "DeHeliconia1",
+            name: "De Heliconia1",
             latitude: CLLocationCoordinate2D.deHeliconia1.latitude,
             longitude: CLLocationCoordinate2D.deHeliconia1.longitude,
             images: ["De Heliconia 1_1"],
@@ -273,7 +281,7 @@ extension BusStop {
 
         BusStop(
             id: "deHeliconia2",
-            name: "DeHeliconia2",
+            name: "De Heliconia 2",
             latitude: CLLocationCoordinate2D.deHeliconia2.latitude,
             longitude: CLLocationCoordinate2D.deHeliconia2.longitude,
             images: ["De Heliconia 2_1"],
@@ -282,7 +290,7 @@ extension BusStop {
 
         BusStop(
             id: "deMaja",
-            name: "DeMaja",
+            name: "De Maja",
             latitude: CLLocationCoordinate2D.deMaja.latitude,
             longitude: CLLocationCoordinate2D.deMaja.longitude,
             images: ["De Maja_1"],
@@ -291,7 +299,7 @@ extension BusStop {
 
         BusStop(
             id: "deNara",
-            name: "DeNara",
+            name: "De Nara",
             latitude: CLLocationCoordinate2D.deNara.latitude,
             longitude: CLLocationCoordinate2D.deNara.longitude,
             images: ["De Nara_1"],
@@ -300,7 +308,7 @@ extension BusStop {
         
         BusStop(
             id: "dePark1",
-            name: "DePark1",
+            name: "De Park1",
             latitude: CLLocationCoordinate2D.dePark1.latitude,
             longitude: CLLocationCoordinate2D.dePark1.longitude,
             images: ["De Park 1_1"],
@@ -309,7 +317,7 @@ extension BusStop {
 
         BusStop(
             id: "dePark2",
-            name: "DePark2",
+            name: "De Park 2",
             latitude: CLLocationCoordinate2D.dePark2.latitude,
             longitude: CLLocationCoordinate2D.dePark2.longitude,
             images: ["De Park 2_1"],
@@ -318,7 +326,7 @@ extension BusStop {
 
         BusStop(
             id: "digitalHub1",
-            name: "DigitalHub1",
+            name: "Digital Hub1",
             latitude: CLLocationCoordinate2D.digitalHub1.latitude,
             longitude: CLLocationCoordinate2D.digitalHub1.longitude,
             images: ["Digital Hub 1_1", "Digital Hub 1_2"],
@@ -327,7 +335,7 @@ extension BusStop {
 
         BusStop(
             id: "digitalHub2",
-            name: "DigitalHub2",
+            name: "Digital Hub 2",
             latitude: CLLocationCoordinate2D.digitalHub2.latitude,
             longitude: CLLocationCoordinate2D.digitalHub2.longitude,
             images: ["Digital Hub 2_1"],
@@ -336,7 +344,7 @@ extension BusStop {
 
         BusStop(
             id: "divenaDeshna",
-            name: "Divena&Deshna",
+            name: "Divena & Deshna",
             latitude: CLLocationCoordinate2D.divenaDeshna.latitude,
             longitude: CLLocationCoordinate2D.divenaDeshna.longitude,
             images: ["Divena & Deshna_1"],
@@ -345,7 +353,7 @@ extension BusStop {
 
         BusStop(
             id: "eastBusinessDistrict",
-            name: "EastBusinessDistrict",
+            name: "East Business District",
             latitude: CLLocationCoordinate2D.eastBusinessDistrict.latitude,
             longitude: CLLocationCoordinate2D.eastBusinessDistrict.longitude,
             images: ["East Business District_1"],
@@ -354,7 +362,7 @@ extension BusStop {
 
         BusStop(
             id: "edutown1",
-            name: "Edutown1",
+            name: "Edutown 1",
             latitude: CLLocationCoordinate2D.edutown1.latitude,
             longitude: CLLocationCoordinate2D.edutown1.longitude,
             images: ["Edutown 1_1"],
@@ -363,7 +371,7 @@ extension BusStop {
 
         BusStop(
             id: "edutown2",
-            name: "Edutown2",
+            name: "Edutown 2",
             latitude: CLLocationCoordinate2D.edutown2.latitude,
             longitude: CLLocationCoordinate2D.edutown2.longitude,
             images: ["Edutown 2_1"],
@@ -372,7 +380,7 @@ extension BusStop {
 
         BusStop(
             id: "ekaHospital1",
-            name: "EkaHospital1",
+            name: "Eka Hospital 1",
             latitude: CLLocationCoordinate2D.ekaHospital1.latitude,
             longitude: CLLocationCoordinate2D.ekaHospital1.longitude,
             images: ["Eka Hospital 1_1"],
@@ -381,7 +389,7 @@ extension BusStop {
 
         BusStop(
             id: "ekaHospital2",
-            name: "EkaHospital2",
+            name: "Eka Hospital 2",
             latitude: CLLocationCoordinate2D.ekaHospital2.latitude,
             longitude: CLLocationCoordinate2D.ekaHospital2.longitude,
             images: ["Eka Hospital 2_1"],
@@ -389,8 +397,8 @@ extension BusStop {
         ),
 
         BusStop(
-            id: "epicon",
-            name: "Epicon",
+            id: "froogy",
+            name: "Froogy",
             latitude: CLLocationCoordinate2D.epicon.latitude,
             longitude: CLLocationCoordinate2D.epicon.longitude,
             images: ["EPICON_1"],
@@ -408,7 +416,7 @@ extension BusStop {
 
         BusStop(
             id: "extremePark",
-            name: "ExtremePark",
+            name: "Extreme Park",
             latitude: CLLocationCoordinate2D.extremePark.latitude,
             longitude: CLLocationCoordinate2D.extremePark.longitude,
             images: ["Extreme Park_1"],
@@ -417,7 +425,7 @@ extension BusStop {
 
         BusStop(
             id: "fbl1",
-            name: "Fbl1",
+            name: "FBL 1",
             latitude: CLLocationCoordinate2D.fbl1.latitude,
             longitude: CLLocationCoordinate2D.fbl1.longitude,
             images: ["FBL 1_1"],
@@ -426,7 +434,7 @@ extension BusStop {
 
         BusStop(
             id: "fbl2",
-            name: "Fbl2",
+            name: "FBL 2",
             latitude: CLLocationCoordinate2D.fbl2.latitude,
             longitude: CLLocationCoordinate2D.fbl2.longitude,
             images: ["FBL 2_1"],
@@ -435,7 +443,7 @@ extension BusStop {
 
         BusStop(
             id: "fbl5",
-            name: "Fbl5",
+            name: "FBL 5",
             latitude: CLLocationCoordinate2D.fbl5.latitude,
             longitude: CLLocationCoordinate2D.fbl5.longitude,
             images: ["FBL 5_1"],
@@ -462,7 +470,7 @@ extension BusStop {
 
         BusStop(
             id: "foresta1",
-            name: "Foresta1",
+            name: "Foresta 1",
             latitude: CLLocationCoordinate2D.foresta1.latitude,
             longitude: CLLocationCoordinate2D.foresta1.longitude,
             images: ["Foresta 1_1"],
@@ -471,7 +479,7 @@ extension BusStop {
 
         BusStop(
             id: "foresta2",
-            name: "Foresta2",
+            name: "Foresta 2",
             latitude: CLLocationCoordinate2D.foresta2.latitude,
             longitude: CLLocationCoordinate2D.foresta2.longitude,
             images: ["Foresta 2_1"],
@@ -507,7 +515,7 @@ extension BusStop {
 
         BusStop(
             id: "gop1",
-            name: "Gop1",
+            name: "GOP 1",
             latitude: CLLocationCoordinate2D.gop1.latitude,
             longitude: CLLocationCoordinate2D.gop1.longitude,
             images: ["GOP 1_1"],
@@ -525,7 +533,7 @@ extension BusStop {
 
         BusStop(
             id: "grandLucky1",
-            name: "GrandLucky1",
+            name: "Grand Lucky 1",
             latitude: CLLocationCoordinate2D.grandLucky1.latitude,
             longitude: CLLocationCoordinate2D.grandLucky1.longitude,
             images: ["Grand Lucky 1_1"],
@@ -533,8 +541,8 @@ extension BusStop {
         ),
 
         BusStop(
-            id: "greencove",
-            name: "Greencove",
+            id: "greenCove",
+            name: "Green Cove",
             latitude: CLLocationCoordinate2D.greencove.latitude,
             longitude: CLLocationCoordinate2D.greencove.longitude,
             images: ["Greencove_1"],
@@ -543,7 +551,7 @@ extension BusStop {
 
         BusStop(
             id: "greenwichPark1",
-            name: "GreenwichPark1",
+            name: "Greenwich Park 1",
             latitude: CLLocationCoordinate2D.greenwichPark1.latitude,
             longitude: CLLocationCoordinate2D.greenwichPark1.longitude,
             images: ["Greenwich Park 1_1"],
@@ -552,7 +560,7 @@ extension BusStop {
 
         BusStop(
             id: "greenwichPark2",
-            name: "GreenwichPark2",
+            name: "Greenwich Park 2",
             latitude: CLLocationCoordinate2D.greenwichPark2.latitude,
             longitude: CLLocationCoordinate2D.greenwichPark2.longitude,
             images: ["Greenwich Park 2_1"],
@@ -561,7 +569,7 @@ extension BusStop {
 
         BusStop(
             id: "greenwichParkOffice",
-            name: "GreenwichParkOffice",
+            name: "Greenwich Park Office",
             latitude: CLLocationCoordinate2D.greenwichParkOffice.latitude,
             longitude: CLLocationCoordinate2D.greenwichParkOffice.longitude,
             images: ["Greenwich Park Office_1"],
@@ -570,7 +578,7 @@ extension BusStop {
 
         BusStop(
             id: "griyaLoka1",
-            name: "GriyaLoka1",
+            name: "Griya Loka 1",
             latitude: CLLocationCoordinate2D.griyaLoka1.latitude,
             longitude: CLLocationCoordinate2D.griyaLoka1.longitude,
             images: ["Griya Loka 1_1"],
@@ -579,7 +587,7 @@ extension BusStop {
 
         BusStop(
             id: "griyaLoka2",
-            name: "GriyaLoka2",
+            name: "Griya Loka 2",
             latitude: CLLocationCoordinate2D.griyaLoka2.latitude,
             longitude: CLLocationCoordinate2D.griyaLoka2.longitude,
             images: ["Griya Loka 2_1"],
@@ -588,7 +596,7 @@ extension BusStop {
 
         BusStop(
             id: "horizonBroadway",
-            name: "HorizonBroadway",
+            name: "Horizon Broadway",
             latitude: CLLocationCoordinate2D.horizonBroadway.latitude,
             longitude: CLLocationCoordinate2D.horizonBroadway.longitude,
             images: ["Horizon Broadway_1"],
@@ -597,7 +605,7 @@ extension BusStop {
 
         BusStop(
             id: "ice1",
-            name: "Ice1",
+            name: "ICE 1",
             latitude: CLLocationCoordinate2D.ice1.latitude,
             longitude: CLLocationCoordinate2D.ice1.longitude,
             images: ["ICE 1_1"],
@@ -606,7 +614,7 @@ extension BusStop {
 
         BusStop(
             id: "ice2",
-            name: "Ice2",
+            name: "ICE 2",
             latitude: CLLocationCoordinate2D.ice2.latitude,
             longitude: CLLocationCoordinate2D.ice2.longitude,
             images: ["ICE 2_1"],
@@ -615,7 +623,7 @@ extension BusStop {
 
         BusStop(
             id: "ice5",
-            name: "Ice5",
+            name: "ICE 5",
             latitude: CLLocationCoordinate2D.ice5.latitude,
             longitude: CLLocationCoordinate2D.ice5.longitude,
             images: ["ICE 5_1"],
@@ -624,7 +632,7 @@ extension BusStop {
 
         BusStop(
             id: "ice6",
-            name: "Ice6",
+            name: "ICE 6",
             latitude: CLLocationCoordinate2D.ice6.latitude,
             longitude: CLLocationCoordinate2D.ice6.longitude,
             images: ["ICE 6_1"],
@@ -633,7 +641,7 @@ extension BusStop {
 
         BusStop(
             id: "iceBusinessPark",
-            name: "IceBusinessPark",
+            name: "ICE Business Park",
             latitude: CLLocationCoordinate2D.iceBusinessPark.latitude,
             longitude: CLLocationCoordinate2D.iceBusinessPark.longitude,
             images: ["ICE Business Park_1"],
@@ -642,7 +650,7 @@ extension BusStop {
 
         BusStop(
             id: "iconBusinessPark",
-            name: "IconBusinessPark",
+            name: "Icon Business Park",
             latitude: CLLocationCoordinate2D.iconBusinessPark.latitude,
             longitude: CLLocationCoordinate2D.iconBusinessPark.longitude,
             images: ["Icon Business Park_1"],
@@ -651,7 +659,7 @@ extension BusStop {
 
         BusStop(
             id: "iconCentro",
-            name: "IconCentro",
+            name: "Icon Centro",
             latitude: CLLocationCoordinate2D.iconCentro.latitude,
             longitude: CLLocationCoordinate2D.iconCentro.longitude,
             images: ["Icon Centro_1"],
@@ -686,8 +694,8 @@ extension BusStop {
         ),
 
         BusStop(
-            id: "lobbyAeon",
-            name: "LobbyAEON",
+            id: "lobbyAeonMall",
+            name: "Lobby AEON Mall",
             latitude: CLLocationCoordinate2D.lobbyAeon.latitude,
             longitude: CLLocationCoordinate2D.lobbyAeon.longitude,
             images: ["Lobby Aeon Mall_1"],
@@ -705,7 +713,7 @@ extension BusStop {
 
         BusStop(
             id: "masjidAlUkhuwah",
-            name: "MasjidAlUkhuwah",
+            name: "Masjid Al-Ukhuwah",
             latitude: CLLocationCoordinate2D.masjidAlUkhuwah.latitude,
             longitude: CLLocationCoordinate2D.masjidAlUkhuwah.longitude,
             images: ["Masjid Al-Ukhuwah_1"],
@@ -723,7 +731,7 @@ extension BusStop {
 
         BusStop(
             id: "navaPark1",
-            name: "NavaPark1",
+            name: "Nava Park 1",
             latitude: CLLocationCoordinate2D.navaPark1.latitude,
             longitude: CLLocationCoordinate2D.navaPark1.longitude,
             images: ["Nava Park 1_1"],
@@ -732,7 +740,7 @@ extension BusStop {
 
         BusStop(
             id: "navaPark2",
-            name: "NavaPark2",
+            name: "Nava Park 2",
             latitude: CLLocationCoordinate2D.navaPark2.latitude,
             longitude: CLLocationCoordinate2D.navaPark2.longitude,
             images: ["Nava Park 2_1"],
@@ -741,7 +749,7 @@ extension BusStop {
 
         BusStop(
             id: "pasarModernTimur",
-            name: "PasarModernTimur",
+            name: "Pasar Modern Timur",
             latitude: CLLocationCoordinate2D.pasarModernTimur.latitude,
             longitude: CLLocationCoordinate2D.pasarModernTimur.longitude,
             images: ["Pasar Modern Timur_1"],
@@ -750,7 +758,7 @@ extension BusStop {
 
         BusStop(
             id: "piazziaMozia",
-            name: "PiazziaMozia",
+            name: "Piazzia Mozia",
             latitude: CLLocationCoordinate2D.piazziaMozia.latitude,
             longitude: CLLocationCoordinate2D.piazziaMozia.longitude,
             images: ["Piazzia Mozia_1"],
@@ -759,7 +767,7 @@ extension BusStop {
 
         BusStop(
             id: "polsekSerpong",
-            name: "PolsekSerpong",
+            name: "Polsek Serpong",
             latitude: CLLocationCoordinate2D.polsekSerpong.latitude,
             longitude: CLLocationCoordinate2D.polsekSerpong.longitude,
             images: ["Polsek Serpong_1"],
@@ -786,7 +794,7 @@ extension BusStop {
 
         BusStop(
             id: "puspitaloka",
-            name: "Puspitaloka",
+            name: "Puspita Loka",
             latitude: CLLocationCoordinate2D.puspitaloka.latitude,
             longitude: CLLocationCoordinate2D.puspitaloka.longitude,
             images: ["Puspita Loka_1"],
@@ -795,7 +803,7 @@ extension BusStop {
 
         BusStop(
             id: "qBig1",
-            name: "QBig1",
+            name: "Q Big 1",
             latitude: CLLocationCoordinate2D.qBig1.latitude,
             longitude: CLLocationCoordinate2D.qBig1.longitude,
             images: ["Q Big 1_1"],
@@ -804,7 +812,7 @@ extension BusStop {
 
         BusStop(
             id: "qBig2",
-            name: "QBig2",
+            name: "Q Big 2",
             latitude: CLLocationCoordinate2D.qBig2.latitude,
             longitude: CLLocationCoordinate2D.qBig2.longitude,
             images: ["Q Big 2_1"],
@@ -813,7 +821,7 @@ extension BusStop {
 
         BusStop(
             id: "qBig3",
-            name: "QBig3",
+            name: "Q Big 3",
             latitude: CLLocationCoordinate2D.qBig3.latitude,
             longitude: CLLocationCoordinate2D.qBig3.longitude,
             images: ["Q Big 3_1"],
@@ -822,7 +830,7 @@ extension BusStop {
 
         BusStop(
             id: "rukoMadrid",
-            name: "RukoMadrid",
+            name: "Ruko Madrid",
             latitude: CLLocationCoordinate2D.rukoMadrid.latitude,
             longitude: CLLocationCoordinate2D.rukoMadrid.longitude,
             images: ["Ruko Madrid_1"],
@@ -831,7 +839,7 @@ extension BusStop {
 
         BusStop(
             id: "rukoTheLoop",
-            name: "RukoTheLoop",
+            name: "Ruko The Loop",
             latitude: CLLocationCoordinate2D.rukoTheLoop.latitude,
             longitude: CLLocationCoordinate2D.rukoTheLoop.longitude,
             images: ["Ruko The Loop_1"],
@@ -840,7 +848,7 @@ extension BusStop {
 
         BusStop(
             id: "santaUrsula1",
-            name: "SantaUrsula1",
+            name: "Santa Ursula 1",
             latitude: CLLocationCoordinate2D.santaUrsula1.latitude,
             longitude: CLLocationCoordinate2D.santaUrsula1.longitude,
             images: ["Santa Ursula 1_1"],
@@ -849,7 +857,7 @@ extension BusStop {
 
         BusStop(
             id: "santaUrsula2",
-            name: "SantaUrsula2",
+            name: "Santa Ursula 2",
             latitude: CLLocationCoordinate2D.santaUrsula2.latitude,
             longitude: CLLocationCoordinate2D.santaUrsula2.longitude,
             images: ["Santa Ursula 2_1"],
@@ -867,7 +875,7 @@ extension BusStop {
 
         BusStop(
             id: "sektor13",
-            name: "Sektor1.3",
+            name: "Sektor 1.3",
             latitude: CLLocationCoordinate2D.sektor13.latitude,
             longitude: CLLocationCoordinate2D.sektor13.longitude,
             images: ["Sektor 1.3_1"],
@@ -876,7 +884,7 @@ extension BusStop {
 
         BusStop(
             id: "sentraOnderdil",
-            name: "SentraOnderdil",
+            name: "Sentra Onderdil",
             latitude: CLLocationCoordinate2D.sentraOnderdil.latitude,
             longitude: CLLocationCoordinate2D.sentraOnderdil.longitude,
             images: ["Sentra Onderdil_1"],
@@ -885,7 +893,7 @@ extension BusStop {
 
         BusStop(
             id: "simpangForesta",
-            name: "SimpangForesta",
+            name: "Simpang Foresta",
             latitude: CLLocationCoordinate2D.simpangForesta.latitude,
             longitude: CLLocationCoordinate2D.simpangForesta.longitude,
             images: ["Simpang Foresta_1"],
@@ -894,7 +902,7 @@ extension BusStop {
 
         BusStop(
             id: "simplicity1",
-            name: "Simplicity1",
+            name: "Simplicity 1",
             latitude: CLLocationCoordinate2D.simplicity1.latitude,
             longitude: CLLocationCoordinate2D.simplicity1.longitude,
             images: ["Simplicity 1_1"],
@@ -903,7 +911,7 @@ extension BusStop {
 
         BusStop(
             id: "simplicity2",
-            name: "Simplicity2",
+            name: "Simplicity 2",
             latitude: CLLocationCoordinate2D.simplicity2.latitude,
             longitude: CLLocationCoordinate2D.simplicity2.longitude,
             images: ["Simplicity 2_1"],
@@ -912,7 +920,7 @@ extension BusStop {
 
         BusStop(
             id: "smlPlaza",
-            name: "SMLPlaza",
+            name: "SML Plaza",
             latitude: CLLocationCoordinate2D.smlPlaza.latitude,
             longitude: CLLocationCoordinate2D.smlPlaza.longitude,
             images: ["SML Plaza_1"],
@@ -922,7 +930,7 @@ extension BusStop {
         
         BusStop(
             id: "studento1",
-            name: "Studento1",
+            name: "Studento 1",
             latitude: CLLocationCoordinate2D.studento1.latitude,
             longitude: CLLocationCoordinate2D.studento1.longitude,
             images: ["Studento 1_1"],
@@ -931,7 +939,7 @@ extension BusStop {
 
         BusStop(
             id: "studento2",
-            name: "Studento2",
+            name: "Studento 2",
             latitude: CLLocationCoordinate2D.studento2.latitude,
             longitude: CLLocationCoordinate2D.studento2.longitude,
             images: ["Studento 2_1"],
@@ -940,7 +948,7 @@ extension BusStop {
 
         BusStop(
             id: "swa1",
-            name: "Swa1",
+            name: "SWA 1",
             latitude: CLLocationCoordinate2D.swa1.latitude,
             longitude: CLLocationCoordinate2D.swa1.longitude,
             images: ["SWA 1_1"],
@@ -949,7 +957,7 @@ extension BusStop {
 
         BusStop(
             id: "swa2",
-            name: "Swa2",
+            name: "SWA 2",
             latitude: CLLocationCoordinate2D.swa2.latitude,
             longitude: CLLocationCoordinate2D.swa2.longitude,
             images: ["SWA 2_1"],
@@ -967,7 +975,7 @@ extension BusStop {
 
         BusStop(
             id: "theBreeze",
-            name: "TheBreeze",
+            name: "The Breeze",
             latitude: CLLocationCoordinate2D.theBreeze.latitude,
             longitude: CLLocationCoordinate2D.theBreeze.longitude,
             images: ["The Breeze_1"],
@@ -976,7 +984,7 @@ extension BusStop {
 
         BusStop(
             id: "theMozia1",
-            name: "TheMozia1",
+            name: "The Mozia 1",
             latitude: CLLocationCoordinate2D.theMozia1.latitude,
             longitude: CLLocationCoordinate2D.theMozia1.longitude,
             images: ["The Mozia_1"],
@@ -985,7 +993,7 @@ extension BusStop {
 
         BusStop(
             id: "theMozia2",
-            name: "TheMozia2",
+            name: "The Mozia 2",
             latitude: CLLocationCoordinate2D.theMozia2.latitude,
             longitude: CLLocationCoordinate2D.theMozia2.longitude,
             images: ["The Mozia 2_1"],
@@ -994,7 +1002,7 @@ extension BusStop {
 
         BusStop(
             id: "vanyaPark",
-            name: "VanyaPark",
+            name: "Vanya Park",
             latitude: CLLocationCoordinate2D.vanyaPark.latitude,
             longitude: CLLocationCoordinate2D.vanyaPark.longitude,
             images: ["Vanya Park_1"],
@@ -1003,7 +1011,7 @@ extension BusStop {
 
         BusStop(
             id: "verdantView",
-            name: "VerdantView",
+            name: "Verdant View",
             latitude: CLLocationCoordinate2D.verdantView.latitude,
             longitude: CLLocationCoordinate2D.verdantView.longitude,
             images: ["Verdant View_1"],
@@ -1012,7 +1020,7 @@ extension BusStop {
 
         BusStop(
             id: "westPark",
-            name: "WestPark",
+            name: "West Park",
             latitude: CLLocationCoordinate2D.westPark.latitude,
             longitude: CLLocationCoordinate2D.westPark.longitude,
             images: ["West Park_1"],
