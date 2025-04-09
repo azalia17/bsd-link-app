@@ -27,7 +27,7 @@ struct LocationSearchView: View {
                 Button(action: {
                     withAnimation(.spring){
                         showSearchLocationView.toggle()
-                        locationViewModel.resetAll()
+//                        locationViewModel.resetAll()
                     }
                 }) {
                     HStack {

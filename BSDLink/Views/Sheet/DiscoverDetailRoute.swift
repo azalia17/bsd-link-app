@@ -157,6 +157,8 @@ struct DiscoverDetailSingleRoute: View {
         BusStop.getStops(by: Array(busStopData.keys))
     }
     
+    
+    
 //    public var filteredSchedule: [
     
     var body: some View {
@@ -188,16 +190,27 @@ struct DiscoverDetailSingleRoute: View {
                         .font(.caption)
                         .foregroundColor(.gray)
                     VStack(spacing: 0) {
+//
                         ForEach(filteredBusStop.indices, id: \.self) { bus in
-//                            ScheduleExpandable(
-//                                index: index,
-//                                route: route,
-//                                fromHour: fromHour,
-//                                fromMinute: fromMinute
-//                            )
-//                            Text("\(filteredBusStop)")
-                            ItemExpandablee(route: route, busStop: filteredBusStop[bus], fromHour: fromHour, fromMinute: fromMinute, scheduleIndex: 0, isFirstItem: bus == 0, isLastItem: filteredBusStop.count - 1 == bus) {
-                                Text("A")
+//                            busStopData.values
+                            let scheduleDetail = ScheduleDetail.getManyScheduleDetails(by: busStopData[filteredBusStop[bus].id] ?? [ScheduleDetail.all[0].id])
+                            let schedule : [ScheduleTime] = if route.schedule.count > 1 {
+                                scheduleDetail[0].time + scheduleDetail[1].time
+                            } else {
+                                scheduleDetail[0].time
+                            }
+//                            
+//                            let filteredSchedule : [ScheduleTime] = schedule.flatMap { detail in
+//                                detail.time.filter { $0.time >= fromHour && $0.time < fromHour + 20 }
+//                            }.sorted { $0.time < $1.time }
+                            
+                            ItemExpandablee(schedule: schedule, route: route, busStop: filteredBusStop[bus], fromHour: fromHour, fromMinute: fromMinute, scheduleIndex: 0, isFirstItem: bus == 0, isLastItem: filteredBusStop.count - 1 == bus) {
+                                ScheduleGrid (
+                                    schedules: schedule
+//                                    schedules: scheduleDetail[0].time
+                                )
+                                .padding([.top, .trailing])
+                                .padding(.top)
                             }
                         }
                     }
@@ -267,6 +280,7 @@ struct ScheduleExpandable: View {
 
 
 struct ItemExpandablee<ExpandedContent: View>: View {
+    let schedule: [ScheduleTime]
     let route: Route
     let busStop: BusStop
     let fromHour: Int
@@ -278,6 +292,8 @@ struct ItemExpandablee<ExpandedContent: View>: View {
     
     @State private var isExpanded: Bool = true
     @State private var expandedHeight: CGFloat = 0  // Store the expanded height
+    
+
     
     var isShowPreviewSchedule: Bool = true
     
@@ -327,6 +343,7 @@ struct ItemExpandablee<ExpandedContent: View>: View {
                 fromHour: fromHour,
                 fromMinute: fromMinute,
                 contentExpanded: contentExpanded,
+                schedule: schedule,
                 isExpanded: $isExpanded,
                 expandedHeight: $expandedHeight,
                 isShowPreviewSchedule: isShowPreviewSchedule,
@@ -349,6 +366,7 @@ struct ExpandableContentTypee<ExpandedContent: View>: View {
     let fromHour: Int
     let fromMinute: Int
     let contentExpanded: () -> ExpandedContent
+    let schedule: [ScheduleTime]
     
     @Binding var isExpanded: Bool
     @Binding var expandedHeight: CGFloat
@@ -382,7 +400,7 @@ struct ExpandableContentTypee<ExpandedContent: View>: View {
                     }
                     
                     if isShowPreviewSchedule && !isExpanded{
-                        let sched = Schedule.getScheduleBusStopBasedWithTime(route: route, busStopId: busStop.id, index: scheduleIndex, fromHour: fromHour, fromMinute: fromMinute)
+                        let sched = schedule
                         let previewSchedule : [ScheduleTime] = if sched.isEmpty {[]} else {[sched[0], sched[1]]}
                         
                         ScheduleGrid(

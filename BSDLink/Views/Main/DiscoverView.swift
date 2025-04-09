@@ -366,7 +366,8 @@ struct DiscoverView: View {
                 
                 busStopData = getScheduleForInterestedStops(route: bestRoutes[0], schedules: Schedule.getSchedules(by: bestRoutes[0].schedule), interestedStops: locationViewModel.busStopsGenerated.map { $0.busStopId })
                 
-//                print()
+                print(busStopData = getScheduleForInterestedStops(route: bestRoutes[0], schedules: Schedule.getSchedules(by: bestRoutes[0].schedule), interestedStops: locationViewModel.busStopsGenerated.map { $0.busStopId })
+                )
 
                 
                 /**END*/
