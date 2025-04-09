@@ -2461,7 +2461,7 @@
     {
         "id": "sd_r1_b1_greenCove_36",
         "index": 36,
-        "BusStop": "greencove",
+        "BusStop": "greenCove",
         "time": [
             {
                 "hour": 7,
@@ -2496,7 +2496,7 @@
     {
         "id": "sd_r1_b2_greenCove_36",
         "index": 36,
-        "BusStop": "greencove",
+        "BusStop": "greenCove",
         "time": [
             {
                 "hour": 8,
@@ -6257,7 +6257,7 @@
     {
         "id": "sd_r2_b3_greenCove_38",
         "index": 38,
-        "BusStop": "greencove",
+        "BusStop": "greenCove",
         "time": [
             {
                 "hour": 7,
@@ -6293,7 +6293,7 @@
     {
         "id": "sd_r2_b4_greenCove_38",
         "index": 38,
-        "BusStop": "greencove",
+        "BusStop": "greenCove",
         "time": [
             {
                 "hour": 7,
@@ -7481,7 +7481,7 @@
     {
         "id": "sd_r3_b5_terminalIntermoda_1",
         "index": 1,
-        "BusStop": "terminalIntermoda",
+        "BusStop": "intermoda",
         "time": [
             {
                 "hour": 6,
@@ -7544,7 +7544,7 @@
     {
         "id": "sd_r3_b7a_terminalIntermoda_1",
         "index": 1,
-        "BusStop": "terminalIntermoda",
+        "BusStop": "intermoda",
         "time": [
             {
                 "hour": 6,
@@ -14710,7 +14710,7 @@
     {
         "id": "sd_r5_b7_greenCove_16",
         "index": 16,
-        "BusStop": "greencove",
+        "BusStop": "greenCove",
         "time": [
             {
                 "hour": 9,
@@ -14761,7 +14761,7 @@
     {
         "id": "sd_r5_b8_greenCove_16",
         "index": 16,
-        "BusStop": "greencove",
+        "BusStop": "greenCove",
         "time": [
             {
                 "hour": 10,
@@ -16512,7 +16512,7 @@
     {
         "id": "sd_r7_b10_terminalIntermoda_1",
         "index": 1,
-        "BusStop": "terminalIntermoda",
+        "BusStop": "intermoda",
         "time": [
             {
                 "hour": 7,

@@ -82,8 +82,8 @@ extension BusStop {
             routes: ["route_2", "route_4"]
         ),
         BusStop(
-            id: "ammarilla",
-            name: "Ammarilla",
+            id: "amarilla",
+            name: "Amarilla",
             latitude: CLLocationCoordinate2D.amarilla.latitude,
             longitude: CLLocationCoordinate2D.amarilla.longitude,
             images: ["Amarilla_1"],
