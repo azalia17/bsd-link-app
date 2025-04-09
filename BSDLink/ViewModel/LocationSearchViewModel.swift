@@ -113,8 +113,8 @@ class LocationSearchViewModel: NSObject, ObservableObject {
     func resetAll() {
         self.endLocationQueryFragment = ""
         self.startLocationQueryFragment = ""
-        self.startLocationQueryFragment = ""
-        self.endLocationQueryFragment = ""
+        self.startLocationSearch = MKLocalSearchCompletion()
+        self.endLocationSearch = MKLocalSearchCompletion()
         self.selectedEndCoordinate = CLLocationCoordinate2D()
         self.selectedStartCoordinate = CLLocationCoordinate2D()
         self.results = [MKLocalSearchCompletion]()

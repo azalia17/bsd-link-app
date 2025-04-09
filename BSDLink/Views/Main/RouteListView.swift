@@ -11,6 +11,7 @@ struct RouteListView: View {
     @State private var searchTerm: String = ""
     @State private var showSearchInfo: Bool = false
     @State private var showOneTimeSearchInfo: Bool = true
+    @State private var showRoute: Bool = false
     
     public var filteredRoutes: [Route] {
         if searchTerm.isEmpty {
@@ -19,20 +20,40 @@ struct RouteListView: View {
             return Route.all.filter {
                 $0.busStops.contains(searchTerm)
             }
-            //            return sampleRoutes.filter { $0.name.localizedCaseInsensitiveContains(searchTerm) }
-            // Di atas sisa2 pas awal search rute pake nama rute
-//            return sampleRoutes.filter { route in
-//            Route.all.filter { route in
-//                $0.busStops. == searchTerm
-//            }
-//                }
+            }
+        }
+    
+    public var filteredBusStop: [BusStop] {
+        if searchTerm.isEmpty {
+            return BusStop.all
+        } else {
+            return BusStop.all.filter {
+                $0.id.description.localizedLowercase.contains(searchTerm)
+            }
             }
         }
 //    }
     
     var body: some View {
         NavigationStack {
-            if searchTerm.isEmpty {
+            if showRoute {
+                
+                List(filteredBusStop) { halte in
+                    HStack {
+                        Image(systemName: "mappin") // Ikon lokasi
+                        Text(halte.name) // Nama halte
+                        Spacer()
+                        Text(halte.id)
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                    }
+                    .padding(.vertical, 8)
+                    .onTapGesture {
+                        searchTerm = halte.id
+                        showRoute = false
+                    }
+                }
+            } else {
                 VStack() {
                     //Logic buat nampilin berapa route yang keliatan
                     RouteCount(count: filteredRoutes.count)
@@ -85,7 +106,7 @@ struct RouteListView: View {
 //                    //Logic buat nampilin berapa route yang keliatan
 //                    RouteCount(count: filteredRoutes.count)
 //                        .safeAreaPadding(.horizontal)
-//                    
+//
 //                    //Logic buat one time search info
 //                    if showOneTimeSearchInfo {
 //                        ZStack (alignment: .topTrailing){
@@ -94,8 +115,8 @@ struct RouteListView: View {
 //                                .padding()
 //                                .multilineTextAlignment(.leading)
 //                                .foregroundStyle(.black.opacity(0.7))
-//                            
-//                            
+//
+//
 //                            Button(action: {
 //                                showOneTimeSearchInfo = false
 //                            }) {
@@ -104,14 +125,14 @@ struct RouteListView: View {
 //                                    .padding([.top, .trailing])
 //                            }
 //                            .foregroundStyle(.black.opacity(0.5))
-//                            
+//
 //                        }
 //                        .background(Color(.systemGray6))
 //                        .cornerRadius(12)
 //                        //                    .safeAreaPadding(.horizontal)
-//                        
+//
 //                    }
-//                    
+//
 //                    //Buat nampilin list rute yang disearch
 //                    List(filteredRoutes) { route in
 //                        NavigationLink {
@@ -123,9 +144,9 @@ struct RouteListView: View {
 //                    }
 //                    .listStyle(PlainListStyle())
 //                    .padding(.horizontal)
-//                    
+//
 //                    .navigationTitle(Text("All Routes"))
-////                    
+////
 ////                    //Buat nampilin search info
 ////                    .toolbar {
 ////                        ToolbarItem(placement: .navigationBarTrailing) {
@@ -140,20 +161,9 @@ struct RouteListView: View {
 ////                        SearchRoutesInfo(isShow: $showSearchInfo)
 ////                            .presentationDetents([.fraction(0.2)])
 ////                    }
-////                    
-////                    
+////
+////
 //                }
-            } else {
-                List(BusStop.all) { halte in
-                    HStack {
-                        Image(systemName: "mappin") // Ikon lokasi
-                        Text(halte.name) // Nama halte
-                    }
-                    .padding(.vertical, 8)
-                    .onTapGesture {
-                        searchTerm = halte.name
-                    }
-                }
             }
                 
             
@@ -176,6 +186,13 @@ struct RouteListView: View {
                 .presentationDetents([.fraction(0.2)])
         }
         .searchable(text: $searchTerm)
+        .onSubmit {
+            showRoute = false
+        }
+        .onChange(of: searchTerm) { oldValue, newValue in
+            
+            showRoute = true
+        }
 
     }
 

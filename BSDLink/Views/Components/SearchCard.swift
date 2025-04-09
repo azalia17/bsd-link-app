@@ -122,6 +122,7 @@ struct SearchCard: View {
                     .background(Color.white)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .shadow(color: Color.black.opacity(0.1), radius: 15, x: 0, y: 10)
+                    .disabled(startingPoint == "" || destinationPoint == "")
 
 //                    Spacer()
                     
