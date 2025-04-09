@@ -34,6 +34,8 @@ struct DiscoverView: View {
     
     @State private var showLocationSearchView: Bool = false
     
+    @State var bestRoutes: [Route] = []
+    
     @EnvironmentObject var locationViewModel : LocationSearchViewModel
     
     var body: some View {
@@ -55,7 +57,7 @@ struct DiscoverView: View {
                         ) // Access the coordinate here
                         .tint(.orange.gradient)
                     }
-
+                    
                 }
                 
                 UserAnnotation().tint(.blue)
@@ -139,7 +141,7 @@ struct DiscoverView: View {
                             )
                             .shadow(color: Color.black.opacity(0.3), radius: 15, x: 0, y: 10)
                             
-                    
+                            
                         }
                     }
                     Spacer()
@@ -149,39 +151,42 @@ struct DiscoverView: View {
                 .padding(.bottom)
                 .background(isSearch ? .gray.opacity(0.0) : .gray.opacity(0.27))
                 .background(isSearch ? .white.opacity(0.0) : .white.opacity(0.9))
-                .sheet(isPresented: $showTimePicker) {
-                    VStack {
-                        TimePicker(showTimePicker: $showTimePicker, timePicked: $timePicked, isTimePicked: $isTimePicked)
-                            .presentationDetents([.fraction(0.45)])
-                    }
-                }
-                
-                if isSearch {
-                    DraggableSheet(
-                        routes: [Route.all[0]],
-                        fromHour: 6,
-                        fromMinute: 0
-                    )
-                    .edgesIgnoringSafeArea(.bottom)
-                    .transition(.move(edge: .bottom))
-                }
-                if showLocationSearchView {
-                    LocationSearchView(
-                        isTimePicked: $isTimePicked,
-                        showSearchLocationView: $showLocationSearchView,
-                        isSearch: $isSearch) {
-                            getWalkingDirections()
-                            getDirections()
-                            locationViewModel.searchDirection()
-                        }
-                        .environmentObject(locationViewModel)
-                        .onDisappear {
-                            getDirections()
-                            getWalkingDirections()
-                        }
+            }
+            .sheet(isPresented: $showTimePicker) {
+                VStack {
+                    TimePicker(showTimePicker: $showTimePicker, timePicked: $timePicked, isTimePicked: $isTimePicked)
+                        .presentationDetents([.fraction(0.45)])
                 }
             }
+            
+            if isSearch {
+                DraggableSheet(
+                    //                        routes: bestRoutes,
+                    routes: [Route.all[0]],
+                    //                        routes: [locationViewModel.bestRoute],
+                    fromHour: 6,
+                    fromMinute: 0
+                )
+                .edgesIgnoringSafeArea(.bottom)
+                .transition(.move(edge: .bottom))
+            }
+            if showLocationSearchView {
+                LocationSearchView(
+                    isTimePicked: $isTimePicked,
+                    showSearchLocationView: $showLocationSearchView,
+                    isSearch: $isSearch) {
+                        getWalkingDirections()
+                        getDirections()
+                        locationViewModel.searchDirection()
+                    }
+                    .environmentObject(locationViewModel)
+                    .onDisappear {
+                        getDirections()
+                        getWalkingDirections()
+                    }
+            }
         }
+        
     }
     
     
@@ -219,6 +224,7 @@ struct DiscoverView: View {
                     for busStop in busStopsOnRoute {
                         print("Bus stop: \(busStop.name)")
                     }
+                    
                 } else {
                     // Generate paths with possible transfers considering transit bus stops
                     let pathsWithTransfers = locationViewModel.generatePathsWithTransfers(startBusStop: startBusStop, endBusStop: endBusStop, routes: routes)
@@ -231,14 +237,16 @@ struct DiscoverView: View {
                         }
                     }
                 }
+                bestRoutes = locationViewModel.bestRoutes
+                //                routes
                 let waypoints: [CLLocationCoordinate2D] = locationViewModel.busStopsGenerated.map { $0.coordinate }
-
-//                let waypoints: [CLLocationCoordinate2D] = locationViewModel.busStopsGenerated
-//                [
-//                    CLLocationCoordinate2D(latitude: startBusStop.latitude, longitude: startBusStop.longitude),
-//                    CLLocationCoordinate2D(latitude: endBusStop.latitude, longitude: endBusStop.longitude)
-                    
-//                ]
+                
+                //                let waypoints: [CLLocationCoordinate2D] = locationViewModel.busStopsGenerated
+                //                [
+                //                    CLLocationCoordinate2D(latitude: startBusStop.latitude, longitude: startBusStop.longitude),
+                //                    CLLocationCoordinate2D(latitude: endBusStop.latitude, longitude: endBusStop.longitude)
+                
+                //                ]
                 
                 guard waypoints.count >= 2 else { return }
                 
@@ -302,45 +310,45 @@ struct DiscoverView: View {
             }
         }
     }
-        func generateRoute(from startLocation: CLLocationCoordinate2D, to endLocation: CLLocationCoordinate2D) -> (startBusStop: BusStop, endBusStop: BusStop, routes: [Route])? {
-            print("start generateRoute()")
-            
-            // Find the nearest start bus stop
-            guard let startBusStop = locationViewModel.findNearestBusStop(from: startLocation) else {
-                print("No nearby start bus stop found.")
-                return nil
-            }
-    
-            // Find the nearest end bus stop
-            guard let endBusStop = locationViewModel.findNearestBusStop(from: endLocation) else {
-                print("No nearby end bus stop found.")
-                return nil
-            }
-    
-            // Find routes that pass through the start and end bus stops
-            let startRoutes = locationViewModel.findRoutes(for: startBusStop)
-            let endRoutes = locationViewModel.findRoutes(for: endBusStop)
-            
-            print("start: \(startLocation)")
-            print("end: \(endLocation)")
-            print("start stop \(startBusStop), end stop \(endBusStop)")
-            
-            getWalkingFromStopsDirections(from: startLocation, to: CLLocationCoordinate2D(latitude: startBusStop.latitude, longitude: startBusStop.longitude), type: "start")
-            getWalkingFromStopsDirections(from: endLocation, to: CLLocationCoordinate2D(latitude: endBusStop.latitude, longitude: endBusStop.longitude), type: "end")
-    
-            // Filter routes that pass through both the start and end bus stops
-            let matchingRoutes = startRoutes.filter { route in
-                return endRoutes.contains { $0.id == route.id }
-            }
-    
-            if matchingRoutes.isEmpty {
-                print("No matching routes found.")
-                return nil
-            }
-    
-            // Return the result with the nearest bus stops and matching routes
-            return (startBusStop, endBusStop, matchingRoutes)
+    func generateRoute(from startLocation: CLLocationCoordinate2D, to endLocation: CLLocationCoordinate2D) -> (startBusStop: BusStop, endBusStop: BusStop, routes: [Route])? {
+        print("start generateRoute()")
+        
+        // Find the nearest start bus stop
+        guard let startBusStop = locationViewModel.findNearestBusStop(from: startLocation) else {
+            print("No nearby start bus stop found.")
+            return nil
         }
+        
+        // Find the nearest end bus stop
+        guard let endBusStop = locationViewModel.findNearestBusStop(from: endLocation) else {
+            print("No nearby end bus stop found.")
+            return nil
+        }
+        
+        // Find routes that pass through the start and end bus stops
+        let startRoutes = locationViewModel.findRoutes(for: startBusStop)
+        let endRoutes = locationViewModel.findRoutes(for: endBusStop)
+        
+        print("start: \(startLocation)")
+        print("end: \(endLocation)")
+        print("start stop \(startBusStop), end stop \(endBusStop)")
+        
+        getWalkingFromStopsDirections(from: startLocation, to: CLLocationCoordinate2D(latitude: startBusStop.latitude, longitude: startBusStop.longitude), type: "start")
+        getWalkingFromStopsDirections(from: endLocation, to: CLLocationCoordinate2D(latitude: endBusStop.latitude, longitude: endBusStop.longitude), type: "end")
+        
+        // Filter routes that pass through both the start and end bus stops
+        let matchingRoutes = startRoutes.filter { route in
+            return endRoutes.contains { $0.id == route.id }
+        }
+        
+        if matchingRoutes.isEmpty {
+            print("No matching routes found.")
+            return nil
+        }
+        
+        // Return the result with the nearest bus stops and matching routes
+        return (startBusStop, endBusStop, matchingRoutes)
+    }
     
 }
 

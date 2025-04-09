@@ -18,8 +18,6 @@ struct ScheduleDetail: Identifiable, Codable {
     let index: Int // bus stops index, urutan keberapa
     let busStop: String
     let time: [ScheduleTime]
-    
-    
 }
 
 struct ScheduleTime: Identifiable, Codable {

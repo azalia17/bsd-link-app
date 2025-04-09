@@ -41,6 +41,7 @@ class LocationSearchViewModel: NSObject, ObservableObject {
     
 //    @Published var busStopsGenerated: [CLLocationCoordinate2D] = []
     @Published var busStopsGenerated: [IdentifiableCoordinate] = []
+    @Published var bestRoutes: [Route] = []
     
     override init() {
         super.init()
@@ -209,66 +210,67 @@ class LocationSearchViewModel: NSObject, ObservableObject {
         return matchingRoutes
     }
     
-    func generateRoute(from startLocation: CLLocationCoordinate2D, to endLocation: CLLocationCoordinate2D) -> (startBusStop: BusStop, endBusStop: BusStop, routes: [Route])? {
-        // Find the nearest start bus stop
-        guard let startBusStop = findNearestBusStop(from: startLocation) else {
-            print("No nearby start bus stop found.")
-            return nil
-        }
-        
-        // Find the nearest end bus stop
-        guard let endBusStop = findNearestBusStop(from: endLocation) else {
-            print("No nearby end bus stop found.")
-            return nil
-        }
-        
-        print("start: \(selectedStartCoordinate)")
-        print("end: \(selectedEndCoordinate)")
-        print("start stop \(startBusStop), end stop \(endBusStop)")
-        
-        // Find routes that pass through the start and end bus stops
-        let startRoutes = findRoutes(for: startBusStop)
-        let endRoutes = findRoutes(for: endBusStop)
-        
-        // Filter routes that pass through both the start and end bus stops
-        let matchingRoutes = startRoutes.filter { route in
-            return endRoutes.contains { $0.id == route.id }
-        }
-        
-        print("matchingRoutes")
-        
-        if matchingRoutes.isEmpty {
-            print("No matching routes found.")
-            return nil
-        }
-        
-        ////        if let routeDetails = locationViewModel.generateRoute() {
-        //            let sStartBusStop = startBusStop
-        //            let eEndBusStop = endBusStop
-        //            let rRoutes = matchingRoutes
-        
-        // Generate the bus stops the user will pass through based on the first matching route
-        if let busStopsOnRoute = self.generateBusStops(from: startBusStop, to: endBusStop, routes: matchingRoutes) {
-            // Print out the bus stops
-            for busStop in busStopsOnRoute {
-                print("Bus stop: \(busStop.name)")
-            }
-        } else {
-            // Generate paths with possible transfers considering transit bus stops
-            let pathsWithTransfers = self.generatePathsWithTransfers(startBusStop: startBusStop, endBusStop: endBusStop, routes: matchingRoutes)
-            
-            // Print out the possible paths
-            for (index, path) in pathsWithTransfers.enumerated() {
-                print("Path \(index + 1):")
-                for busStop in path {
-                    print("  \(busStop.name)")
-                }
-            }
-        }
-        return (startBusStop, endBusStop, matchingRoutes)
-    }
+//    func generateRoute(from startLocation: CLLocationCoordinate2D, to endLocation: CLLocationCoordinate2D) -> (startBusStop: BusStop, endBusStop: BusStop, routes: [Route])? {
+//        // Find the nearest start bus stop
+//        guard let startBusStop = findNearestBusStop(from: startLocation) else {
+//            print("No nearby start bus stop found.")
+//            return nil
+//        }
+//        
+//        // Find the nearest end bus stop
+//        guard let endBusStop = findNearestBusStop(from: endLocation) else {
+//            print("No nearby end bus stop found.")
+//            return nil
+//        }
+//        
+//        print("start: \(selectedStartCoordinate)")
+//        print("end: \(selectedEndCoordinate)")
+//        print("start stop \(startBusStop), end stop \(endBusStop)")
+//        
+//        // Find routes that pass through the start and end bus stops
+//        let startRoutes = findRoutes(for: startBusStop)
+//        let endRoutes = findRoutes(for: endBusStop)
+//        
+//        // Filter routes that pass through both the start and end bus stops
+//        let matchingRoutes = startRoutes.filter { route in
+//            return endRoutes.contains { $0.id == route.id }
+//        }
+//        
+//        print("matchingRoutes")
+//        
+//        if matchingRoutes.isEmpty {
+//            print("No matching routes found.")
+//            return nil
+//        }
+//        
+//        ////        if let routeDetails = locationViewModel.generateRoute() {
+//        //            let sStartBusStop = startBusStop
+//        //            let eEndBusStop = endBusStop
+//        //            let rRoutes = matchingRoutes
+//        
+//        // Generate the bus stops the user will pass through based on the first matching route
+//        if let busStopsOnRoute = self.generateBusStops(from: startBusStop, to: endBusStop, routes: matchingRoutes) {
+//            // Print out the bus stops
+//            for busStop in busStopsOnRoute {
+//                print("Bus stop: \(busStop.name)")
+//            }
+//        } else {
+//            // Generate paths with possible transfers considering transit bus stops
+//            let pathsWithTransfers = self.generatePathsWithTransfers(startBusStop: startBusStop, endBusStop: endBusStop, routes: matchingRoutes)
+//            
+//            // Print out the possible paths
+//            for (index, path) in pathsWithTransfers.enumerated() {
+//                print("Path \(index + 1):")
+//                for busStop in path {
+//                    print("  \(busStop.name)")
+//                }
+//            }
+//        }
+//        return (startBusStop, endBusStop, matchingRoutes)
+//    }
     
     func generateBusStops(from startBusStop: BusStop, to endBusStop: BusStop, routes: [Route]) -> [BusStop]? {
+        var bestRoute: Route? = nil
         var bestBusStops: [BusStop]? = nil
         var minBusStopsCount = Int.max  // We will use this to track the route with the least bus stops
 
@@ -293,10 +295,12 @@ class LocationSearchViewModel: NSObject, ObservableObject {
                 // Compare the count of bus stops with the current minimum
                 if busStopsOnRoute.count < minBusStopsCount {
                     minBusStopsCount = busStopsOnRoute.count
+                    bestRoute = route  // Update the best route with the least bus stops
                     bestBusStops = busStopsOnRoute  // Update the best route with the least bus stops
                 }
             }
         }
+        bestRoutes = [bestRoute ?? Route(id: "xx", name: "Xx", routeNumber: 0, busStops: [], bus: [], schedule: [], note: [])]
         
         generateBusStopCoordinates(from: bestBusStops ?? [])
         
@@ -304,6 +308,45 @@ class LocationSearchViewModel: NSObject, ObservableObject {
         // Return the bus stops with the least number of stops, or nil if no valid route was found
         return bestBusStops
     }
+    
+//    func generateBusStops(from startBusStop: BusStop, to endBusStop: BusStop, routes: [Route]) -> (Route?, [BusStop]?) {
+//        var bestRoute: Route? = nil
+//        var bestBusStops: [BusStop]? = nil
+//        var minBusStopsCount = Int.max  // We will use this to track the route with the least bus stops
+//
+//        // Iterate over each route to find the valid routes with start and end bus stops
+//        for route in routes {
+//            print("\nChecking route: \(route.name) id: \(route.id)\n")
+//            
+//            if let startIndex = route.busStops.firstIndex(of: startBusStop.id),
+//               let endIndex = route.busStops.firstIndex(of: endBusStop.id),
+//               startIndex <= endIndex {
+//                
+//                // Get the bus stops between start and end indices (inclusive)
+//                let busStopIDs = Array(route.busStops[startIndex...endIndex])
+//                
+//                // Convert the bus stop IDs to BusStop objects
+//                let busStopsOnRoute = busStopIDs.compactMap { busStopID in
+//                    return BusStop.all.first { $0.id == busStopID }
+//                }
+//                
+//                print("busStopsOnRoute \(busStopsOnRoute)\n")
+//                
+//                // Compare the count of bus stops with the current minimum
+//                if busStopsOnRoute.count < minBusStopsCount {
+//                    minBusStopsCount = busStopsOnRoute.count
+//                    bestRoute = route  // Update the best route with the least bus stops
+//                    bestBusStops = busStopsOnRoute  // Update the best bus stops
+//                }
+//            }
+//        }
+//        
+//        bestRoutes = [bestRoute]
+//
+//        // Return the best route with the least number of bus stops, and the bus stops along that route
+//        return (bestBusStops)
+//    }
+
     
     func generateBusStopCoordinates(from busStops: [BusStop]) {
         busStopsGenerated = busStops.map { busStop in
