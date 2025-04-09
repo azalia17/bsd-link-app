@@ -5223,9 +5223,9 @@
         ]
     },
     {
-        "id": "sd_r2_b3_puspitaloka_23",
+        "id": "sd_r2_b3_puspitaLoka_23",
         "index": 23,
-        "BusStop": "puspitaloka",
+        "BusStop": "puspitaLoka",
         "time": [
             {
                 "hour": 6,
@@ -5258,9 +5258,9 @@
         ]
     },
     {
-        "id": "sd_r2_b4_puspitaloka_23",
+        "id": "sd_r2_b4_puspitaLoka_23",
         "index": 23,
-        "BusStop": "puspitaloka",
+        "BusStop": "puspitaLoka",
         "time": [
             {
                 "hour": 7,
@@ -13614,7 +13614,6 @@
             {
                 "hour": 17,
                 "minute": 12,
-                "isRegular": false
             },
             {
                 "hour": 18,
