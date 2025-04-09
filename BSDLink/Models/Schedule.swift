@@ -132,7 +132,7 @@ extension Schedule {
                 "sd_r1_b1_pasarModernTimur_24",
                 "sd_r1_b1_griyaLoka1_25",
                 "sd_r1_b1_sektor13_26",
-                "sd_r1_b1_halteSektor13_27",
+                "sd_r1_b1_sektor13_27",
                 "sd_r1_b1_griyaLoka2_28",
                 "sd_r1_b1_santaUrsula1_29",
                 "sd_r1_b1_santaUrsula2_30",

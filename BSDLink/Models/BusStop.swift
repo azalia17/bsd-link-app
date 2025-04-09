@@ -793,7 +793,7 @@ extension BusStop {
         ),
 
         BusStop(
-            id: "puspitaloka",
+            id: "puspitaLoka",
             name: "Puspita Loka",
             latitude: CLLocationCoordinate2D.puspitaloka.latitude,
             longitude: CLLocationCoordinate2D.puspitaloka.longitude,

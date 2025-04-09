@@ -51,7 +51,9 @@ struct DetailRouteView: View {
                             .background(.orange.gradient, in: .circle)
                     }
                     
-                }.ignoresSafeArea(.all)
+                }
+                .ignoresSafeArea(.all)
+                .navigationTitle(route.name)
                 
                 VStack {
                     DetailSheet(route: route)

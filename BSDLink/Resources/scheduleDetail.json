@@ -168,7 +168,8 @@
             },
             {
                 "hour": 16,
-                "minute": 55
+                "minute": 55,
+                
             },
             {
                 "hour": 18,
@@ -1777,7 +1778,7 @@
     {
         "id": "sd_r1_b1_sektor13_26",
         "index": 26,
-        "BusStop": "halteSektor13",
+        "BusStop": "sektor13",
         "time": [
             {
                 "hour": 6,
@@ -1904,7 +1905,8 @@
             },
             {
                 "hour": 16,
-                "minute": 15
+                "minute": 15,
+                "isRegular": false
             },
             {
                 "hour": 18,
@@ -1971,7 +1973,8 @@
             },
             {
                 "hour": 16,
-                "minute": 17
+                "minute": 17,
+                "isRegular": false
             },
             {
                 "hour": 18,
@@ -2038,7 +2041,8 @@
             },
             {
                 "hour": 16,
-                "minute": 18
+                "minute": 18,
+                "isRegular": false
             },
             {
                 "hour": 18,
@@ -2105,7 +2109,8 @@
             },
             {
                 "hour": 16,
-                "minute": 19
+                "minute": 19,
+                "isRegular": false
             },
             {
                 "hour": 18,
@@ -2172,7 +2177,8 @@
             },
             {
                 "hour": 16,
-                "minute": 20
+                "minute": 20,
+                "isRegular": false
             },
             {
                 "hour": 18,
@@ -2239,7 +2245,8 @@
             },
             {
                 "hour": 16,
-                "minute": 23
+                "minute": 23,
+                "isRegular": false
             },
             {
                 "hour": 18,
@@ -2306,7 +2313,8 @@
             },
             {
                 "hour": 16,
-                "minute": 26
+                "minute": 26,
+                "isRegular": false
             },
             {
                 "hour": 18,
@@ -2373,7 +2381,8 @@
             },
             {
                 "hour": 16,
-                "minute": 31
+                "minute": 31,
+                "isRegular": false
             },
             {
                 "hour": 18,
@@ -2440,7 +2449,8 @@
             },
             {
                 "hour": 16,
-                "minute": 33
+                "minute": 33,
+                "isRegular": false
             },
             {
                 "hour": 18,
@@ -2507,7 +2517,8 @@
             },
             {
                 "hour": 16,
-                "minute": 34
+                "minute": 34,
+                "isRegular": false
             },
             {
                 "hour": 18,
@@ -2574,7 +2585,8 @@
             },
             {
                 "hour": 16,
-                "minute": 37
+                "minute": 37,
+                "isRegular": false
             },
             {
                 "hour": 18,
@@ -2641,7 +2653,8 @@
             },
             {
                 "hour": 16,
-                "minute": 39
+                "minute": 39,
+                "isRegular": false
             },
             {
                 "hour": 18,
@@ -2708,7 +2721,8 @@
             },
             {
                 "hour": 16,
-                "minute": 40
+                "minute": 40,
+                "isRegular": false
             },
             {
                 "hour": 18,
@@ -2775,7 +2789,8 @@
             },
             {
                 "hour": 16,
-                "minute": 43
+                "minute": 43,
+                "isRegular": false
             },
             {
                 "hour": 18,
@@ -2842,7 +2857,8 @@
             },
             {
                 "hour": 16,
-                "minute": 45
+                "minute": 45,
+                "isRegular": false
             },
             {
                 "hour": 18,
@@ -2909,7 +2925,8 @@
             },
             {
                 "hour": 16,
-                "minute": 48
+                "minute": 48,
+                "isRegular": false
             },
             {
                 "hour": 19,
@@ -2976,7 +2993,8 @@
             },
             {
                 "hour": 16,
-                "minute": 49
+                "minute": 49,
+                "isRegular": false
             },
             {
                 "hour": 19,
@@ -3043,7 +3061,8 @@
             },
             {
                 "hour": 16,
-                "minute": 50
+                "minute": 50,
+                "isRegular": false
             },
             {
                 "hour": 19,
@@ -3110,7 +3129,8 @@
             },
             {
                 "hour": 16,
-                "minute": 53
+                "minute": 53,
+                "isRegular": false
             },
             {
                 "hour": 19,
@@ -3177,7 +3197,8 @@
             },
             {
                 "hour": 16,
-                "minute": 56
+                "minute": 56,
+                "isRegular": false
             },
             {
                 "hour": 19,
@@ -3244,7 +3265,8 @@
             },
             {
                 "hour": 16,
-                "minute": 57
+                "minute": 57,
+                "isRegular": false
             },
             {
                 "hour": 19,
@@ -3311,7 +3333,8 @@
             },
             {
                 "hour": 16,
-                "minute": 58
+                "minute": 58,
+                "isRegular": false
             },
             {
                 "hour": 19,
@@ -3378,7 +3401,8 @@
             },
             {
                 "hour": 16,
-                "minute": 59
+                "minute": 59,
+                "isRegular": false
             },
             {
                 "hour": 19,
@@ -3445,7 +3469,8 @@
             },
             {
                 "hour": 17,
-                "minute": 0
+                "minute": 0,
+                "isRegular": false
             },
             {
                 "hour": 19,
@@ -3512,7 +3537,8 @@
             },
             {
                 "hour": 17,
-                "minute": 1
+                "minute": 1,
+                "isRegular": false
             },
             {
                 "hour": 19,
@@ -3579,7 +3605,8 @@
             },
             {
                 "hour": 17,
-                "minute": 3
+                "minute": 3,
+                "isRegular": false
             },
             {
                 "hour": 19,
@@ -3614,7 +3641,7 @@
             },
             {
                 "hour": 18,
-                "minute": 40
+                "minute": 40,
             },
             {
                 "hour": 20,
@@ -3646,7 +3673,8 @@
             },
             {
                 "hour": 17,
-                "minute": 5
+                "minute": 5,
+                "isRegular": false
             },
             {
                 "hour": 19,
