@@ -20,7 +20,7 @@ struct RouteDetail: View {
                 .padding(.top, 12)
             
             HStack {
-                Text(route.name)
+                Text("Route Detail")
                     .font(.title3)
                     .fontWeight(.bold)
                 Spacer()
