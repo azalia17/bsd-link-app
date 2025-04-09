@@ -132,7 +132,8 @@
             },
             {
                 "hour": 17,
-                "minute": 25
+                "minute": 25,
+                "isRegular": false
             },
             {
                 "hour": 19,
@@ -202,7 +203,8 @@
             },
             {
                 "hour": 17,
-                "minute": 26
+                "minute": 26,
+                "isRegular": false
             },
             {
                 "hour": 19,
@@ -272,7 +274,8 @@
             },
             {
                 "hour": 17,
-                "minute": 27
+                "minute": 27,
+                "isRegular": false
             },
             {
                 "hour": 19,
@@ -342,7 +345,8 @@
             },
             {
                 "hour": 17,
-                "minute": 28
+                "minute": 28,
+                "isRegular": false
             },
             {
                 "hour": 19,
@@ -412,7 +416,8 @@
             },
             {
                 "hour": 17,
-                "minute": 30
+                "minute": 30,
+                "isRegular": false
             },
             {
                 "hour": 19,
@@ -482,7 +487,8 @@
             },
             {
                 "hour": 17,
-                "minute": 30
+                "minute": 30,
+                "isRegular": false
             },
             {
                 "hour": 19,
@@ -552,7 +558,8 @@
             },
             {
                 "hour": 17,
-                "minute": 31
+                "minute": 31,
+                "isRegular": false
             },
             {
                 "hour": 19,
@@ -622,7 +629,8 @@
             },
             {
                 "hour": 17,
-                "minute": 32
+                "minute": 32,
+                "isRegular": false
             },
             {
                 "hour": 19,
@@ -672,31 +680,32 @@
         "time": [
             {
                 "hour": 6,
-                "minute": 59
+                "minute": 43
             },
             {
                 "hour": 9,
-                "minute": 9
+                "minute": 3
             },
             {
                 "hour": 11,
-                "minute": 24
+                "minute": 8
             },
             {
                 "hour": 13,
-                "minute": 34
+                "minute": 18
             },
             {
                 "hour": 15,
-                "minute": 44
+                "minute": 28
             },
             {
                 "hour": 17,
-                "minute": 49
+                "minute": 34,
+                "isRegular": false
             },
             {
                 "hour": 19,
-                "minute": 45
+                "minute": 39
             }
         ]
     },
@@ -742,31 +751,32 @@
         "time": [
             {
                 "hour": 6,
-                "minute": 58
+                "minute": 44
             },
             {
                 "hour": 9,
-                "minute": 8
+                "minute": 4
             },
             {
                 "hour": 11,
-                "minute": 23
+                "minute": 9
             },
             {
                 "hour": 13,
-                "minute": 33
+                "minute": 19
             },
             {
                 "hour": 15,
-                "minute": 43
+                "minute": 29
             },
             {
                 "hour": 17,
-                "minute": 48
+                "minute": 35,
+                "isRegular": false
             },
             {
                 "hour": 19,
-                "minute": 44
+                "minute": 40
             }
         ]
     },
@@ -812,31 +822,32 @@
         "time": [
             {
                 "hour": 6,
-                "minute": 55
+                "minute": 50
             },
             {
                 "hour": 9,
-                "minute": 5
+                "minute": 8
             },
             {
                 "hour": 11,
-                "minute": 20
+                "minute": 13
             },
             {
                 "hour": 13,
-                "minute": 30
+                "minute": 23
             },
             {
                 "hour": 15,
-                "minute": 40
+                "minute": 33
             },
             {
                 "hour": 17,
-                "minute": 45
+                "minute": 40,
+                "isRegular": false
             },
             {
                 "hour": 19,
-                "minute": 41
+                "minute": 45
             }
         ]
     },
@@ -871,7 +882,7 @@
             },
             {
                 "hour": 19,
-                "minute": 5
+                "minute": 7
             }
         ]
     },
@@ -882,31 +893,32 @@
         "time": [
             {
                 "hour": 6,
-                "minute": 54
+                "minute": 51
             },
             {
                 "hour": 9,
-                "minute": 4
+                "minute": 9
             },
             {
                 "hour": 11,
-                "minute": 19
+                "minute": 14
             },
             {
                 "hour": 13,
-                "minute": 29
+                "minute": 24
             },
             {
                 "hour": 15,
-                "minute": 39
+                "minute": 34
             },
             {
                 "hour": 17,
-                "minute": 44
+                "minute": 42,
+                "isRegular": false
             },
             {
                 "hour": 19,
-                "minute": 40
+                "minute": 47
             }
         ]
     },
@@ -952,31 +964,32 @@
         "time": [
             {
                 "hour": 6,
-                "minute": 52
+                "minute": 53
             },
             {
                 "hour": 9,
-                "minute": 2
+                "minute": 11
             },
             {
                 "hour": 11,
-                "minute": 17
+                "minute": 16
             },
             {
                 "hour": 13,
-                "minute": 27
+                "minute": 26
             },
             {
                 "hour": 15,
-                "minute": 37
+                "minute": 36
             },
             {
                 "hour": 17,
-                "minute": 42
+                "minute": 43,
+                "isRegular": false
             },
             {
                 "hour": 19,
-                "minute": 38
+                "minute": 48
             }
         ]
     },
@@ -991,7 +1004,7 @@
             },
             {
                 "hour": 8,
-                "minute": 33
+                "minute": 35
             },
             {
                 "hour": 10,
@@ -1022,31 +1035,32 @@
         "time": [
             {
                 "hour": 6,
-                "minute": 50
+                "minute": 55
             },
             {
                 "hour": 9,
-                "minute": 0
+                "minute": 13
             },
             {
                 "hour": 11,
-                "minute": 15
+                "minute": 18
             },
             {
                 "hour": 13,
-                "minute": 25
+                "minute": 28
             },
             {
                 "hour": 15,
-                "minute": 35
+                "minute": 38
             },
             {
                 "hour": 17,
-                "minute": 40
+                "minute": 45,
+                "isRegular": false
             },
             {
                 "hour": 19,
-                "minute": 36
+                "minute": 50
             }
         ]
     },
@@ -1112,7 +1126,8 @@
             },
             {
                 "hour": 17,
-                "minute": 39
+                "minute": 46,
+                "isRegular": false
             },
             {
                 "hour": 19,
@@ -1121,9 +1136,9 @@
         ]
     },
     {
-        "id": "sd_r1_b1_navapark1_17",
+        "id": "sd_r1_b1_navaPark1_17",
         "index": 17,
-        "BusStop": "navapark1",
+        "BusStop": "navaPark1",
         "time": [
             {
                 "hour": 6,
@@ -1156,9 +1171,9 @@
         ]
     },
     {
-        "id": "sd_r1_b2_navapark1_17",
+        "id": "sd_r1_b2_navaPark1_17",
         "index": 17,
-        "BusStop": "navapark1",
+        "BusStop": "navaPark1",
         "time": [
             {
                 "hour": 6,
@@ -1182,7 +1197,8 @@
             },
             {
                 "hour": 17,
-                "minute": 37
+                "minute": 49,
+                "isRegular": false
             },
             {
                 "hour": 19,
@@ -1252,7 +1268,8 @@
             },
             {
                 "hour": 17,
-                "minute": 51
+                "minute": 51,
+                "isRegular": false
             },
             {
                 "hour": 19,
@@ -1322,7 +1339,8 @@
             },
             {
                 "hour": 17,
-                "minute": 54
+                "minute": 54,
+                "isRegular": false
             },
             {
                 "hour": 19,
@@ -1392,7 +1410,8 @@
             },
             {
                 "hour": 17,
-                "minute": 57
+                "minute": 57,
+                "isRegular": false
             },
             {
                 "hour": 20,
@@ -1401,9 +1420,9 @@
         ]
     },
     {
-        "id": "sd_r1_b1_puspitaLoka_21",
+        "id": "sd_r1_b1_puspitaloka_21",
         "index": 21,
-        "BusStop": "puspitaLoka",
+        "BusStop": "puspitaloka",
         "time": [
             {
                 "hour": 6,
@@ -1436,9 +1455,9 @@
         ]
     },
     {
-        "id": "sd_r1_b2_puspitaLoka_21",
+        "id": "sd_r1_b2_puspitaloka_21",
         "index": 21,
-        "BusStop": "puspitaLoka",
+        "BusStop": "puspitaloka",
         "time": [
             {
                 "hour": 7,
@@ -1462,7 +1481,8 @@
             },
             {
                 "hour": 18,
-                "minute": 0
+                "minute": 1,
+                "isRegular": false
             },
             {
                 "hour": 20,
@@ -1532,7 +1552,8 @@
             },
             {
                 "hour": 18,
-                "minute": 3
+                "minute": 4,
+                "isRegular": false
             },
             {
                 "hour": 20,
@@ -1602,7 +1623,8 @@
             },
             {
                 "hour": 18,
-                "minute": 6
+                "minute": 7,
+                "isRegular": false
             },
             {
                 "hour": 20,
@@ -1611,9 +1633,9 @@
         ]
     },
     {
-        "id": "sd_r1_b1_pasmodTimur_24",
+        "id": "sd_r1_b1_pasarModernTimur_24",
         "index": 24,
-        "BusStop": "pasmodTimur",
+        "BusStop": "pasarModernTimur",
         "time": [
             {
                 "hour": 6,
@@ -1646,9 +1668,9 @@
         ]
     },
     {
-        "id": "sd_r1_b2_pasmodTimur_24",
+        "id": "sd_r1_b2_pasarModernTimur_24",
         "index": 24,
-        "BusStop": "pasmodTimur",
+        "BusStop": "pasarModernTimur",
         "time": [
             {
                 "hour": 7,
@@ -1672,7 +1694,8 @@
             },
             {
                 "hour": 18,
-                "minute": 8
+                "minute": 8,
+                "isRegular": false
             },
             {
                 "hour": 20,
@@ -1681,9 +1704,9 @@
         ]
     },
     {
-        "id": "sd_r1_b1_griyaloka1_25",
+        "id": "sd_r1_b1_griyaLoka1_25",
         "index": 25,
-        "BusStop": "griyaloka1",
+        "BusStop": "griyaLoka1",
         "time": [
             {
                 "hour": 6,
@@ -1716,9 +1739,9 @@
         ]
     },
     {
-        "id": "sd_r1_b2_griyaloka1_25",
+        "id": "sd_r1_b2_griyaLoka1_25",
         "index": 25,
-        "BusStop": "griyaloka1",
+        "BusStop": "griyaLoka1",
         "time": [
             {
                 "hour": 7,
@@ -1742,7 +1765,8 @@
             },
             {
                 "hour": 18,
-                "minute": 9
+                "minute": 11,
+                "isRegular": false
             },
             {
                 "hour": 20,
@@ -1751,7 +1775,7 @@
         ]
     },
     {
-        "id": "sd_r1_b1_halteSektor13_26",
+        "id": "sd_r1_b1_sektor13_26",
         "index": 26,
         "BusStop": "halteSektor13",
         "time": [
@@ -1786,9 +1810,9 @@
         ]
     },
     {
-        "id": "sd_r1_b2_halteSektor13_26",
+        "id": "sd_r1_b2_sektor13_26",
         "index": 26,
-        "BusStop": "halteSektor13",
+        "BusStop": "sektor13",
         "time": [
             {
                 "hour": 7,
@@ -1812,7 +1836,8 @@
             },
             {
                 "hour": 18,
-                "minute": 12
+                "minute": 13,
+                "isRegular": false
             },
             {
                 "hour": 20,
@@ -1821,9 +1846,9 @@
         ]
     },
     {
-        "id": "sd_r1_b1_halteSektor13_27",
+        "id": "sd_r1_b1_sektor13_27",
         "index": 27,
-        "BusStop": "halteSektor13",
+        "BusStop": "sektor13",
         "time": [
             {
                 "hour": 7,
@@ -1856,13 +1881,14 @@
         ]
     },
     {
-        "id": "sd_r1_b2_halteSektor13_27",
+        "id": "sd_r1_b2_sektor13_27",
         "index": 27,
-        "BusStop": "halteSektor13",
+        "BusStop": "sektor13",
         "time": [
             {
                 "hour": 7,
-                "minute": 40
+                "minute": 40,
+                "isRegular": false
             },
             {
                 "hour": 9,
@@ -1887,9 +1913,9 @@
         ]
     },
     {
-        "id": "sd_r1_b1_griyaloka2_28",
+        "id": "sd_r1_b1_griyaLoka2_28",
         "index": 28,
-        "BusStop": "griyaloka2",
+        "BusStop": "griyaLoka2",
         "time": [
             {
                 "hour": 7,
@@ -1922,13 +1948,14 @@
         ]
     },
     {
-        "id": "sd_r1_b2_griyaloka2_28",
+        "id": "sd_r1_b2_griyaLoka2_28",
         "index": 28,
-        "BusStop": "griyaloka2",
+        "BusStop": "griyaLoka2",
         "time": [
             {
                 "hour": 7,
-                "minute": 42
+                "minute": 42,
+                "isRegular": false
             },
             {
                 "hour": 9,
@@ -1994,7 +2021,8 @@
         "time": [
             {
                 "hour": 7,
-                "minute": 44
+                "minute": 44,
+                "isRegular": false
             },
             {
                 "hour": 9,
@@ -2060,7 +2088,8 @@
         "time": [
             {
                 "hour": 7,
-                "minute": 46
+                "minute": 46,
+                "isRegular": false
             },
             {
                 "hour": 9,
@@ -2126,7 +2155,8 @@
         "time": [
             {
                 "hour": 7,
-                "minute": 48
+                "minute": 48,
+                "isRegular": false
             },
             {
                 "hour": 9,
@@ -2192,7 +2222,8 @@
         "time": [
             {
                 "hour": 7,
-                "minute": 53
+                "minute": 53,
+                "isRegular": false
             },
             {
                 "hour": 10,
@@ -2258,7 +2289,8 @@
         "time": [
             {
                 "hour": 7,
-                "minute": 56
+                "minute": 56,
+                "isRegular": false
             },
             {
                 "hour": 10,
@@ -2324,7 +2356,8 @@
         "time": [
             {
                 "hour": 8,
-                "minute": 1
+                "minute": 1,
+                "isRegular": false
             },
             {
                 "hour": 10,
@@ -2390,7 +2423,8 @@
         "time": [
             {
                 "hour": 8,
-                "minute": 3
+                "minute": 3,
+                "isRegular": false
             },
             {
                 "hour": 10,
@@ -2456,7 +2490,8 @@
         "time": [
             {
                 "hour": 8,
-                "minute": 4
+                "minute": 4,
+                "isRegular": false
             },
             {
                 "hour": 10,
@@ -2522,7 +2557,8 @@
         "time": [
             {
                 "hour": 8,
-                "minute": 8
+                "minute": 8,
+                "isRegular": false
             },
             {
                 "hour": 10,
@@ -2588,7 +2624,8 @@
         "time": [
             {
                 "hour": 8,
-                "minute": 10
+                "minute": 10,
+                "isRegular": false
             },
             {
                 "hour": 10,
@@ -2613,9 +2650,9 @@
         ]
     },
     {
-        "id": "sd_r1_b1_aeonMall11_39",
+        "id": "sd_r1_b1_aeonMall1_39",
         "index": 39,
-        "BusStop": "aeonMall11",
+        "BusStop": "aeonMall1",
         "time": [
             {
                 "hour": 7,
@@ -2648,13 +2685,14 @@
         ]
     },
     {
-        "id": "sd_r1_b2_aeonMall11_39",
+        "id": "sd_r1_b2_aeonMall1_39",
         "index": 39,
-        "BusStop": "aeonMall11",
+        "BusStop": "aeonMall1",
         "time": [
             {
                 "hour": 8,
-                "minute": 11
+                "minute": 11,
+                "isRegular": false
             },
             {
                 "hour": 10,
@@ -2720,7 +2758,8 @@
         "time": [
             {
                 "hour": 8,
-                "minute": 13
+                "minute": 13,
+                "isRegular": false
             },
             {
                 "hour": 10,
@@ -2745,9 +2784,9 @@
         ]
     },
     {
-        "id": "sd_r1_b1_simplicity_41",
+        "id": "sd_r1_b1_simplicity1_41",
         "index": 41,
-        "BusStop": "simplicity",
+        "BusStop": "simplicity1",
         "time": [
             {
                 "hour": 7,
@@ -2780,13 +2819,14 @@
         ]
     },
     {
-        "id": "sd_r1_b2_simplicity_41",
+        "id": "sd_r1_b2_simplicity1_41",
         "index": 41,
-        "BusStop": "simplicity",
+        "BusStop": "simplicity1",
         "time": [
             {
                 "hour": 8,
-                "minute": 15
+                "minute": 15,
+                "isRegular": false
             },
             {
                 "hour": 10,
@@ -2852,7 +2892,8 @@
         "time": [
             {
                 "hour": 8,
-                "minute": 18
+                "minute": 18,
+                "isRegular": false
             },
             {
                 "hour": 10,
@@ -2918,7 +2959,8 @@
         "time": [
             {
                 "hour": 8,
-                "minute": 19
+                "minute": 19,
+                "isRegular": false
             },
             {
                 "hour": 10,
@@ -2984,7 +3026,8 @@
         "time": [
             {
                 "hour": 8,
-                "minute": 20
+                "minute": 20,
+                "isRegular": false
             },
             {
                 "hour": 10,
@@ -3009,9 +3052,9 @@
         ]
     },
     {
-        "id": "sd_r1_b1_terminalIntermoda_45",
+        "id": "sd_r1_b1_intermoda_45",
         "index": 45,
-        "BusStop": "terminalIntermoda",
+        "BusStop": "intermoda",
         "time": [
             {
                 "hour": 7,
@@ -3044,13 +3087,14 @@
         ]
     },
     {
-        "id": "sd_r1_b2_terminalIntermoda_45",
+        "id": "sd_r1_b2_intermoda_45",
         "index": 45,
-        "BusStop": "terminalIntermoda",
+        "BusStop": "intermoda",
         "time": [
             {
                 "hour": 8,
-                "minute": 23
+                "minute": 23,
+                "isRegular": false
             },
             {
                 "hour": 10,
@@ -3116,7 +3160,8 @@
         "time": [
             {
                 "hour": 8,
-                "minute": 26
+                "minute": 26,
+                "isRegular": false
             },
             {
                 "hour": 10,
@@ -3182,7 +3227,8 @@
         "time": [
             {
                 "hour": 8,
-                "minute": 27
+                "minute": 27,
+                "isRegular": false
             },
             {
                 "hour": 10,
@@ -3248,7 +3294,8 @@
         "time": [
             {
                 "hour": 8,
-                "minute": 28
+                "minute": 28,
+                "isRegular": false
             },
             {
                 "hour": 10,
@@ -3273,9 +3320,9 @@
         ]
     },
     {
-        "id": "sd_r1_b1_theAvaniClubHouse_49",
+        "id": "sd_r1_b1_avani_49",
         "index": 49,
-        "BusStop": "theAvaniClubHouse",
+        "BusStop": "avani",
         "time": [
             {
                 "hour": 7,
@@ -3308,13 +3355,14 @@
         ]
     },
     {
-        "id": "sd_r1_b2_theAvaniClubHouse_49",
+        "id": "sd_r1_b2_avani_49",
         "index": 49,
-        "BusStop": "theAvaniClubHouse",
+        "BusStop": "avani",
         "time": [
             {
                 "hour": 8,
-                "minute": 29
+                "minute": 29,
+                "isRegular": false
             },
             {
                 "hour": 10,
@@ -3339,9 +3387,9 @@
         ]
     },
     {
-        "id": "sd_r1_b1_ammarilla_50",
+        "id": "sd_r1_b1_amarilla_50",
         "index": 50,
-        "BusStop": "ammarilla",
+        "BusStop": "amarilla",
         "time": [
             {
                 "hour": 7,
@@ -3374,13 +3422,14 @@
         ]
     },
     {
-        "id": "sd_r1_b2_ammarilla_50",
+        "id": "sd_r1_b2_amarilla_50",
         "index": 50,
-        "BusStop": "ammarilla",
+        "BusStop": "amarilla",
         "time": [
             {
                 "hour": 8,
-                "minute": 30
+                "minute": 30,
+                "isRegular": false
             },
             {
                 "hour": 10,
@@ -3446,7 +3495,8 @@
         "time": [
             {
                 "hour": 8,
-                "minute": 31
+                "minute": 31,
+                "isRegular": false
             },
             {
                 "hour": 10,
@@ -3512,7 +3562,8 @@
         "time": [
             {
                 "hour": 8,
-                "minute": 32
+                "minute": 32,
+                "isRegular": false
             },
             {
                 "hour": 10,
@@ -3578,7 +3629,8 @@
         "time": [
             {
                 "hour": 8,
-                "minute": 34
+                "minute": 34,
+                "isRegular": false
             },
             {
                 "hour": 10,
@@ -4583,7 +4635,7 @@
         ]
     },
     {
-        "id": "sd_r2_b3_smlplaza_15",
+        "id": "sd_r2_b3_smlPlaza_15",
         "index": 15,
         "BusStop": "smlPlaza",
         "time": [
@@ -4618,7 +4670,7 @@
         ]
     },
     {
-        "id": "sd_r2_b4_smlplaza_15",
+        "id": "sd_r2_b4_smlPlaza_15",
         "index": 15,
         "BusStop": "smlPlaza",
         "time": [
@@ -5143,9 +5195,9 @@
         ]
     },
     {
-        "id": "sd_r2_b3_puspitaLoka_23",
+        "id": "sd_r2_b3_puspitaloka_23",
         "index": 23,
-        "BusStop": "puspitaLoka",
+        "BusStop": "puspitaloka",
         "time": [
             {
                 "hour": 6,
@@ -5178,9 +5230,9 @@
         ]
     },
     {
-        "id": "sd_r2_b4_puspitaLoka_23",
+        "id": "sd_r2_b4_puspitaloka_23",
         "index": 23,
-        "BusStop": "puspitaLoka",
+        "BusStop": "puspitaloka",
         "time": [
             {
                 "hour": 7,
@@ -6515,9 +6567,9 @@
         ]
     },
     {
-        "id": "sd_r2_b3_allevara_43",
+        "id": "sd_r2_b3_allevare_43",
         "index": 43,
-        "BusStop": "allevara",
+        "BusStop": "allevare",
         "time": [
             {
                 "hour": 7,
@@ -6551,9 +6603,9 @@
         ]
     },
     {
-        "id": "sd_r2_b4_allevara_43",
+        "id": "sd_r2_b4_allevare_43",
         "index": 43,
-        "BusStop": "allevara",
+        "BusStop": "allevare",
         "time": [
             {
                 "hour": 8,
@@ -7163,9 +7215,9 @@
         ]
     },
     {
-        "id": "sd_r2_b4_qbig1_52",
+        "id": "sd_r2_b4_qBig1_52",
         "index": 52,
-        "BusStop": "qbig1",
+        "BusStop": "qBig1",
         "time": [
             {
                 "hour": 8,
@@ -11662,9 +11714,9 @@
         ]
     },
     {
-        "id": "sd_r4_b6_deFrangipani_22",
+        "id": "sd_r4_b6_deFrangpani_22",
         "index": 22,
-        "BusStop": "deFrangipani",
+        "BusStop": "deFrangpani",
         "time": [
             {
                 "hour": 6,
@@ -11721,9 +11773,9 @@
         ]
     },
     {
-        "id": "sd_r4_b8a_deFrangipani_22",
+        "id": "sd_r4_b8a_deFrangpani_22",
         "index": 22,
-        "BusStop": "deFrangipani",
+        "BusStop": "deFrangpani",
         "time": [
             {
                 "hour": 6,
@@ -12059,7 +12111,7 @@
     {
         "id": "sd_r4_b6_qBig2_27",
         "index": 27,
-        "BusStop": "qbig2",
+        "BusStop": "qBig2",
         "time": [
             {
                 "hour": 6,
@@ -12116,9 +12168,9 @@
         ]
     },
     {
-        "id": "sd_r4_b8a_qbig2_27",
+        "id": "sd_r4_b8a_qBig2_27",
         "index": 27,
-        "BusStop": "qbig2",
+        "BusStop": "qBig2",
         "time": [
             {
                 "hour": 6,
